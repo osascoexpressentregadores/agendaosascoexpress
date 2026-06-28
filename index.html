@@ -726,6 +726,497 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
   }
 }
 
+
+/* Timeline final: agenda por data, clara para motoca com vários pontos */
+.pointChips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.pointChip{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--black);
+  font-size:12px;
+  font-weight:950;
+}
+.agendaTimeline{
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+  position:relative;
+}
+.timelineDay{
+  position:relative;
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr);
+  gap:10px;
+  align-items:stretch;
+}
+.timelineDate{
+  border-radius:20px;
+  background:var(--black);
+  color:#fff;
+  min-height:96px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px 6px;
+}
+.timelineDate b{
+  display:block;
+  font-size:15px;
+  line-height:1;
+  text-transform:uppercase;
+}
+.timelineDate span{
+  display:block;
+  margin-top:5px;
+  font-size:13px;
+  font-weight:1000;
+  color:#fff;
+}
+.timelineBody{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.timelineBodyHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 13px;
+  border-bottom:1px solid var(--line);
+  background:#f8fafc;
+}
+.timelineBodyHead strong{
+  display:block;
+  font-size:15px;
+  line-height:1.2;
+}
+.timelineBodyHead span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#fee2e2;
+  color:var(--red);
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.routeList{
+  list-style:none;
+  margin:0;
+  padding:12px;
+  display:grid;
+  gap:10px;
+}
+.routeItem{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+.routeNumber{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background:var(--red);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:1000;
+  font-size:14px;
+}
+.routeContent strong{
+  display:block;
+  color:var(--black);
+  font-size:16px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.routeContent p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+}
+.routeTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.routeTags span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  font-size:11px;
+  font-weight:1000;
+  color:var(--black);
+}
+.dayWarning{
+  margin:0 12px 12px;
+  border-radius:16px;
+  padding:10px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:12px;
+  font-weight:850;
+  line-height:1.35;
+}
+@media(max-width:560px){
+  .timelineDay{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .timelineDate{
+    min-height:auto;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:10px 12px;
+  }
+  .timelineDate span{
+    margin-top:0;
+  }
+  .timelineBodyHead{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .routeItem{
+    grid-template-columns:30px minmax(0,1fr);
+    padding:10px;
+  }
+  .routeNumber{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+  }
+}
+
+
+/* Produção: agenda semanal vertical, simples para motoca leigo */
+.weekSummary{
+  margin-top:12px;
+  padding:14px;
+  border-radius:22px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+}
+.weekSummary span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.weekSummary strong{
+  display:block;
+  margin-top:4px;
+  color:var(--black);
+  font-size:20px;
+  line-height:1.15;
+}
+.weekSummary small{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+}
+.weekLocations{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+.weekLocations b{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--black);
+  font-size:12px;
+  font-weight:950;
+}
+.weekAlert{
+  margin-top:12px;
+  border-radius:18px;
+  padding:11px 12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:850;
+}
+.weekAgenda{
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+}
+.weekDay{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.weekDayHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 14px;
+  background:var(--black);
+  color:#fff;
+}
+.weekDayTitle{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  min-width:0;
+}
+.weekDayTitle strong{
+  display:block;
+  font-size:18px;
+  line-height:1;
+  text-transform:uppercase;
+}
+.weekDayTitle span{
+  display:block;
+  font-size:14px;
+  line-height:1;
+  font-weight:1000;
+  color:#fff;
+}
+.weekDayHead em{
+  flex:0 0 auto;
+  font-style:normal;
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.dayPlaces{
+  display:grid;
+  gap:0;
+}
+.dayPlace{
+  display:grid;
+  grid-template-columns:112px minmax(0,1fr);
+  gap:12px;
+  padding:14px;
+  border-top:1px solid var(--line);
+}
+.dayPlace:first-child{
+  border-top:0;
+}
+.placeTime{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:56px;
+  border-radius:16px;
+  background:#fee2e2;
+  color:var(--red);
+  font-size:13px;
+  font-weight:1000;
+  line-height:1.15;
+  padding:8px;
+}
+.placeInfo{
+  min-width:0;
+}
+.placeInfo strong{
+  display:block;
+  color:var(--black);
+  font-size:18px;
+  line-height:1.15;
+  overflow-wrap:anywhere;
+}
+.placeInfo span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+  overflow-wrap:anywhere;
+}
+.multiDayNote{
+  margin:0 14px 14px;
+  padding:10px 11px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:850;
+}
+.confirmPanel .btn.green.full{
+  font-size:15px;
+}
+@media(max-width:560px){
+  .weekSummary{
+    padding:12px;
+    border-radius:20px;
+  }
+  .weekSummary strong{
+    font-size:18px;
+  }
+  .weekDayHead{
+    padding:12px;
+  }
+  .weekDayTitle{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+  }
+  .weekDayTitle strong{
+    font-size:17px;
+  }
+  .dayPlace{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:12px;
+  }
+  .placeTime{
+    justify-content:flex-start;
+    min-height:auto;
+    width:max-content;
+    max-width:100%;
+    padding:8px 10px;
+  }
+  .placeInfo strong{
+    font-size:17px;
+  }
+}
+
+
+/* Logos dos clientes — associação visual rápida */
+.clientVisual{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.clientLogo{
+  width:46px;
+  height:46px;
+  flex:0 0 46px;
+  border-radius:14px;
+  object-fit:contain;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:0 6px 14px rgba(16,24,40,.08);
+  padding:5px;
+}
+.clientLogo.small{
+  width:30px;
+  height:30px;
+  flex-basis:30px;
+  border-radius:10px;
+  padding:3px;
+  box-shadow:none;
+}
+.clientLogo.tiny{
+  width:24px;
+  height:24px;
+  flex-basis:24px;
+  border-radius:8px;
+  padding:2px;
+  box-shadow:none;
+}
+.clientNameBlock{
+  min-width:0;
+}
+.clientNameBlock strong{
+  display:block;
+}
+.clientNameBlock span{
+  display:block;
+}
+.weekLocations b{
+  gap:6px;
+}
+.placeInfo .clientVisual{
+  align-items:flex-start;
+}
+.placeInfo .clientNameBlock strong{
+  font-size:18px;
+  line-height:1.15;
+  color:var(--black);
+  overflow-wrap:anywhere;
+}
+.placeInfo .clientNameBlock span{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+  overflow-wrap:anywhere;
+}
+.adminClientHint{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 10px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  font-size:12px;
+  font-weight:900;
+  color:var(--black);
+}
+@media(max-width:560px){
+  .clientLogo{
+    width:42px;
+    height:42px;
+    flex-basis:42px;
+  }
+  .placeInfo .clientNameBlock strong{
+    font-size:17px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -762,7 +1253,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 
       <div class="card searchAgendaCard">
         <span class="kicker">Confirmar agenda</span>
-        <p class="lead">Digite seu nome para conferir sua agenda reservada.</p>
+        <p class="lead">Digite seu nome para ver sua agenda reservada.</p>
         <div class="searchBox">
           <input class="input" id="driverSearch" placeholder="Ex: Tyler Souza">
           <button class="btn red" id="searchBtn">Ver agenda</button>
@@ -860,7 +1351,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 
 <script>
 const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Souza"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_bancada_final_v1';
+const STORAGE_KEY = 'oe_agenda_logos_clientes_v1';
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
@@ -934,10 +1425,119 @@ function renderDriverSearch(){
  if(names.length===1){showDriverAgenda(names[0]);return;}
  box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
 }
+function parseDateOrder(date){
+ const parts=String(date||'').split('/');
+ const d=parseInt(parts[0]||'0',10);
+ const m=parseInt(parts[1]||'0',10);
+ return (m*100)+d;
+}
+function timeOrder(value){
+ const v=String(value||'').toLowerCase();
+ if(v.includes('10h')||v.includes('manhã')||v.includes('manha')) return 1;
+ if(v.includes('16h')||v.includes('tarde')) return 2;
+ const match=v.match(/(\d{1,2})h/);
+ if(match) return 10+parseInt(match[1],10);
+ return 99;
+}
+
+
+const CLIENT_LOGOS={
+  'pastel da camila':'assets/clientes/pastel-da-camila.png',
+  'pastel da drica':'assets/clientes/pastel-da-drica.png',
+  'pizzaria bevenutti':'assets/clientes/bevenutti.png',
+  'bevenutti':'assets/clientes/bevenutti.png',
+  'fratelli espaço gourmet':'assets/clientes/fratelli.png',
+  'fratelli':'assets/clientes/fratelli.png',
+  'meridio pizza':'assets/clientes/meridio.png',
+  'merídio pizza':'assets/clientes/meridio.png',
+  'barto restaurante':'assets/clientes/barto.png',
+  'bartô restaurante':'assets/clientes/barto.png',
+  'bartô rock & comedy':'assets/clientes/barto.png',
+  'barto rock & comedy':'assets/clientes/barto.png'
+};
+function clientLogo(name){
+ const n=String(name||'').toLowerCase().trim();
+ if(CLIENT_LOGOS[n]) return CLIENT_LOGOS[n];
+ if(n.includes('camila')) return CLIENT_LOGOS['pastel da camila'];
+ if(n.includes('drica')) return CLIENT_LOGOS['pastel da drica'];
+ if(n.includes('bevenutti')) return CLIENT_LOGOS['bevenutti'];
+ if(n.includes('fratelli')) return CLIENT_LOGOS['fratelli'];
+ if(n.includes('meridio')||n.includes('merídio')) return CLIENT_LOGOS['meridio pizza'];
+ if(n.includes('barto')||n.includes('bartô')) return CLIENT_LOGOS['barto restaurante'];
+ return '';
+}
+function logoImg(name, cls='clientLogo'){
+ const src=clientLogo(name);
+ return src?`<img class="${cls}" src="${src}" alt="Logo ${esc(displayClientName(name))}" loading="lazy">`:'';
+}
+
+function displayClientName(name){
+ return String(name||'').replace(/^Pizzaria\s+/i,'').trim();
+}
+function displayTime(row){
+ const client=String(row.c.name||'').toLowerCase();
+ const raw=String(row.it.time||row.c.defaultTime||'').trim();
+ const low=raw.toLowerCase();
+
+ if(client.includes('pastel da camila')){
+   if(low.includes('manhã')||low.includes('manha')) return '10h às 16h';
+   if(low.includes('tarde')) return '16h às 22h';
+ }
+ if(client.includes('bevenutti')){
+   return '18h às 00h30';
+ }
+ return raw;
+}
+function displayShift(row){
+ const client=String(row.c.name||'').toLowerCase();
+ const raw=String(row.it.time||row.c.defaultTime||'').toLowerCase();
+ if(client.includes('pastel da camila')){
+   if(raw.includes('manhã')||raw.includes('manha')) return 'Turno da manhã';
+   if(raw.includes('tarde')) return 'Turno da tarde';
+ }
+ return '';
+}
+function formatDayList(dayNames){
+ const cleaned=[...new Set(dayNames.map(d=>String(d||'').trim()).filter(Boolean))];
+ const orderMap={'domingo':0,'segunda':1,'terça':2,'terca':2,'quarta':3,'quinta':4,'sexta':5,'sábado':6,'sabado':6};
+ cleaned.sort((a,b)=>(orderMap[a.toLowerCase()]??99)-(orderMap[b.toLowerCase()]??99));
+ const normalized=cleaned.map(d=>{
+   const low=d.toLowerCase();
+   if(low==='terca') return 'terça';
+   if(low==='sabado') return 'sábado';
+   return low;
+ });
+ const labels=normalized.map(d=>d.charAt(0).toUpperCase()+d.slice(1));
+ if(labels.length===0) return '';
+ if(labels.length===1) return labels[0];
+ if(labels.length===2) return labels.join(' e ');
+ const isConsecutive=normalized.every((d,i,arr)=>{
+   if(i===0) return true;
+   return (orderMap[d]??99)===(orderMap[arr[i-1]]??99)+1;
+ });
+ if(isConsecutive && labels.length>=3){
+   return `${labels[0]} a ${labels[labels.length-1]}`;
+ }
+ return `${labels.slice(0,-1).join(', ')} e ${labels[labels.length-1]}`;
+}
+function weekRange(groups){
+ if(!groups.length) return '';
+ return `${groups[0].date} a ${groups[groups.length-1].date}`;
+}
+
+function sortedDriverRows(rows){
+ return [...rows].sort((a,b)=>{
+   const da=parseDateOrder(a.d.date), db=parseDateOrder(b.d.date);
+   if(da!==db) return da-db;
+   const ta=timeOrder(a.it.time||a.c.defaultTime), tb=timeOrder(b.it.time||b.c.defaultTime);
+   if(ta!==tb) return ta-tb;
+   return String(a.c.name).localeCompare(String(b.c.name),'pt-BR');
+ });
+}
 function groupRowsByDay(rows){
  const groups=[];
- rows.forEach(r=>{
-   const key=`${r.d.day} ${r.d.date}`;
+ sortedDriverRows(rows).forEach(r=>{
+   const key=String(r.d.date);
    let group=groups.find(g=>g.key===key);
    if(!group){
      group={key, day:r.d.day, date:r.d.date, rows:[]};
@@ -949,44 +1549,53 @@ function groupRowsByDay(rows){
 }
 function showDriverAgenda(name){
  selectedDriver=name;
- const rows=driverMap()[name]||[];
+ const rows=sortedDriverRows(driverMap()[name]||[]);
  const groups=groupRowsByDay(rows);
- const clients=[...new Set(rows.map(r=>r.c.name))];
- const totalCommitments=rows.length;
- const multiClient=clients.length>1;
- const sameDayMultiple=groups.some(g=>g.rows.length>1);
+ const locations=[...new Set(rows.map(r=>r.c.name))];
+ const multiLocation=locations.length>1;
+ const hasMultiDay=groups.some(g=>g.rows.length>1);
 
- const alerts=[];
- if(multiClient){
-   alerts.push(`Você tem agenda reservada em ${clients.length} pontos nesta semana. Confira os dias e horários antes de confirmar.`);
- }
- if(sameDayMultiple){
-   alerts.push('Atenção: existe dia com mais de um compromisso reservado.');
- }
+ const locationText=locations.length===1?'1 local':`${locations.length} locais`;
+ const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
 
- const summary=`<div class="driverSummary">
-   <div class="summaryBox"><span>Dias reservados</span><b>${groups.length}</b></div>
-   <div class="summaryBox"><span>Compromissos</span><b>${totalCommitments}</b></div>
-   <div class="summaryBox"><span>Pontos</span><b>${clients.length}</b></div>
+ const weekSummary=`<div class="weekSummary">
+   <span>Sua semana</span>
+   <strong>${dayText} · ${locationText}</strong>
+   <small>Leia de cima para baixo: dia, horário e local.</small>
+   <div class="weekLocations">${locations.map(l=>`<b>${logoImg(l,'clientLogo tiny')}${esc(displayClientName(l))}</b>`).join('')}</div>
  </div>`;
 
- const alertHtml=alerts.length?`<div class="uxAlert">${alerts.map(a=>`<div>${esc(a)}</div>`).join('')}</div>`:'';
+ const alertHtml=(multiLocation||hasMultiDay)?`<div class="weekAlert">
+   Atenção: ${hasMultiDay?'tem dia com mais de um local. ':''}Confira os horários com calma antes de confirmar.
+ </div>`:'';
 
- const list=groups.map(g=>`<article class="dayGroup">
-   <div class="dayGroupHead">
-     <strong>${esc(g.day)} ${esc(g.date)}</strong>
-     <span>${g.rows.length} compromisso(s)</span>
-   </div>
-   <ul class="commitmentList">
-     ${g.rows.map(r=>`<li class="commitmentItem">
-       <strong>${esc(r.c.name)}</strong>
-       <div class="commitmentMeta">
-         <div><span>Horário</span><b>${esc(r.it.time||r.c.defaultTime)}</b></div>
-         <div><span>Ponto</span><b>${esc(r.it.point||r.c.point)}</b></div>
+ const agenda=groups.map(g=>{
+   const count=g.rows.length;
+   return `<article class="weekDay">
+     <header class="weekDayHead">
+       <div class="weekDayTitle">
+         <strong>${esc(g.day)}</strong>
+         <span>${esc(g.date)}</span>
        </div>
-     </li>`).join('')}
-   </ul>
- </article>`).join('');
+       <em>${count===1?'1 local':`${count} locais`}</em>
+     </header>
+     <div class="dayPlaces">
+       ${g.rows.map(r=>`<div class="dayPlace">
+         <div class="placeTime">${esc(displayTime(r))}</div>
+         <div class="placeInfo">
+           <div class="clientVisual">
+             ${logoImg(r.c.name)}
+             <div class="clientNameBlock">
+               <strong>${esc(displayClientName(r.c.name))}</strong>
+               <span>${esc(displayShift(r)||r.it.point||r.c.point)}</span>
+             </div>
+           </div>
+         </div>
+       </div>`).join('')}
+     </div>
+     ${count>1?`<div class="multiDayNote">Neste dia você tem ${count} locais reservados. Confira os horários com atenção.</div>`:''}
+   </article>`;
+ }).join('');
 
  document.getElementById('agendaResult').innerHTML=`<div class="card">
    <div class="agendaHeader">
@@ -994,16 +1603,15 @@ function showDriverAgenda(name){
        <span class="kicker">Agenda reservada para</span>
        <div class="agendaName">${esc(name)}</div>
      </div>
-     <span class="pill">${totalCommitments} reserva(s)</span>
+     <span class="pill">Por dia e horário</span>
    </div>
-   <p class="lead">Organizei sua agenda por dia para você conferir rápido onde vai, quando vai e em qual horário.</p>
-   ${summary}
+   ${weekSummary}
    ${alertHtml}
-   <div class="grid">${list}</div>
+   <div class="weekAgenda">${agenda}</div>
    <div class="confirmPanel">
-     <p><strong>Confirmação de compromisso:</strong> ao enviar, você confirma a agenda completa abaixo.</p>
+     <p><strong>Confirmação:</strong> envie a mensagem somente depois de conferir todos os dias, horários e locais.</p>
      <textarea id="confirmMsg">${esc(confirmMessage(name))}</textarea>
-     <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar agenda completa no WhatsApp</a>
+     <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar minha agenda no WhatsApp</a>
    </div>
    <div class="actions">
      <button class="btn light" onclick="clearAgenda()">Buscar outro nome</button>
@@ -1015,12 +1623,40 @@ function showDriverAgenda(name){
  });
  document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
+function confirmMessage(name){
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const groups=groupRowsByDay(rows);
+ const map=new Map();
+
+ rows.forEach(r=>{
+   const local=displayClientName(r.c.name);
+   const time=displayTime(r);
+   const shift=displayShift(r);
+   const key=`${local}__${time}__${shift}`;
+   if(!map.has(key)){
+     map.set(key,{local,time,shift,days:[]});
+   }
+   map.get(key).days.push(r.d.day);
+ });
+
+ const blocks=[...map.values()].map(item=>{
+   const shiftLine=item.shift?`\n${item.shift}`:'';
+   return `📍 ${item.local}\n🗓️ ${formatDayList(item.days)}\n🕒 ${item.time}${shiftLine}`;
+ }).join('\n\n');
+
+ const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
+ const localCount=[...new Set(rows.map(r=>displayClientName(r.c.name)))].length;
+ const localText=localCount===1?'1 local':`${localCount} locais`;
+ const range=weekRange(groups);
+
+ return `🏍️ Confirmação de agenda OE\n\n👤 Motoca: ${name}\n📅 Semana: ${range}\n📌 Resumo: ${dayText} · ${localText}\n\n${blocks}\n\n✅ Confirmo minha presença na agenda acima.\n\nEstou ciente que a loja, o suporte e o time contam comigo.\nSe acontecer qualquer problema, vou avisar com antecedência.`;
+}
 function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
 function confirmMessage(name){
- const rows=driverMap()[name]||[];
+ const rows=sortedDriverRows(driverMap()[name]||[]);
  const groups=groupRowsByDay(rows);
  const lines=groups.map(g=>{
-   const commitments=g.rows.map(r=>`• ${r.c.name} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
+   const commitments=g.rows.map((r,i)=>`${g.rows.length>1?`${i+1}. `:'• '}${r.c.name} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
    return `${g.day} ${g.date}\\n${commitments}`;
  }).join('\\n\\n');
  return `Olá, suporte OE.\\n\\nSou ${name}.\\nConferi minha agenda reservada e confirmo presença nos dias abaixo:\\n\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam comigo.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
@@ -1111,7 +1747,7 @@ function applyFilters(){
  const box=document.getElementById('managementResults');
  if(!box)return;
  if(!rows.length){box.innerHTML='<div class="box" style="padding:14px"><strong>Nenhum resultado</strong><p>Ajuste os filtros.</p></div>';return;}
- box.innerHTML=rows.map(r=>`<div class="box" style="padding:14px"><strong>${esc(itemLabel(r.it,r.c))}<span class="pill">${r.status==='open'?'vaga':'reserva'}</span></strong><p>${esc(r.c.name)} · ${esc(r.d.day)} ${esc(r.d.date)} · ${esc(r.it.time||r.c.defaultTime)} · ${esc(r.it.point||r.c.point)}</p></div>`).join('');
+ box.innerHTML=rows.map(r=>`<div class="box" style="padding:14px"><strong>${esc(itemLabel(r.it,r.c))}<span class="pill">${r.status==='open'?'vaga':'reserva'}</span></strong><p>${esc(r.c.name)} · ${esc(r.d.day)} ${esc(r.d.date)} · ${esc(displayTime(r))} · ${esc(r.it.point||r.c.point)}</p></div>`).join('');
 }
 
 function renderAdmin(){
