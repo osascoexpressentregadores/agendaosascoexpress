@@ -1296,6 +1296,98 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
   box-shadow:0 12px 24px rgba(22,163,74,.22);
 }
 
+
+/* Correção cirúrgica da dobra: título não invade Kauan */
+.brandHero{
+  overflow:hidden!important;
+}
+.brandHeroInner,
+.brandHeroContent,
+.heroSplit,
+.heroVisual,
+.heroGrid{
+  min-width:0!important;
+}
+.brandHeroTitle{
+  max-width:285px!important;
+  width:100%!important;
+  color:var(--black)!important;
+  font-size:clamp(34px,4.1vw,56px)!important;
+  line-height:.84!important;
+  letter-spacing:-.075em!important;
+  text-transform:uppercase!important;
+  font-weight:1000!important;
+  position:relative!important;
+  z-index:2!important;
+}
+.brandHeroTitle .titleLine,
+.brandHeroTitle .titleAction{
+  display:block!important;
+  white-space:nowrap!important;
+}
+.brandHeroTitle .titleLine{
+  color:var(--black)!important;
+}
+.brandHeroTitle .titleAction{
+  color:var(--red)!important;
+}
+.kauanHero,
+.heroMascot,
+.brandHeroMascot{
+  position:relative!important;
+  z-index:1!important;
+  max-width:155px!important;
+  margin-left:auto!important;
+}
+.kauanHero img,
+.heroMascot img,
+.brandHeroMascot img{
+  max-width:155px!important;
+  height:auto!important;
+  object-fit:contain!important;
+}
+@media(min-width:851px){
+  .brandHero{
+    min-height:232px!important;
+  }
+  .brandHeroTitle{
+    max-width:300px!important;
+  }
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:260px!important;
+    font-size:40px!important;
+  }
+  .kauanHero,
+  .heroMascot,
+  .brandHeroMascot,
+  .kauanHero img,
+  .heroMascot img,
+  .brandHeroMascot img{
+    max-width:132px!important;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:210px!important;
+    font-size:32px!important;
+    line-height:.88!important;
+  }
+  .brandHeroTitle .titleLine,
+  .brandHeroTitle .titleAction{
+    white-space:normal!important;
+  }
+  .kauanHero,
+  .heroMascot,
+  .brandHeroMascot,
+  .kauanHero img,
+  .heroMascot img,
+  .brandHeroMascot img{
+    max-width:112px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1319,7 +1411,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
       <div class="brandHero">
         <div class="brandHeroCopy">
           <span class="kicker">Agenda reservada</span>
-          <div class="brandHeroTitle"><span class="titleBlack">Confira sua agenda</span><span class="titleRed">Confirme</span></div>
+          <div class="brandHeroTitle"><span class="titleLine">Confira sua</span><span class="titleLine">agenda</span><span class="titleAction">Confirme</span></div>
           <p class="brandHeroLead">A Osasco Express já reservou esses horários com você. Confira seus pontos e confirme o compromisso com o time.</p>
           <div class="brandHeroTags">
             <span>Busca rápida</span>
@@ -1429,8 +1521,8 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 </nav>
 
 <script>
-const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Souza"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_confirmar_direto_v1';
+const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Getaruch"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
+const STORAGE_KEY = 'oe_agenda_brunos_final_v1';
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
