@@ -1,0 +1,2053 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Agenda Reservada OE</title>
+<style>
+:root{
+  --red:#e30613; --black:#08090c; --ink:#12141a; --muted:#667085; --line:#e6e9ef;
+  --soft:#f7f8fa; --green:#12944a; --danger:#b42318; --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px); --nav-h:86px; --shadow:0 12px 28px rgba(16,24,40,.07);
+}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;color:var(--ink);background:linear-gradient(180deg,#fff,#f6f7fa);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 28px)}
+button,input,select,textarea,a{font:inherit;-webkit-tap-highlight-color:transparent}
+button{border:0;cursor:pointer} a{text-decoration:none;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid rgba(227,6,19,.22);outline-offset:2px}
+.wrap{width:min(100% - 22px,1180px);margin:0 auto}
+.top{position:sticky;top:0;z-index:60;padding:calc(8px + var(--safe-top)) 0 8px;background:rgba(246,247,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.topBox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:#fff;border:1px solid rgba(16,24,40,.06);border-radius:22px;padding:10px;box-shadow:var(--shadow)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:46px;height:46px;border-radius:15px;background:var(--black);color:#fff;display:grid;place-items:center;font-weight:1000;letter-spacing:-.08em;font-size:18px;flex:0 0 46px}
+.brand strong{display:block;font-size:12px;line-height:1.1;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topActions{display:flex;gap:7px;align-items:center}
+.btnTop{min-height:44px;border-radius:15px;padding:0 12px;background:#f1f3f7;color:var(--ink);font-size:12px;font-weight:1000;white-space:nowrap}
+.btnTop.red{background:var(--red);color:#fff}
+.main{padding:14px 0 0}
+.page{display:none}.page.active{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:var(--shadow);overflow:hidden}
+.kicker{display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 11px;border-radius:999px;background:#fff1f2;color:var(--red);border:1px solid rgba(227,6,19,.15);font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.08em}
+.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red)}
+h1,h2{margin:0;line-height:.95;letter-spacing:-.055em;text-transform:uppercase}
+h1{margin-top:12px;font-size:clamp(34px,6vw,62px)}
+h1 span,h2 span{color:var(--red);display:block}
+h2{font-size:clamp(28px,4.5vw,46px)}
+.lead{margin:10px 0 0;color:#344054;font-size:14px;line-height:1.45;font-weight:760;max-width:760px}
+.hero{display:grid;grid-template-columns:1fr .72fr;gap:14px;align-items:stretch;margin-bottom:14px}
+.searchBox{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:10px}
+.input,select,textarea{width:100%;min-width:0;border:1px solid #d8dee8;border-radius:16px;background:#f8fafc;color:var(--ink);font-weight:850;outline:none}
+.input,select{min-height:56px;padding:0 12px;font-size:16px} textarea{min-height:130px;padding:12px;resize:vertical;line-height:1.4}
+.input:focus,select:focus,textarea:focus{border-color:rgba(227,6,19,.38);box-shadow:0 0 0 4px rgba(227,6,19,.08)}
+.btn{min-height:52px;border-radius:16px;padding:0 14px;background:var(--black);color:#fff;font-size:13px;font-weight:1000;display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;white-space:nowrap}
+.btn.red{background:var(--red)}.btn.green{background:var(--green)}.btn.light{background:#f1f3f7;color:var(--ink)}.btn.danger{background:var(--danger);color:#fff}.btn.full{width:100%;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 8px 18px rgba(16,24,40,.05)}
+.stat strong{display:block;font-size:24px;letter-spacing:-.04em;color:var(--red)}
+.stat span{display:block;margin-top:4px;color:var(--muted);font-size:12px;font-weight:800}
+.grid{display:grid;gap:12px;margin-top:14px}.grid.cols{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.agendaHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.agendaName{font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:-.055em;text-transform:uppercase;font-weight:1000;margin:8px 0 0}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:18px;padding:12px;margin-top:12px;font-size:13px;line-height:1.4;font-weight:800}
+.agendaCard,.client,.day,.box{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 18px rgba(16,24,40,.05);overflow:hidden}
+.agendaCard{padding:14px;border-left:6px solid var(--red)}
+.agendaCard strong,.client strong,.box strong{display:flex;justify-content:space-between;gap:10px;font-size:17px;line-height:1.25}
+.agendaCard p,.client p,.box p{margin:7px 0 0;color:#344054;font-size:13px;line-height:1.4;font-weight:760}
+.metaLine{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.meta{background:#f8fafc;border:1px solid var(--line);border-radius:15px;padding:9px}
+.meta span{display:block;color:var(--muted);font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}
+.meta b{display:block;margin-top:3px;font-size:13px;line-height:1.25;overflow-wrap:anywhere}
+.pill{display:inline-flex;align-items:center;min-height:26px;border-radius:999px;padding:0 9px;background:#fff1f2;border:1px solid rgba(227,6,19,.15);color:var(--red);font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.actions .btn{flex:1 1 150px}
+.confirmPanel{background:#101217;color:#fff;border-radius:24px;padding:14px;margin-top:14px;box-shadow:0 18px 44px rgba(16,24,40,.18)}
+.confirmPanel p{margin:0 0 10px;color:#e5e7eb;font-size:13px;line-height:1.4;font-weight:760}
+.confirmPanel textarea{background:#fff;color:#111217}
+.filters{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr auto;gap:8px;margin-top:14px}
+.client{padding:14px;text-align:left}
+.dayHead{background:var(--black);color:#fff;padding:13px}.dayHead strong{display:block;font-size:15px}.dayHead span{display:block;margin-top:4px;color:#cbd5e1;font-size:12px;font-weight:850}
+.items{list-style:none;margin:0;padding:12px 13px 14px;display:grid;gap:9px}.items li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;font-size:14px;line-height:1.32;font-weight:850}.items li span:last-child{overflow-wrap:anywhere;min-width:0}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:1000}.ok .dot{background:#dcfce7;color:#126e3d}.open .dot{background:#fee2e2;color:#b42318}.empty .dot{background:#eef2f7;color:#667085}.open span:last-child{color:#b42318}.empty span:last-child{color:#667085}
+.daysGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.sectionTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.adminBar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.formGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.adminItem{background:#f8fafc;border:1px solid var(--line);border-radius:20px;padding:12px;margin-top:10px}.adminItem h4{margin:0 0 8px;font-size:15px}
+.rowCard{display:grid;grid-template-columns:minmax(140px,1.2fr) minmax(105px,.8fr) minmax(105px,.8fr) minmax(120px,.8fr) auto auto;gap:7px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px;margin-top:8px}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;background:#111217;color:#fff;border-radius:999px;padding:11px 14px;font-size:13px;font-weight:900;box-shadow:var(--shadow);display:none;max-width:calc(100vw - 24px);text-align:center}.toast.show{display:block}
+.bottomNav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,1180px);z-index:70;padding:8px 11px calc(8px + var(--safe-bottom));background:rgba(246,247,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.bottomNavBox{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#fff;border:1px solid rgba(16,24,40,.06);border-radius:24px;padding:8px;box-shadow:var(--shadow)}
+.navBtn{min-height:52px;border-radius:17px;background:#f6f7fa;color:#344054;font-size:11px;font-weight:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.navBtn b{font-size:16px;line-height:1}.navBtn.active{background:var(--red);color:#fff}
+.pageEndSpacer{height:calc(var(--nav-h) + var(--safe-bottom) + 26px)}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .btn{grid-column:1/-1}.rowCard{grid-template-columns:1fr}.rowCard .btn{width:100%}}
+@media(max-width:560px){.wrap{width:min(100% - 16px,1180px)}.topBox{border-radius:20px}.brand strong{font-size:11px}.brand span{font-size:10px}.mark{width:44px;height:44px;flex-basis:44px}.searchBox{grid-template-columns:1fr}.card{padding:14px;border-radius:22px}h1{font-size:34px}h2{font-size:28px}.daysGrid{grid-template-columns:1fr}.metaLine{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.bottomNavBox{gap:6px;padding:7px}.navBtn{min-height:50px;font-size:10px;border-radius:16px}}
+
+/* Dobra aprovada: mascote + agenda reservada */
+.approvedHero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(340px,.82fr);
+  gap:14px;
+  align-items:stretch;
+  margin-bottom:14px;
+}
+.brandHero{
+  position:relative;
+  min-height:330px;
+  border-radius:24px;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.brandHero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(110deg, transparent 0 52%, rgba(227,6,19,.10) 52% 100%),
+    radial-gradient(circle at 88% 18%, rgba(227,6,19,.10), transparent 30%);
+}
+.brandHero:after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:6px;
+  background:linear-gradient(90deg,var(--red) 0 48%,var(--black) 48% 88%,#f5c518 88% 94%,#12944a 94%);
+}
+.brandHeroCopy{
+  position:relative;
+  z-index:2;
+  width:58%;
+  padding:22px 18px 18px;
+}
+.brandHeroTitle{
+  margin:12px 0 0;
+  font-size:clamp(42px,7vw,74px);
+  line-height:.82;
+  letter-spacing:-.08em;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+.brandHeroTitle span{
+  color:var(--red);
+  display:block;
+}
+.brandHeroLead{
+  margin:12px 0 0;
+  max-width:330px;
+  color:#344054;
+  font-size:13px;
+  line-height:1.34;
+  font-weight:780;
+}
+.brandHeroTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.brandHeroTags span{
+  display:inline-flex;
+  align-items:center;
+  min-height:27px;
+  border-radius:999px;
+  padding:0 9px;
+  background:#f3f4f6;
+  color:#111217;
+  font-size:10px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.brandHeroTags span:first-child{
+  background:var(--red);
+  color:#fff;
+}
+.brandHeroTags span:nth-child(2){
+  background:var(--black);
+  color:#fff;
+}
+.kauanAgenda{
+  position:absolute;
+  z-index:3;
+  right:5%;
+  bottom:0;
+  width:min(40%,230px);
+  max-height:96%;
+  object-fit:contain;
+  object-position:bottom center;
+  filter:drop-shadow(0 18px 28px rgba(16,24,40,.16));
+}
+.searchAgendaCard{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.searchAgendaCard .searchBox{
+  grid-template-columns:minmax(0,1fr) 142px;
+}
+.mobileRuleBox{
+  margin-top:12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  border-radius:18px;
+  padding:12px;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:820;
+}
+@media(max-width:850px){
+  .approvedHero{
+    grid-template-columns:1fr;
+  }
+  .brandHero{
+    min-height:270px;
+  }
+  .brandHeroTitle{
+    font-size:44px;
+  }
+  .kauanAgenda{
+    width:185px;
+    right:3%;
+  }
+  .brandHeroCopy{
+    width:62%;
+  }
+}
+@media(max-width:560px){
+  .approvedHero{
+    gap:12px;
+  }
+  .brandHero{
+    min-height:244px;
+    border-radius:22px;
+  }
+  .brandHeroCopy{
+    width:64%;
+    padding:18px 14px 14px;
+  }
+  .brandHeroTitle{
+    font-size:34px;
+    line-height:.86;
+  }
+  .brandHeroLead{
+    font-size:12px;
+    max-width:210px;
+  }
+  .kauanAgenda{
+    width:138px;
+    right:1%;
+  }
+  .brandHeroTags{
+    gap:5px;
+  }
+  .brandHeroTags span{
+    font-size:9px;
+    min-height:24px;
+    padding:0 7px;
+  }
+  .searchAgendaCard .searchBox{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:390px){
+  .brandHero{
+    min-height:226px;
+  }
+  .brandHeroTitle{
+    font-size:30px;
+  }
+  .brandHeroLead{
+    display:none;
+  }
+  .kauanAgenda{
+    width:128px;
+  }
+}
+
+
+/* Pop minimalista quando não localizar reserva */
+.supportPop{
+  position:fixed;
+  inset:0;
+  z-index:220;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:16px 16px calc(16px + var(--safe-bottom));
+  background:rgba(15,23,42,.34);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.supportPop.open{display:flex}
+.supportPopCard{
+  width:min(100%,430px);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:0 24px 70px rgba(16,24,40,.24);
+  padding:18px;
+}
+.supportPopIcon{
+  width:44px;
+  height:44px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  background:#fff1f2;
+  color:var(--red);
+  font-size:20px;
+  font-weight:1000;
+  margin-bottom:10px;
+}
+.supportPopCard strong{
+  display:block;
+  font-size:22px;
+  line-height:1.05;
+  letter-spacing:-.04em;
+}
+.supportPopCard p{
+  margin:8px 0 0;
+  color:#344054;
+  font-size:14px;
+  line-height:1.42;
+  font-weight:760;
+}
+.supportPopActions{
+  display:grid;
+  gap:8px;
+  margin-top:14px;
+}
+.supportPopActions .btn{
+  width:100%;
+}
+@media(min-width:700px){
+  .supportPop{
+    align-items:center;
+  }
+}
+
+
+.vipNav{
+  grid-template-columns:repeat(3,1fr);
+}
+.vipLocked{
+  position:relative;
+  min-height:138px;
+  background:
+    linear-gradient(135deg,#fff,#f8fafc);
+}
+.vipLocked:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent 0 62%,rgba(227,6,19,.06) 62% 100%);
+  pointer-events:none;
+}
+.vipLockIcon{
+  width:42px;
+  height:42px;
+  border-radius:15px;
+  background:#fff1f2;
+  color:var(--red);
+  display:grid;
+  place-items:center;
+  font-weight:1000;
+  margin-bottom:10px;
+}
+.vipMuted{
+  filter:blur(3px);
+  opacity:.46;
+  user-select:none;
+}
+.vipUnlocked{
+  border-left:6px solid var(--green);
+}
+.secretAdminLinks{
+  display:none;
+  margin-top:12px;
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+body.vipOpen .secretAdminLinks{
+  display:flex;
+}
+
+
+/* Correção de navegação: voltar, topo, fechar e rotas claras */
+.navTools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0 0;
+}
+.navTools .btn{
+  flex:1 1 140px;
+}
+.adminExitBar{
+  position:sticky;
+  top:calc(74px + var(--safe-top));
+  z-index:40;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 12px;
+  padding:8px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 8px 18px rgba(16,24,40,.06);
+  backdrop-filter:blur(12px);
+}
+.adminExitBar .btn{
+  flex:1 1 135px;
+}
+.hiddenInternal{
+  display:none;
+}
+body.adminUnlocked .hiddenInternal{
+  display:block;
+}
+body.on-agenda #backBtn{
+  opacity:.55;
+}
+@media(max-width:560px){
+  .topActions{
+    gap:5px;
+  }
+  .btnTop{
+    padding:0 9px;
+    font-size:11px;
+  }
+  .adminExitBar{
+    top:0;
+    position:relative;
+  }
+}
+
+
+/* Acabamento técnico de produto */
+body{
+  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 18px);
+}
+.vipNav{
+  grid-template-columns:repeat(3,1fr);
+}
+.brandHero{
+  min-height:310px;
+}
+.kauanAgenda{
+  width:min(40%,220px);
+  max-height:96%;
+  object-fit:contain;
+  object-position:bottom center;
+  bottom:0;
+}
+.searchAgendaCard{
+  justify-content:center;
+}
+.searchAgendaCard .stats{
+  display:none!important;
+}
+.pageEndSpacer{
+  height:calc(var(--nav-h) + var(--safe-bottom) + 18px);
+}
+.secretAdminLinks.hiddenInternal,
+.hiddenInternal{
+  display:none;
+}
+body.adminUnlocked .hiddenInternal{
+  display:flex;
+}
+body.adminUnlocked .secretAdminLinks.hiddenInternal{
+  display:flex;
+}
+@media(max-width:850px){
+  .approvedHero{grid-template-columns:1fr}
+  .brandHero{min-height:260px}
+  .brandHeroTitle{font-size:42px}
+  .kauanAgenda{width:178px;right:3%}
+  .brandHeroCopy{width:62%}
+}
+@media(max-width:560px){
+  .brandHero{min-height:224px;border-radius:22px}
+  .brandHeroCopy{width:64%;padding:18px 14px 14px}
+  .brandHeroTitle{font-size:31px;line-height:.86}
+  .brandHeroLead{font-size:12px;max-width:210px}
+  .kauanAgenda{width:130px;right:1%}
+  .brandHeroTags span{font-size:9px;min-height:24px;padding:0 7px}
+  .searchAgendaCard .searchBox{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  .brandHero{min-height:210px}
+  .brandHeroTitle{font-size:28px}
+  .brandHeroLead{display:none}
+  .kauanAgenda{width:122px}
+  .brandHeroTags span:nth-child(3){display:none}
+}
+
+
+/* Revisão final de português, hierarquia e quebras de linha */
+.brandHeroTitle{
+  max-width:320px;
+}
+.brandHeroTitle .line,
+.brandHeroTitle .redLine{
+  display:block;
+  white-space:nowrap;
+}
+.brandHeroTitle .redLine{color:var(--red);}
+h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
+  text-wrap:balance;
+}
+.lead,
+.brandHeroLead,
+.ruleBox,
+.agendaCard p,
+.box p,
+.client p,
+.supportPopCard p{
+  text-wrap:pretty;
+}
+.kicker{
+  white-space:nowrap;
+}
+.card,
+.box,
+.client,
+.agendaCard{
+  overflow-wrap:anywhere;
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:260px;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:210px;
+  }
+  .brandHeroTitle .line,
+  .brandHeroTitle .redLine{
+    white-space:normal;
+  }
+}
+@media(max-width:390px){
+  .brandHeroTitle{
+    max-width:175px;
+  }
+}
+
+
+/* Correção de direção visual do título: 2 linhas, preto + destaque vermelho */
+.brandHeroTitle{
+  max-width:360px!important;
+  color:var(--black)!important;
+  font-size:clamp(38px,5.8vw,64px)!important;
+  line-height:.86!important;
+  letter-spacing:-.075em!important;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+.brandHeroTitle .titleBlack,
+.brandHeroTitle .titleRed{
+  display:block;
+  white-space:nowrap;
+}
+.brandHeroTitle .titleBlack{
+  color:var(--black)!important;
+}
+.brandHeroTitle .titleRed{
+  color:var(--red)!important;
+}
+.brandHeroLead{
+  max-width:340px;
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:300px!important;
+    font-size:42px!important;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:230px!important;
+    font-size:32px!important;
+    line-height:.88!important;
+  }
+  .brandHeroTitle .titleBlack,
+  .brandHeroTitle .titleRed{
+    white-space:normal;
+  }
+}
+@media(max-width:390px){
+  .brandHeroTitle{
+    max-width:195px!important;
+    font-size:29px!important;
+  }
+}
+
+
+/* Bancada final: agenda agrupada por dia */
+.driverSummary{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.summaryBox{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px;
+}
+.summaryBox span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.summaryBox b{
+  display:block;
+  margin-top:3px;
+  font-size:16px;
+  line-height:1.2;
+}
+.uxAlert{
+  margin-top:12px;
+  border-radius:18px;
+  padding:12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:13px;
+  line-height:1.4;
+  font-weight:820;
+}
+.dayGroup{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.dayGroupHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px;
+  background:var(--black);
+  color:#fff;
+}
+.dayGroupHead strong{
+  display:block;
+  font-size:16px;
+  line-height:1.1;
+}
+.dayGroupHead span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  border-radius:999px;
+  padding:0 9px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.commitmentList{
+  list-style:none;
+  margin:0;
+  padding:12px;
+  display:grid;
+  gap:10px;
+}
+.commitmentItem{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#f8fafc;
+  padding:11px;
+}
+.commitmentItem strong{
+  display:block;
+  font-size:16px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.commitmentMeta{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:9px;
+}
+.commitmentMeta div{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:8px;
+}
+.commitmentMeta span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.commitmentMeta b{
+  display:block;
+  margin-top:3px;
+  font-size:13px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.confirmPanel textarea{
+  font-size:14px;
+  min-height:170px;
+}
+@media(max-width:560px){
+  .driverSummary{
+    grid-template-columns:1fr 1fr;
+  }
+  .commitmentMeta{
+    grid-template-columns:1fr;
+  }
+  .dayGroupHead{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
+
+/* Timeline final: agenda por data, clara para motoca com vários pontos */
+.pointChips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.pointChip{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--black);
+  font-size:12px;
+  font-weight:950;
+}
+.agendaTimeline{
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+  position:relative;
+}
+.timelineDay{
+  position:relative;
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr);
+  gap:10px;
+  align-items:stretch;
+}
+.timelineDate{
+  border-radius:20px;
+  background:var(--black);
+  color:#fff;
+  min-height:96px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px 6px;
+}
+.timelineDate b{
+  display:block;
+  font-size:15px;
+  line-height:1;
+  text-transform:uppercase;
+}
+.timelineDate span{
+  display:block;
+  margin-top:5px;
+  font-size:13px;
+  font-weight:1000;
+  color:#fff;
+}
+.timelineBody{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.timelineBodyHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 13px;
+  border-bottom:1px solid var(--line);
+  background:#f8fafc;
+}
+.timelineBodyHead strong{
+  display:block;
+  font-size:15px;
+  line-height:1.2;
+}
+.timelineBodyHead span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#fee2e2;
+  color:var(--red);
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.routeList{
+  list-style:none;
+  margin:0;
+  padding:12px;
+  display:grid;
+  gap:10px;
+}
+.routeItem{
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  gap:10px;
+  align-items:start;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+.routeNumber{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background:var(--red);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:1000;
+  font-size:14px;
+}
+.routeContent strong{
+  display:block;
+  color:var(--black);
+  font-size:16px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.routeContent p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+}
+.routeTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+.routeTags span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 8px;
+  border-radius:999px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  font-size:11px;
+  font-weight:1000;
+  color:var(--black);
+}
+.dayWarning{
+  margin:0 12px 12px;
+  border-radius:16px;
+  padding:10px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:12px;
+  font-weight:850;
+  line-height:1.35;
+}
+@media(max-width:560px){
+  .timelineDay{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .timelineDate{
+    min-height:auto;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:10px 12px;
+  }
+  .timelineDate span{
+    margin-top:0;
+  }
+  .timelineBodyHead{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .routeItem{
+    grid-template-columns:30px minmax(0,1fr);
+    padding:10px;
+  }
+  .routeNumber{
+    width:30px;
+    height:30px;
+    border-radius:10px;
+  }
+}
+
+
+/* Produção: agenda semanal vertical, simples para motoca leigo */
+.weekSummary{
+  margin-top:12px;
+  padding:14px;
+  border-radius:22px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+}
+.weekSummary span{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.weekSummary strong{
+  display:block;
+  margin-top:4px;
+  color:var(--black);
+  font-size:20px;
+  line-height:1.15;
+}
+.weekSummary small{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+}
+.weekLocations{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+.weekLocations b{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--black);
+  font-size:12px;
+  font-weight:950;
+}
+.weekAlert{
+  margin-top:12px;
+  border-radius:18px;
+  padding:11px 12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:850;
+}
+.weekAgenda{
+  display:grid;
+  gap:12px;
+  margin-top:14px;
+}
+.weekDay{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.weekDayHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 14px;
+  background:var(--black);
+  color:#fff;
+}
+.weekDayTitle{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  min-width:0;
+}
+.weekDayTitle strong{
+  display:block;
+  font-size:18px;
+  line-height:1;
+  text-transform:uppercase;
+}
+.weekDayTitle span{
+  display:block;
+  font-size:14px;
+  line-height:1;
+  font-weight:1000;
+  color:#fff;
+}
+.weekDayHead em{
+  flex:0 0 auto;
+  font-style:normal;
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:0 9px;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.dayPlaces{
+  display:grid;
+  gap:0;
+}
+.dayPlace{
+  display:grid;
+  grid-template-columns:112px minmax(0,1fr);
+  gap:12px;
+  padding:14px;
+  border-top:1px solid var(--line);
+}
+.dayPlace:first-child{
+  border-top:0;
+}
+.placeTime{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:56px;
+  border-radius:16px;
+  background:#fee2e2;
+  color:var(--red);
+  font-size:13px;
+  font-weight:1000;
+  line-height:1.15;
+  padding:8px;
+}
+.placeInfo{
+  min-width:0;
+}
+.placeInfo strong{
+  display:block;
+  color:var(--black);
+  font-size:18px;
+  line-height:1.15;
+  overflow-wrap:anywhere;
+}
+.placeInfo span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+  overflow-wrap:anywhere;
+}
+.multiDayNote{
+  margin:0 14px 14px;
+  padding:10px 11px;
+  border-radius:16px;
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+  font-weight:850;
+}
+.confirmPanel .btn.green.full{
+  font-size:15px;
+}
+@media(max-width:560px){
+  .weekSummary{
+    padding:12px;
+    border-radius:20px;
+  }
+  .weekSummary strong{
+    font-size:18px;
+  }
+  .weekDayHead{
+    padding:12px;
+  }
+  .weekDayTitle{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:4px;
+  }
+  .weekDayTitle strong{
+    font-size:17px;
+  }
+  .dayPlace{
+    grid-template-columns:1fr;
+    gap:8px;
+    padding:12px;
+  }
+  .placeTime{
+    justify-content:flex-start;
+    min-height:auto;
+    width:max-content;
+    max-width:100%;
+    padding:8px 10px;
+  }
+  .placeInfo strong{
+    font-size:17px;
+  }
+}
+
+
+/* Logos dos clientes — associação visual rápida */
+.clientVisual{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.clientLogo{
+  width:46px;
+  height:46px;
+  flex:0 0 46px;
+  border-radius:14px;
+  object-fit:contain;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:0 6px 14px rgba(16,24,40,.08);
+  padding:5px;
+}
+.clientLogo.small{
+  width:30px;
+  height:30px;
+  flex-basis:30px;
+  border-radius:10px;
+  padding:3px;
+  box-shadow:none;
+}
+.clientLogo.tiny{
+  width:24px;
+  height:24px;
+  flex-basis:24px;
+  border-radius:8px;
+  padding:2px;
+  box-shadow:none;
+}
+.clientNameBlock{
+  min-width:0;
+}
+.clientNameBlock strong{
+  display:block;
+}
+.clientNameBlock span{
+  display:block;
+}
+.weekLocations b{
+  gap:6px;
+}
+.placeInfo .clientVisual{
+  align-items:flex-start;
+}
+.placeInfo .clientNameBlock strong{
+  font-size:18px;
+  line-height:1.15;
+  color:var(--black);
+  overflow-wrap:anywhere;
+}
+.placeInfo .clientNameBlock span{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+  font-weight:750;
+  overflow-wrap:anywhere;
+}
+.adminClientHint{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 10px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  font-size:12px;
+  font-weight:900;
+  color:var(--black);
+}
+@media(max-width:560px){
+  .clientLogo{
+    width:42px;
+    height:42px;
+    flex-basis:42px;
+  }
+  .placeInfo .clientNameBlock strong{
+    font-size:17px;
+  }
+}
+
+
+/* Confirmação limpa: sem textarea gigante aberta */
+.confirmPanel{
+  background:var(--black);
+  color:#fff;
+  border-radius:24px;
+  padding:16px;
+  margin-top:16px;
+}
+.confirmPanel p{
+  margin:0 0 12px;
+  color:#fff;
+  font-size:15px;
+  line-height:1.35;
+  font-weight:850;
+}
+.confirmPanel .helperText{
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  font-weight:700;
+  margin-top:-4px;
+  margin-bottom:12px;
+}
+.confirmPreview{
+  margin-top:10px;
+}
+.confirmPreview summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:46px;
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:14px;
+  font-weight:950;
+}
+.confirmPreview summary::-webkit-details-marker{
+  display:none;
+}
+.confirmPreview textarea{
+  margin-top:10px;
+  width:100%;
+  min-height:210px;
+  resize:vertical;
+  border-radius:18px;
+  border:0;
+  padding:13px;
+  font-size:14px;
+  line-height:1.42;
+  font-family:var(--font);
+  white-space:pre-wrap;
+}
+
+
+/* Confirmação direta: sem resumo/textarea na tela */
+.confirmPanel{
+  background:transparent!important;
+  color:inherit!important;
+  border-radius:0!important;
+  padding:0!important;
+  margin-top:16px!important;
+}
+.confirmPanel p,
+.confirmPanel .helperText,
+.confirmPreview{
+  display:none!important;
+}
+.confirmPanel .btn.green.full{
+  min-height:58px;
+  border-radius:20px;
+  font-size:16px;
+  font-weight:1000;
+  box-shadow:0 12px 24px rgba(22,163,74,.22);
+}
+
+
+/* Correção cirúrgica da dobra: título não invade Kauan */
+.brandHero{
+  overflow:hidden!important;
+}
+.brandHeroInner,
+.brandHeroContent,
+.heroSplit,
+.heroVisual,
+.heroGrid{
+  min-width:0!important;
+}
+.brandHeroTitle{
+  max-width:285px!important;
+  width:100%!important;
+  color:var(--black)!important;
+  font-size:clamp(34px,4.1vw,56px)!important;
+  line-height:.84!important;
+  letter-spacing:-.075em!important;
+  text-transform:uppercase!important;
+  font-weight:1000!important;
+  position:relative!important;
+  z-index:2!important;
+}
+.brandHeroTitle .titleLine,
+.brandHeroTitle .titleAction{
+  display:block!important;
+  white-space:nowrap!important;
+}
+.brandHeroTitle .titleLine{
+  color:var(--black)!important;
+}
+.brandHeroTitle .titleAction{
+  color:var(--red)!important;
+}
+.kauanHero,
+.heroMascot,
+.brandHeroMascot{
+  position:relative!important;
+  z-index:1!important;
+  max-width:155px!important;
+  margin-left:auto!important;
+}
+.kauanHero img,
+.heroMascot img,
+.brandHeroMascot img{
+  max-width:155px!important;
+  height:auto!important;
+  object-fit:contain!important;
+}
+@media(min-width:851px){
+  .brandHero{
+    min-height:232px!important;
+  }
+  .brandHeroTitle{
+    max-width:300px!important;
+  }
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:260px!important;
+    font-size:40px!important;
+  }
+  .kauanHero,
+  .heroMascot,
+  .brandHeroMascot,
+  .kauanHero img,
+  .heroMascot img,
+  .brandHeroMascot img{
+    max-width:132px!important;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:210px!important;
+    font-size:32px!important;
+    line-height:.88!important;
+  }
+  .brandHeroTitle .titleLine,
+  .brandHeroTitle .titleAction{
+    white-space:normal!important;
+  }
+  .kauanHero,
+  .heroMascot,
+  .brandHeroMascot,
+  .kauanHero img,
+  .heroMascot img,
+  .brandHeroMascot img{
+    max-width:112px!important;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<header class="top">
+  <div class="wrap">
+    <div class="topBox">
+      <div class="brand"><div class="mark">OE</div><div><strong>Agenda Reservada</strong><span>Confirmação de compromisso</span></div></div>
+      <div class="topActions">
+        <button class="btnTop" id="backBtn" type="button">Voltar</button>
+        <button class="btnTop" id="topBtn" type="button">Topo</button>
+        <button class="btnTop red" data-tab="admin" type="button">Admin</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap main">
+  <section class="page active" id="page-agenda">
+    <div class="approvedHero">
+      <div class="brandHero">
+        <div class="brandHeroCopy">
+          <span class="kicker">Agenda reservada</span>
+          <div class="brandHeroTitle"><span class="titleLine">Confira sua</span><span class="titleLine">agenda</span><span class="titleAction">Confirme</span></div>
+          <p class="brandHeroLead">A Osasco Express já reservou esses horários com você. Confira seus pontos e confirme o compromisso com o time.</p>
+          <div class="brandHeroTags">
+            <span>Busca rápida</span>
+            <span>Time OE</span>
+            <span>Compromisso</span>
+          </div>
+        </div>
+        <img class="kauanAgenda" src="assets/img/kauan-produto.png" alt="Kauan, mascote oficial da Osasco Express">
+      </div>
+
+      <div class="card searchAgendaCard">
+        <span class="kicker">Confirmar agenda</span>
+        <p class="lead">Digite seu nome para ver sua agenda reservada.</p>
+        <div class="searchBox">
+          <input class="input" id="driverSearch" placeholder="Ex: Tyler Souza">
+          <button class="btn red" id="searchBtn">Ver agenda</button>
+        </div>
+        <div class="mobileRuleBox">Ao confirmar, a loja, o suporte e o time contam com você. Se tiver qualquer problema, avise com antecedência.</div>
+      </div>
+    </div>
+    <div id="agendaResult"></div><div class="navTools"><button class="btn light" type="button" data-action="top">Voltar ao topo</button><button class="btn light" type="button" data-tab="vip">Ver área VIP</button></div>
+    <div class="pageEndSpacer"></div>
+  </section>
+
+
+  <section class="page" id="page-vip">
+    <div class="sectionTop">
+      <div>
+        <h2>Pontos VIP</h2>
+        <p class="lead">Alguns pontos da Osasco Express são reservados por convite e exigem código VIP.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="kicker">Acesso restrito</span>
+      <p class="lead">Digite o código VIP para visualizar oportunidades reservadas. Sem código, os pontos permanecem bloqueados.</p>
+      <div class="searchBox">
+        <input class="input" id="vipCode" placeholder="Código VIP">
+        <button class="btn red" id="vipBtn" type="button">Liberar acesso</button>
+      </div>
+    </div>
+
+    <div class="grid cols" id="vipGrid"></div>
+    <div class="navTools"><button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button><button class="btn light" type="button" data-action="top">Topo</button></div><div class="pageEndSpacer"></div>
+  </section>
+
+  <section class="page" id="page-pontos">
+    <div class="sectionTop"><div><h2>Pontos</h2><p class="lead">Quadros por cliente para conferência interna da agenda reservada.</p></div></div>
+    <div class="grid cols" id="clientsGrid"></div>
+    <div id="clientDetail"></div>
+    <div class="navTools"><button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button><button class="btn light" type="button" data-action="top">Topo</button></div>
+    <div class="pageEndSpacer"></div>
+  </section>
+
+  <section class="page" id="page-gestao">
+    <div class="sectionTop"><div><h2>Gestão</h2><p class="lead">Filtros internos para conferir agenda, pontos, dias e vagas abertas.</p></div></div>
+    <div class="card">
+      <span class="kicker">Filtros</span>
+      <div class="filters">
+        <input class="input" id="fName" placeholder="Motoca, ponto ou cliente">
+        <select id="fClient"></select>
+        <select id="fDay"></select>
+        <select id="fStatus"><option value="">Todos</option><option value="ok">Confirmados</option><option value="open">Vagas abertas</option></select>
+        <button class="btn red" id="applyFilters">Filtrar</button>
+      </div>
+    </div>
+    <div id="managementResults" class="grid"></div>
+    <div class="navTools"><button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button><button class="btn light" type="button" data-action="top">Topo</button></div>
+    <div class="pageEndSpacer"></div>
+  </section>
+
+  <section class="page" id="page-admin">
+    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão pelo celular para atualizar a agenda reservada. Login: admin · senha: 1212.</p></div></div>
+    <div class="adminExitBar">
+      <button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button>
+      <button class="btn light" type="button" data-action="top">Topo</button>
+      <button class="btn danger hiddenInternal" type="button" id="quickLogout">Sair do admin</button>
+    </div>
+    <div id="adminRoot"></div>
+      <div class="secretAdminLinks actions hiddenInternal">
+        <button class="btn light" type="button" data-tab="pontos">Ver pontos internos</button>
+        <button class="btn light" type="button" data-tab="gestao">Ver gestão interna</button>
+      </div>
+    <div class="pageEndSpacer"></div>
+  </section>
+</main>
+
+
+<div class="supportPop" id="supportPop" aria-hidden="true">
+  <div class="supportPopCard" role="dialog" aria-modal="true" aria-labelledby="supportPopTitle">
+    <div class="supportPopIcon">!</div>
+    <strong id="supportPopTitle">Parceiro, não localizei a sua reserva.</strong>
+    <p>Fale com o suporte para não perder nenhuma oportunidade.</p>
+    <div class="supportPopActions">
+      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Falar com o suporte</a>
+      <button class="btn light" type="button" id="supportPopClose">Buscar novamente</button>
+    </div>
+  </div>
+</div>
+
+<nav class="bottomNav">
+  <div class="bottomNavBox vipNav">
+    <button class="navBtn active" data-tab="agenda"><b>✓</b>Agenda</button>
+    <button class="navBtn" data-tab="vip"><b>🔒</b>VIP</button>
+    <button class="navBtn" data-tab="admin"><b>⚙</b>Admin</button>
+  </div>
+</nav>
+
+<script>
+const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07","supportWhatsapp": "5511924782555","updatedAt": ""},"clients": [{"id": "bevenutti","name": "Bevenutti","point": "Pizzaria Bevenutti","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"},{"name": "Douglas Nunes"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Bruno Getaruch","time": "18h às 00h"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Letícia Santana"},{"name": "Everton Renato"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Roger Martineli"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"}]}]},{"id": "fratelli","name": "Fratelli","point": "Fratelli","defaultTime": "17h às 23h / 18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Denis Ambrósio"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Pedro Henrique"},{"name": "Luiz Guilherme"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Pedro Henrique"},{"name": "Denis Ambrósio"},{"name": "Gustavo"},{"name": "Alexandre Pinheiro"}]}]},{"id": "pastel-da-drica","name": "Pastel da Drica","point": "Pastel da Drica","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Luiz Guilherme"},{"name": "Samuel Bauman"},{"name": "Nicolas Abreu"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]}]},{"id": "meridio-pizza","name": "Meridio Pizza","point": "Meridio Pizza","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]}]},{"id": "barto-restaurante","name": "Barto Restaurante","point": "Barto Restaurante","defaultTime": "10h45 às 16h45","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Denilson Silveiro"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Denilson Silveiro"}]}]},{"id": "pastel-da-camila","name": "Pastel da Camila","point": "Pastel da Camila","defaultTime": "Manhã / Tarde","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]}]}]};
+const STORAGE_KEY = 'oe_agenda_reservada_final_v2_everton';
+const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
+let data = loadData();
+let selectedDriver = '';
+
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();}
+function loadData(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r)}catch(e){}return clone(DEFAULT_DATA);}
+function saveData(show=true){data.meta.updatedAt=new Date().toISOString();localStorage.setItem(STORAGE_KEY,JSON.stringify(data));if(show)toast('Agenda atualizada');}
+function isAdmin(){return localStorage.getItem(ADMIN_KEY)==='1';}
+function itemStatus(it){return it.status==='open'||norm(it.name).includes('vaga aberta')?'open':'ok';}
+function itemLabel(it,c){let t=it.name||'';if(it.time)t+=' - '+it.time;if(it.point&&it.point!==c.point)t+=' · '+it.point;return t;}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),1500);}
+
+function allRows(){
+ const rows=[];
+ data.clients.forEach((c,ci)=>c.days.forEach((d,di)=>d.items.forEach((it,ii)=>rows.push({c,ci,d,di,it,ii,status:itemStatus(it)}))));
+ return rows;
+}
+function driverMap(){
+ const map={};
+ allRows().filter(r=>r.status==='ok').forEach(r=>{const n=(r.it.name||'').trim();if(!n)return;(map[n] ||= []).push(r);});
+ return map;
+}
+function findDrivers(query){
+ const q=norm(query); if(!q)return [];
+ const map=driverMap();
+ return Object.keys(map).sort((a,b)=>a.localeCompare(b,'pt-BR')).filter(name=>{
+   const joined=name+' '+map[name].map(r=>`${r.c.name} ${r.c.point} ${r.d.day} ${r.d.date} ${r.it.time||''}`).join(' ');
+   return norm(joined).includes(q);
+ });
+}
+let navHistory = ['agenda'];
+
+function setTab(tab, push=true){
+ const current = navHistory[navHistory.length-1] || 'agenda';
+ if(push && tab !== current){
+   navHistory.push(tab);
+   if(navHistory.length > 12) navHistory.shift();
+ }
+ document.body.classList.toggle('on-agenda', tab === 'agenda');
+ document.querySelectorAll('.navBtn,[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('page-'+tab)?.classList.add('active');
+ if(tab==='vip')renderVip();
+ if(tab==='pontos')renderClients();
+ if(tab==='gestao')renderManagement();
+ if(tab==='admin')renderAdmin();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goBack(){
+ if(navHistory.length > 1){
+   navHistory.pop();
+   const previous = navHistory[navHistory.length-1] || 'agenda';
+   setTab(previous, false);
+ }else{
+   setTab('agenda', false);
+ }
+}
+function goTop(){
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderStats(){}
+function renderDriverSearch(){
+ const q=document.getElementById('driverSearch').value.trim();
+ const box=document.getElementById('agendaResult');
+ if(!q){box.innerHTML='<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>';return;}
+ const names=findDrivers(q);
+ if(!names.length){box.innerHTML='';openSupportPop(q);return;}
+ if(names.length===1){showDriverAgenda(names[0]);return;}
+ box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
+}
+function parseDateOrder(date){
+ const parts=String(date||'').split('/');
+ const d=parseInt(parts[0]||'0',10);
+ const m=parseInt(parts[1]||'0',10);
+ return (m*100)+d;
+}
+function timeOrder(value){
+ const v=String(value||'').toLowerCase();
+ if(v.includes('10h')||v.includes('manhã')||v.includes('manha')) return 1;
+ if(v.includes('16h')||v.includes('tarde')) return 2;
+ const match=v.match(/(\d{1,2})h/);
+ if(match) return 10+parseInt(match[1],10);
+ return 99;
+}
+
+
+const CLIENT_LOGOS={
+  'pastel da camila':'assets/clientes/pastel-da-camila.png',
+  'pastel da drica':'assets/clientes/pastel-da-drica.png',
+  'pizzaria bevenutti':'assets/clientes/bevenutti.png',
+  'bevenutti':'assets/clientes/bevenutti.png',
+  'fratelli espaço gourmet':'assets/clientes/fratelli.png',
+  'fratelli':'assets/clientes/fratelli.png',
+  'meridio pizza':'assets/clientes/meridio.png',
+  'merídio pizza':'assets/clientes/meridio.png',
+  'barto restaurante':'assets/clientes/barto.png',
+  'bartô restaurante':'assets/clientes/barto.png',
+  'bartô rock & comedy':'assets/clientes/barto.png',
+  'barto rock & comedy':'assets/clientes/barto.png'
+};
+function clientLogo(name){
+ const n=String(name||'').toLowerCase().trim();
+ if(CLIENT_LOGOS[n]) return CLIENT_LOGOS[n];
+ if(n.includes('camila')) return CLIENT_LOGOS['pastel da camila'];
+ if(n.includes('drica')) return CLIENT_LOGOS['pastel da drica'];
+ if(n.includes('bevenutti')) return CLIENT_LOGOS['bevenutti'];
+ if(n.includes('fratelli')) return CLIENT_LOGOS['fratelli'];
+ if(n.includes('meridio')||n.includes('merídio')) return CLIENT_LOGOS['meridio pizza'];
+ if(n.includes('barto')||n.includes('bartô')) return CLIENT_LOGOS['barto restaurante'];
+ return '';
+}
+function logoImg(name, cls='clientLogo'){
+ const src=clientLogo(name);
+ return src?`<img class="${cls}" src="${src}" alt="Logo ${esc(displayClientName(name))}" loading="lazy">`:'';
+}
+
+function displayClientName(name){
+ return String(name||'').replace(/^Pizzaria\s+/i,'').trim();
+}
+function displayTime(row){
+ const client=String(row.c.name||'').toLowerCase();
+ const raw=String(row.it.time||row.c.defaultTime||'').trim();
+ const low=raw.toLowerCase();
+
+ if(client.includes('pastel da camila')){
+   if(low.includes('manhã')||low.includes('manha')) return '10h às 16h';
+   if(low.includes('tarde')) return '16h às 22h';
+ }
+ if(client.includes('bevenutti')){
+   return '18h às 00h';
+ }
+ return raw;
+}
+function displayShift(row){
+ const client=String(row.c.name||'').toLowerCase();
+ const raw=String(row.it.time||row.c.defaultTime||'').toLowerCase();
+ if(client.includes('pastel da camila')){
+   if(raw.includes('manhã')||raw.includes('manha')) return 'Turno da manhã';
+   if(raw.includes('tarde')) return 'Turno da tarde';
+ }
+ return '';
+}
+function formatDayList(dayNames){
+ const cleaned=[...new Set(dayNames.map(d=>String(d||'').trim()).filter(Boolean))];
+ const orderMap={'domingo':0,'segunda':1,'terça':2,'terca':2,'quarta':3,'quinta':4,'sexta':5,'sábado':6,'sabado':6};
+ cleaned.sort((a,b)=>(orderMap[a.toLowerCase()]??99)-(orderMap[b.toLowerCase()]??99));
+ const normalized=cleaned.map(d=>{
+   const low=d.toLowerCase();
+   if(low==='terca') return 'terça';
+   if(low==='sabado') return 'sábado';
+   return low;
+ });
+ const labels=normalized.map(d=>d.charAt(0).toUpperCase()+d.slice(1));
+ if(labels.length===0) return '';
+ if(labels.length===1) return labels[0];
+ if(labels.length===2) return labels.join(' e ');
+ const isConsecutive=normalized.every((d,i,arr)=>{
+   if(i===0) return true;
+   return (orderMap[d]??99)===(orderMap[arr[i-1]]??99)+1;
+ });
+ if(isConsecutive && labels.length>=3){
+   return `${labels[0]} a ${labels[labels.length-1]}`;
+ }
+ return `${labels.slice(0,-1).join(', ')} e ${labels[labels.length-1]}`;
+}
+function weekRange(groups){
+ if(!groups.length) return '';
+ return `${groups[0].date} a ${groups[groups.length-1].date}`;
+}
+
+function sortedDriverRows(rows){
+ return [...rows].sort((a,b)=>{
+   const da=parseDateOrder(a.d.date), db=parseDateOrder(b.d.date);
+   if(da!==db) return da-db;
+   const ta=timeOrder(a.it.time||a.c.defaultTime), tb=timeOrder(b.it.time||b.c.defaultTime);
+   if(ta!==tb) return ta-tb;
+   return String(a.c.name).localeCompare(String(b.c.name),'pt-BR');
+ });
+}
+function groupRowsByDay(rows){
+ const groups=[];
+ sortedDriverRows(rows).forEach(r=>{
+   const key=String(r.d.date);
+   let group=groups.find(g=>g.key===key);
+   if(!group){
+     group={key, day:r.d.day, date:r.d.date, rows:[]};
+     groups.push(group);
+   }
+   group.rows.push(r);
+ });
+ return groups;
+}
+function showDriverAgenda(name){
+ selectedDriver=name;
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const groups=groupRowsByDay(rows);
+ const locations=[...new Set(rows.map(r=>r.c.name))];
+ const multiLocation=locations.length>1;
+ const hasMultiDay=groups.some(g=>g.rows.length>1);
+
+ const locationText=locations.length===1?'1 local':`${locations.length} locais`;
+ const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
+
+ const weekSummary=`<div class="weekSummary">
+   <span>Sua semana</span>
+   <strong>${dayText} · ${locationText}</strong>
+   <small>Leia de cima para baixo: dia, horário e local.</small>
+   <div class="weekLocations">${locations.map(l=>`<b>${logoImg(l,'clientLogo tiny')}${esc(displayClientName(l))}</b>`).join('')}</div>
+ </div>`;
+
+ const alertHtml=(multiLocation||hasMultiDay)?`<div class="weekAlert">
+   Atenção: ${hasMultiDay?'tem dia com mais de um local. ':''}Confira os horários com calma antes de confirmar.
+ </div>`:'';
+
+ const agenda=groups.map(g=>{
+   const count=g.rows.length;
+   return `<article class="weekDay">
+     <header class="weekDayHead">
+       <div class="weekDayTitle">
+         <strong>${esc(g.day)}</strong>
+         <span>${esc(g.date)}</span>
+       </div>
+       <em>${count===1?'1 local':`${count} locais`}</em>
+     </header>
+     <div class="dayPlaces">
+       ${g.rows.map(r=>`<div class="dayPlace">
+         <div class="placeTime">${esc(displayTime(r))}</div>
+         <div class="placeInfo">
+           <div class="clientVisual">
+             ${logoImg(r.c.name)}
+             <div class="clientNameBlock">
+               <strong>${esc(displayClientName(r.c.name))}</strong>
+               <span>${esc(displayShift(r)||r.it.point||r.c.point)}</span>
+             </div>
+           </div>
+         </div>
+       </div>`).join('')}
+     </div>
+     ${count>1?`<div class="multiDayNote">Neste dia você tem ${count} locais reservados. Confira os horários com atenção.</div>`:''}
+   </article>`;
+ }).join('');
+
+ document.getElementById('agendaResult').innerHTML=`<div class="card">
+   <div class="agendaHeader">
+     <div>
+       <span class="kicker">Agenda reservada para</span>
+       <div class="agendaName">${esc(name)}</div>
+     </div>
+     <span class="pill">Por dia e horário</span>
+   </div>
+   ${weekSummary}
+   ${alertHtml}
+   <div class="weekAgenda">${agenda}</div>
+   <div class="confirmPanel">
+     <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar minha agenda no WhatsApp</a>
+   </div>
+   <div class="actions">
+     <button class="btn light" onclick="clearAgenda()">Buscar outro nome</button>
+     <button class="btn light" data-action="top">Topo</button>
+   </div>
+ </div>`;
+ 
+ document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function confirmMessage(name){
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const groups=groupRowsByDay(rows);
+ const map=new Map();
+
+ rows.forEach(r=>{
+   const local=displayClientName(r.c.name);
+   const time=displayTime(r);
+   const shift=displayShift(r);
+   const key=`${local}__${time}__${shift}`;
+   if(!map.has(key)){
+     map.set(key,{local,time,shift,days:[]});
+   }
+   map.get(key).days.push(r.d.day);
+ });
+
+ const blocks=[...map.values()].map(item=>{
+   const shiftLine=item.shift?`\n${item.shift}`:'';
+   return `📍 ${item.local}\n🗓️ ${formatDayList(item.days)}\n🕒 ${item.time}${shiftLine}`;
+ }).join('\n\n');
+
+ const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
+ const localCount=[...new Set(rows.map(r=>displayClientName(r.c.name)))].length;
+ const localText=localCount===1?'1 local':`${localCount} locais`;
+ const range=weekRange(groups);
+
+ return `🏍️ Confirmação de agenda OE
+
+👤 Motoca: ${name}
+📅 Semana: ${range}
+📌 ${dayText} · ${localText}
+
+${blocks}
+
+✅ Confirmo minha presença na agenda acima.
+
+Se acontecer qualquer problema, aviso o suporte com antecedência.`;
+}
+function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
+function confirmMessage(name){
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const groups=groupRowsByDay(rows);
+ const map=new Map();
+
+ rows.forEach(r=>{
+   const local=displayClientName(r.c.name);
+   const time=displayTime(r);
+   const shift=displayShift(r);
+   const key=`${local}__${time}__${shift}`;
+   if(!map.has(key)){
+     map.set(key,{local,time,shift,days:[]});
+   }
+   map.get(key).days.push(r.d.day);
+ });
+
+ const blocks=[...map.values()].map(item=>{
+   const shiftLine=item.shift?`
+${item.shift}`:'';
+   return `📍 ${item.local}
+🗓️ ${formatDayList(item.days)}
+🕒 ${item.time}${shiftLine}`;
+ }).join('\n\n');
+
+ const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
+ const localCount=[...new Set(rows.map(r=>displayClientName(r.c.name)))].length;
+ const localText=localCount===1?'1 local':`${localCount} locais`;
+ const range=weekRange(groups);
+
+ return `🏍️ Confirmação de agenda OE
+
+👤 Motoca: ${name}
+📅 Semana: ${range}
+📌 ${dayText} · ${localText}
+
+${blocks}
+
+✅ Confirmo minha presença na agenda acima.
+
+Se acontecer qualquer problema, aviso o suporte com antecedência.`;
+}
+function waLink(name){
+ return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;
+}
+function closeSupportPop(){
+ const pop=document.getElementById('supportPop');
+ pop.classList.remove('open');
+ pop.setAttribute('aria-hidden','true');
+ const input=document.getElementById('driverSearch');
+ if(input) input.focus();
+}
+
+function openSupportPop(name){
+ const pop=document.getElementById('supportPop');
+ const link=document.getElementById('supportPopLink');
+ const searched=String(name||'').trim();
+ const msg=`Olá, suporte OE.
+
+Não localizei minha agenda reservada no sistema.
+
+Nome pesquisado: ${searched}
+
+Pode verificar pra mim?`;
+ if(link){
+   link.href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(msg)}`;
+ }
+ if(pop){
+   pop.classList.add('open');
+   pop.setAttribute('aria-hidden','false');
+ }
+}
+
+
+const VIP_CODE = 'OE2026';
+const vipPoints = [
+  {title:'Ponto VIP 01', zone:'Osasco · agenda reservada', note:'Operação com acesso por convite'},
+  {title:'Ponto VIP 02', zone:'Zona Oeste · agenda reservada', note:'Vagas liberadas apenas por código'},
+  {title:'Ponto VIP 03', zone:'Barueri · agenda reservada', note:'Ponto protegido para parceiros confirmados'},
+  {title:'Ponto VIP 04', zone:'Região premium · agenda reservada', note:'Escala exclusiva OE'},
+  {title:'Ponto VIP 05', zone:'Novo ponto · em ativação', note:'Acesso restrito ao time convidado'},
+  {title:'Ponto VIP 06', zone:'Operação especial', note:'Liberação somente pelo suporte'}
+];
+
+function renderVip(){
+ const grid=document.getElementById('vipGrid');
+ if(!grid)return;
+ const unlocked = sessionStorage.getItem('oe_vip_open') === '1';
+ document.body.classList.toggle('vipOpen', unlocked);
+ grid.innerHTML = vipPoints.map((p,i)=>{
+   if(unlocked){
+     return `<div class="box vipUnlocked" style="padding:14px"><strong>${esc(p.title)}<span class="pill">VIP</span></strong><p>${esc(p.zone)}</p><p>${esc(p.note)}</p><div class="actions"><a class="btn green" href="https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent('Olá, suporte OE. Tenho código VIP e quero verificar oportunidades reservadas. Código: ' + VIP_CODE)}" target="_blank">Falar com suporte</a></div></div>`;
+   }
+   return `<div class="box vipLocked" style="padding:14px"><div class="vipLockIcon">🔒</div><strong>${esc(p.title)}<span class="pill">bloqueado</span></strong><p class="vipMuted">${esc(p.zone)}</p><p>Acesso liberado somente com código VIP.</p></div>`;
+ }).join('');
+}
+function checkVip(){
+ const input=document.getElementById('vipCode');
+ const code=(input?.value||'').trim().toUpperCase();
+ if(code===VIP_CODE){
+   sessionStorage.setItem('oe_vip_open','1');
+   toast('Acesso VIP liberado');
+   renderVip();
+ }else{
+   toast('Código VIP não localizado');
+ }
+}
+
+function renderClients(){
+ const grid=document.getElementById('clientsGrid');
+ grid.innerHTML=data.clients.map((c,i)=>{const rows=allRows().filter(r=>r.ci===i), ok=rows.filter(r=>r.status==='ok').length, open=rows.filter(r=>r.status==='open').length;return `<button class="client" onclick="showClient(${i})"><strong>${esc(c.name)}<span class="pill">${ok} reserva(s)</span></strong><p>${esc(c.point)} · ${esc(c.defaultTime)}</p><p>${open?'<span class="pill">'+open+' vaga(s)</span>':'Sem vaga aberta informada'}</p></button>`;}).join('');
+}
+function showClient(i){
+ const c=data.clients[i];
+ document.getElementById('clientDetail').innerHTML=`<div class="card" style="margin-top:14px"><span class="kicker">Escala do ponto</span><h2>${esc(c.name)}</h2><p class="lead"><strong>Ponto:</strong> ${esc(c.point)} · <strong>Horário:</strong> ${esc(c.defaultTime)}</p><div class="daysGrid">${c.days.map(d=>renderDay(c,d)).join('')}</div></div>`;
+ document.getElementById('clientDetail').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function renderDay(c,d){
+ const items=d.items.length?d.items:[{name:'Sem agendamento informado.',status:'empty'}];
+ return `<article class="day"><div class="dayHead"><strong>${esc(d.day)}</strong><span>${esc(d.date)}</span></div><ul class="items">${items.map(it=>{const st=it.status==='empty'?'empty':itemStatus(it), dot=st==='ok'?'✓':st==='open'?'!':'—', label=st==='empty'?'Sem agendamento informado.':itemLabel(it,c);return `<li class="${st}"><span class="dot">${dot}</span><span>${esc(label)}</span></li>`;}).join('')}</ul></article>`;
+}
+
+function renderSelects(){
+ const fc=document.getElementById('fClient'), fd=document.getElementById('fDay');
+ if(!fc||!fd)return;
+ fc.innerHTML='<option value="">Todos os pontos</option>'+data.clients.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
+ const days=[...new Set(data.clients.flatMap(c=>c.days.map(d=>d.day+' '+d.date)))];
+ fd.innerHTML='<option value="">Todos os dias</option>'+days.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');
+}
+function renderManagement(){renderSelects();applyFilters();}
+function applyFilters(){
+ const name=norm(document.getElementById('fName')?.value), client=document.getElementById('fClient')?.value, day=document.getElementById('fDay')?.value, status=document.getElementById('fStatus')?.value;
+ let rows=allRows();
+ if(name)rows=rows.filter(r=>norm(r.it.name).includes(name)||norm(r.c.name).includes(name)||norm(r.c.point).includes(name));
+ if(client)rows=rows.filter(r=>r.c.name===client);
+ if(day)rows=rows.filter(r=>(r.d.day+' '+r.d.date)===day);
+ if(status)rows=rows.filter(r=>r.status===status);
+ const box=document.getElementById('managementResults');
+ if(!box)return;
+ if(!rows.length){box.innerHTML='<div class="box" style="padding:14px"><strong>Nenhum resultado</strong><p>Ajuste os filtros.</p></div>';return;}
+ box.innerHTML=rows.map(r=>`<div class="box" style="padding:14px"><strong>${esc(itemLabel(r.it,r.c))}<span class="pill">${r.status==='open'?'vaga':'reserva'}</span></strong><p>${esc(r.c.name)} · ${esc(r.d.day)} ${esc(r.d.date)} · ${esc(displayTime(r))} · ${esc(r.it.point||r.c.point)}</p></div>`).join('');
+}
+
+function renderAdmin(){
+ const root=document.getElementById('adminRoot');
+ document.body.classList.toggle('adminUnlocked', isAdmin());
+ document.body.classList.toggle('adminUnlocked', isAdmin());
+ if(!isAdmin()){
+  root.innerHTML=`<div class="card"><span class="kicker">Login admin</span><h2>Entrar no admin</h2><p class="lead">Login: admin · senha: 1212</p><div class="grid"><input class="input" id="admUser" value="admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div></div>`;
+  document.getElementById('doLogin').onclick=()=>{if(document.getElementById('admUser').value==='admin'&&document.getElementById('admPass').value==='1212'){localStorage.setItem(ADMIN_KEY,'1');document.body.classList.add('adminUnlocked');toast('Admin liberado');renderAdmin();}else toast('Login ou senha incorretos');};
+  return;
+ }
+ root.innerHTML=`<div class="card"><span class="kicker">Admin</span><h2>Editar agenda</h2><p class="lead">Atualize as reservas combinadas com os motocas. Salva neste navegador.</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
+ bindAdmin();
+}
+function bindAdmin(){
+ document.getElementById('logout').onclick=()=>{localStorage.removeItem(ADMIN_KEY);document.body.classList.remove('adminUnlocked');toast('Saiu do admin');renderAdmin();};
+ document.getElementById('saveMeta').onclick=()=>{data.meta.weekLabel=document.getElementById('week').value;data.meta.supportWhatsapp=document.getElementById('zap').value.replace(/\\D/g,'');saveData();renderAll();};
+ document.getElementById('resetData').onclick=()=>{if(confirm('Resetar agenda?')){data=clone(DEFAULT_DATA);saveData();renderAll();}};
+ document.getElementById('addClient').onclick=()=>{const n=prompt('Nome do novo ponto:');if(!n)return;const days=clone(DEFAULT_DATA.clients[0].days).map(d=>({day:d.day,date:d.date,items:[]}));data.clients.push({id:n.toLowerCase().replace(/\\W+/g,'-'),name:n,point:n,defaultTime:'Horário a definir',days});saveData();renderAll();setTab('admin');};
+ document.getElementById('exportJson').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agenda-reservada-osasco-express.json';a.click();URL.revokeObjectURL(a.href);};
+ document.getElementById('importJson').onclick=()=>{const inp=document.createElement('input');inp.type='file';inp.accept='application/json';inp.onchange=()=>{const f=inp.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{data=JSON.parse(rd.result);saveData();renderAll();setTab('admin');}catch(e){alert('JSON inválido')}};rd.readAsText(f);};inp.click();};
+ document.getElementById('clientSel').onchange=e=>renderEditor(+e.target.value);
+ renderEditor(+document.getElementById('clientSel').value);
+}
+function renderEditor(i){
+ const c=data.clients[i], host=document.getElementById('editor');
+ host.innerHTML=`<div class="adminItem"><h4>Dados do ponto</h4><div class="formGrid"><input class="input" id="cn" value="${esc(c.name)}"><input class="input" id="cp" value="${esc(c.point)}"><input class="input" id="ct" value="${esc(c.defaultTime)}"><button class="btn danger" id="delClient">Remover ponto</button></div><button class="btn green full" id="saveClient">Salvar ponto</button></div><div class="adminItem"><h4>Adicionar motoca ou vaga</h4><div class="formGrid"><select id="addDay">${c.days.map((d,di)=>`<option value="${di}">${d.day} · ${d.date}</option>`).join('')}</select><input class="input" id="addName" placeholder="Nome ou Vaga Aberta"><input class="input" id="addTime" placeholder="Horário"><input class="input" id="addPoint" placeholder="Ponto"><select id="addStatus"><option value="ok">Agenda reservada</option><option value="open">Vaga aberta</option></select><button class="btn red" id="addItem">Adicionar</button></div></div>${c.days.map((d,di)=>`<div class="adminItem"><h4>${d.day} · ${d.date}</h4>${d.items.length?d.items.map((it,ii)=>row(i,di,ii,it)).join(''):'<p class="lead">Sem agendamento informado.</p>'}</div>`).join('')}`;
+ document.getElementById('saveClient').onclick=()=>{c.name=document.getElementById('cn').value;c.point=document.getElementById('cp').value;c.defaultTime=document.getElementById('ct').value;saveData();renderAll();setTab('admin');};
+ document.getElementById('delClient').onclick=()=>{if(confirm('Remover ponto?')){data.clients.splice(i,1);saveData();renderAll();setTab('admin');}};
+ document.getElementById('addItem').onclick=()=>{const di=+document.getElementById('addDay').value; const it={name:document.getElementById('addName').value.trim()||'Vaga Aberta',time:document.getElementById('addTime').value.trim(),point:document.getElementById('addPoint').value.trim(),status:document.getElementById('addStatus').value}; if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;c.days[di].items.push(it);saveData();renderAll();setTab('admin');};
+ host.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.save.split('-').map(Number);const pre=b.dataset.save,it=data.clients[ci].days[di].items[ii];it.name=document.getElementById('n'+pre).value;it.time=document.getElementById('t'+pre).value;it.point=document.getElementById('p'+pre).value;it.status=document.getElementById('s'+pre).value;if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;saveData();renderAll();setTab('admin');});
+ host.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.rm.split('-').map(Number);data.clients[ci].days[di].items.splice(ii,1);saveData();renderAll();setTab('admin');});
+}
+function row(ci,di,ii,it){
+ const id=`${ci}-${di}-${ii}`;
+ return `<div class="rowCard"><input class="input" id="n${id}" value="${esc(it.name||'')}"><input class="input" id="t${id}" value="${esc(it.time||'')}" placeholder="Horário"><input class="input" id="p${id}" value="${esc(it.point||'')}" placeholder="Ponto"><select id="s${id}"><option value="ok" ${itemStatus(it)==='ok'?'selected':''}>Agenda reservada</option><option value="open" ${itemStatus(it)==='open'?'selected':''}>Vaga aberta</option></select><button class="btn green" data-save="${id}">Salvar</button><button class="btn danger" data-rm="${id}">Remover</button></div>`;
+}
+function renderAll(){renderStats();if(document.getElementById('page-pontos').classList.contains('active'))renderClients();if(document.getElementById('page-gestao').classList.contains('active'))renderManagement();if(document.getElementById('page-admin').classList.contains('active'))renderAdmin();}
+document.getElementById('searchBtn').onclick=renderDriverSearch;
+document.getElementById('vipBtn')?.addEventListener('click',checkVip);
+document.getElementById('vipCode')?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkVip();}});
+document.getElementById('supportPopClose').onclick=closeSupportPop;
+document.getElementById('supportPop').addEventListener('click',e=>{if(e.target.id==='supportPop')closeSupportPop();});
+document.getElementById('driverSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderDriverSearch();}});
+document.getElementById('driverSearch').addEventListener('input',()=>{if(document.getElementById('driverSearch').value.trim().length>=2)renderDriverSearch();});
+document.getElementById('applyFilters')?.addEventListener('click',applyFilters);
+['fName','fClient','fDay','fStatus'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',applyFilters);});
+
+document.addEventListener('click',e=>{
+ const action = e.target.closest('[data-action]');
+ if(action){
+   const name = action.dataset.action;
+   if(name === 'top') goTop();
+   if(name === 'back') goBack();
+   return;
+ }
+ const tabBtn = e.target.closest('[data-tab]');
+ if(tabBtn){
+   setTab(tabBtn.dataset.tab);
+ }
+});
+document.getElementById('backBtn')?.addEventListener('click',goBack);
+document.getElementById('topBtn')?.addEventListener('click',goTop);
+document.addEventListener('keydown',e=>{
+ if(e.key === 'Escape'){
+   const pop=document.getElementById('supportPop');
+   if(pop?.classList.contains('open')) closeSupportPop();
+ }
+});
+document.addEventListener('click',e=>{
+ if(e.target && e.target.id === 'quickLogout'){
+   localStorage.removeItem(ADMIN_KEY);
+   document.body.classList.remove('adminUnlocked');
+   toast('Saiu do admin');
+   renderAdmin();
+ }
+});
+
+renderAll();
+</script>
+</body>
+</html>
