@@ -1217,6 +1217,85 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
   }
 }
 
+
+/* Confirmação limpa: sem textarea gigante aberta */
+.confirmPanel{
+  background:var(--black);
+  color:#fff;
+  border-radius:24px;
+  padding:16px;
+  margin-top:16px;
+}
+.confirmPanel p{
+  margin:0 0 12px;
+  color:#fff;
+  font-size:15px;
+  line-height:1.35;
+  font-weight:850;
+}
+.confirmPanel .helperText{
+  color:rgba(255,255,255,.72);
+  font-size:13px;
+  font-weight:700;
+  margin-top:-4px;
+  margin-bottom:12px;
+}
+.confirmPreview{
+  margin-top:10px;
+}
+.confirmPreview summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:46px;
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+  font-size:14px;
+  font-weight:950;
+}
+.confirmPreview summary::-webkit-details-marker{
+  display:none;
+}
+.confirmPreview textarea{
+  margin-top:10px;
+  width:100%;
+  min-height:210px;
+  resize:vertical;
+  border-radius:18px;
+  border:0;
+  padding:13px;
+  font-size:14px;
+  line-height:1.42;
+  font-family:var(--font);
+  white-space:pre-wrap;
+}
+
+
+/* Confirmação direta: sem resumo/textarea na tela */
+.confirmPanel{
+  background:transparent!important;
+  color:inherit!important;
+  border-radius:0!important;
+  padding:0!important;
+  margin-top:16px!important;
+}
+.confirmPanel p,
+.confirmPanel .helperText,
+.confirmPreview{
+  display:none!important;
+}
+.confirmPanel .btn.green.full{
+  min-height:58px;
+  border-radius:20px;
+  font-size:16px;
+  font-weight:1000;
+  box-shadow:0 12px 24px rgba(22,163,74,.22);
+}
+
 </style>
 </head>
 <body>
@@ -1351,7 +1430,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 
 <script>
 const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Souza"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_logos_clientes_v1';
+const STORAGE_KEY = 'oe_agenda_confirmar_direto_v1';
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
@@ -1609,8 +1688,6 @@ function showDriverAgenda(name){
    ${alertHtml}
    <div class="weekAgenda">${agenda}</div>
    <div class="confirmPanel">
-     <p><strong>Confirmação:</strong> envie a mensagem somente depois de conferir todos os dias, horários e locais.</p>
-     <textarea id="confirmMsg">${esc(confirmMessage(name))}</textarea>
      <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar minha agenda no WhatsApp</a>
    </div>
    <div class="actions">
@@ -1618,9 +1695,7 @@ function showDriverAgenda(name){
      <button class="btn light" data-action="top">Topo</button>
    </div>
  </div>`;
- document.getElementById('confirmMsg').addEventListener('input',e=>{
-   document.getElementById('confirmLink').href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(e.target.value)}`;
- });
+ 
  document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function confirmMessage(name){
@@ -1649,7 +1724,17 @@ function confirmMessage(name){
  const localText=localCount===1?'1 local':`${localCount} locais`;
  const range=weekRange(groups);
 
- return `🏍️ Confirmação de agenda OE\n\n👤 Motoca: ${name}\n📅 Semana: ${range}\n📌 Resumo: ${dayText} · ${localText}\n\n${blocks}\n\n✅ Confirmo minha presença na agenda acima.\n\nEstou ciente que a loja, o suporte e o time contam comigo.\nSe acontecer qualquer problema, vou avisar com antecedência.`;
+ return `🏍️ Confirmação de agenda OE
+
+👤 Motoca: ${name}
+📅 Semana: ${range}
+📌 ${dayText} · ${localText}
+
+${blocks}
+
+✅ Confirmo minha presença na agenda acima.
+
+Se acontecer qualquer problema, aviso o suporte com antecedência.`;
 }
 function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
 function confirmMessage(name){
@@ -1661,16 +1746,8 @@ function confirmMessage(name){
  }).join('\\n\\n');
  return `Olá, suporte OE.\\n\\nSou ${name}.\\nConferi minha agenda reservada e confirmo presença nos dias abaixo:\\n\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam comigo.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
 }
-function waLink(name){return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;}
-
-
-function openSupportPop(query){
- const pop=document.getElementById('supportPop');
- const link=document.getElementById('supportPopLink');
- const msg=`Olá, suporte OE.\n\nNão localizei minha reserva na Agenda OE.\nNome pesquisado: ${query || 'não informado'}.\n\nPode verificar para mim, por favor?`;
- link.href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(msg)}`;
- pop.classList.add('open');
- pop.setAttribute('aria-hidden','false');
+function waLink(name){
+ return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;
 }
 function closeSupportPop(){
  const pop=document.getElementById('supportPop');
