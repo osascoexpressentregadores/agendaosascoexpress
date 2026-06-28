@@ -1,32 +1,15 @@
-# CHECK — WhatsApp limpo
+# CHECK — WhatsApp curto sem ruído
 
-## Problema corrigido
-- A mensagem estava indo com `\n` escrito no WhatsApp.
-- O bloco de confirmação estava com textarea grande aberta e deixando a tela pesada.
+Correção final aplicada na confirmação enviada ao suporte.
 
-## Correção aplicada
-- A mensagem agora usa quebras reais de linha.
-- O botão principal abre WhatsApp com texto limpo.
-- A prévia da mensagem fica fechada em “Ver mensagem antes de enviar”.
-- A confirmação ficou mais clean para mobile.
+## Ajustes feitos
 
-## Padrão final da mensagem
-🏍️ Confirmação de agenda OE
+- A mensagem deixou de repetir a escala.
+- A mensagem virou apenas confirmação de compromisso.
+- O texto vai em uma única linha para evitar ruído de formatação no WhatsApp.
+- O gerador remove `\n`, quebras reais e espaços duplicados antes de montar o link.
+- A confirmação final não leva cliente, dia, horário ou lista de agenda.
 
-👤 Motoca: Nome
-📅 Semana: data inicial a data final
-📌 Resumo: X dias reservados · Y locais
+## Modelo final
 
-📍 Cliente
-🗓️ Dias agrupados
-🕒 Horário
-
-✅ Confirmo minha presença na agenda acima.
-
-Se acontecer qualquer problema, aviso o suporte com antecedência.
-
-## Congelado
-- Agenda por dia.
-- Logos dos clientes.
-- Horários reais.
-- Busca, VIP, Admin, pop de suporte e export/import.
+Oi, suporte OE. Sou NOME. Confirmo minha agenda reservada. Pode contar comigo.

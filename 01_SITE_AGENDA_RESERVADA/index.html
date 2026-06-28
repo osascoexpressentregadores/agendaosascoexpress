@@ -1503,11 +1503,11 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 <div class="supportPop" id="supportPop" aria-hidden="true">
   <div class="supportPopCard" role="dialog" aria-modal="true" aria-labelledby="supportPopTitle">
     <div class="supportPopIcon">!</div>
-    <strong id="supportPopTitle">Parceiro, não localizei a sua reserva.</strong>
-    <p>Fale com o suporte para não perder nenhuma oportunidade.</p>
+    <strong id="supportPopTitle">Não encontrei esse nome na agenda.</strong>
+    <p>Confira se digitou igual combinou com o suporte ou chama a equipe para conferir rapidinho.</p>
     <div class="supportPopActions">
-      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Falar com o suporte</a>
-      <button class="btn light" type="button" id="supportPopClose">Buscar novamente</button>
+      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Chamar suporte</a>
+      <button class="btn light" type="button" id="supportPopClose">Corrigir nome</button>
     </div>
   </div>
 </div>
@@ -1522,7 +1522,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 
 <script>
 const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07","supportWhatsapp": "5511924782555","updatedAt": ""},"clients": [{"id": "bevenutti","name": "Bevenutti","point": "Pizzaria Bevenutti","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"},{"name": "Douglas Nunes"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Bruno Getaruch","time": "18h às 00h"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Letícia Santana"},{"name": "Everton Renato"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Roger Martineli"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"}]}]},{"id": "fratelli","name": "Fratelli","point": "Fratelli","defaultTime": "17h às 23h / 18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Denis Ambrósio"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Pedro Henrique"},{"name": "Luiz Guilherme"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Pedro Henrique"},{"name": "Denis Ambrósio"},{"name": "Gustavo"},{"name": "Alexandre Pinheiro"}]}]},{"id": "pastel-da-drica","name": "Pastel da Drica","point": "Pastel da Drica","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Luiz Guilherme"},{"name": "Samuel Bauman"},{"name": "Nicolas Abreu"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]}]},{"id": "meridio-pizza","name": "Meridio Pizza","point": "Meridio Pizza","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]}]},{"id": "barto-restaurante","name": "Barto Restaurante","point": "Barto Restaurante","defaultTime": "10h45 às 16h45","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Denilson Silveiro"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Denilson Silveiro"}]}]},{"id": "pastel-da-camila","name": "Pastel da Camila","point": "Pastel da Camila","defaultTime": "Manhã / Tarde","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_reservada_final_v3_whatsapp_humano';
+const STORAGE_KEY = 'oe_agenda_reservada_final_v4_whatsapp_ok_sem_ruido';
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
@@ -1550,9 +1550,10 @@ function driverMap(){
 function findDrivers(query){
  const q=norm(query); if(!q)return [];
  const map=driverMap();
+ const terms=q.split(/\s+/).filter(Boolean);
  return Object.keys(map).sort((a,b)=>a.localeCompare(b,'pt-BR')).filter(name=>{
-   const joined=name+' '+map[name].map(r=>`${r.c.name} ${r.c.point} ${r.d.day} ${r.d.date} ${r.it.time||''}`).join(' ');
-   return norm(joined).includes(q);
+   const driverName=norm(name);
+   return terms.every(term=>driverName.includes(term));
  });
 }
 let navHistory = ['agenda'];
@@ -1587,14 +1588,30 @@ function goTop(){
 }
 
 function renderStats(){}
+function driverOptionSummary(name){
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const clients=[...new Set(rows.map(r=>displayClientName(r.c.name)))].slice(0,3).join(', ');
+ const days=formatDayList(rows.map(r=>r.d.day));
+ const total=rows.length===1?'1 reserva':`${rows.length} reservas`;
+ return [clients, days, total].filter(Boolean).join(' · ');
+}
+function jsArg(value){
+ return JSON.stringify(String(value||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function emptySearchCard(){
+ return `<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>`;
+}
+function notFoundCard(q){
+ return `<div class="card"><span class="kicker">Nome não encontrado</span><h2>Não achei reserva para esse nome.</h2><p class="lead">Confira se digitou igual combinou com o suporte. Se ainda não aparecer, chama a equipe que a gente confere rápido.</p><div class="actions"><a class="btn green" href="${supportLinkForSearch(q)}" target="_blank" rel="noopener">Chamar suporte</a><button class="btn light" type="button" onclick="clearAgenda()">Corrigir nome</button></div></div>`;
+}
 function renderDriverSearch(){
  const q=document.getElementById('driverSearch').value.trim();
  const box=document.getElementById('agendaResult');
- if(!q){box.innerHTML='<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>';return;}
+ if(!q){box.innerHTML=emptySearchCard();return;}
  const names=findDrivers(q);
- if(!names.length){box.innerHTML='';openSupportPop(q);return;}
+ if(!names.length){box.innerHTML=notFoundCard(q);openSupportPop(q);return;}
  if(names.length===1){showDriverAgenda(names[0]);return;}
- box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
+ box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos mais de uma opção</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda(${jsArg(n)})"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>${esc(driverOptionSummary(n))}</p></button>`).join('')}</div></div>`;
 }
 function parseDateOrder(date){
  const parts=String(date||'').split('/');
@@ -1793,47 +1810,42 @@ function showDriverAgenda(name){
  
  document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function whatsappTimeText(row){
- const time=displayTime(row);
- if(String(time||'').includes('/')) return 'horário do ponto a confirmar com o suporte';
- return time;
+function cleanWhatsappText(text){
+ return String(text||'')
+   .replace(/\\n/g,' ')
+   .replace(/\r\n|\r|\n/g,' ')
+   .replace(/\s+/g,' ')
+   .trim();
 }
-function whatsappWeekText(){
- return String(data.meta.weekLabel||'').replace(/^Semana\s+de\s*/i,'').replace(/^Semana\s*/i,'').trim();
+function makeWhatsappLink(text){
+ const phone=String(data.meta.supportWhatsapp||'').replace(/\D/g,'');
+ return `https://wa.me/${phone}?text=${encodeURIComponent(cleanWhatsappText(text))}`;
 }
 function confirmMessage(name){
- const week=whatsappWeekText();
- const weekText=week?` da semana ${week}`:'';
- return `Oi, suporte! Aqui é ${name}.
-
-Confirmo minha agenda reservada${weekText}.
-Pode contar comigo.`;
+ return `Oi, suporte OE. Sou ${name}. Confirmo minha agenda reservada. Pode contar comigo.`;
 }
 function waLink(name){
- return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;
+ return makeWhatsappLink(confirmMessage(name));
+}
+function supportMessageForSearch(name){
+ const searched=String(name||'').trim() || 'nome não informado';
+ return `Oi, suporte OE. Pesquisei por: ${searched}. Minha reserva não apareceu. Pode conferir?`;
+}
+function supportLinkForSearch(name){
+ return makeWhatsappLink(supportMessageForSearch(name));
 }
 function closeSupportPop(){
  const pop=document.getElementById('supportPop');
+ if(!pop)return;
  pop.classList.remove('open');
  pop.setAttribute('aria-hidden','true');
  const input=document.getElementById('driverSearch');
  if(input) input.focus();
 }
-
 function openSupportPop(name){
  const pop=document.getElementById('supportPop');
  const link=document.getElementById('supportPopLink');
- const searched=String(name||'').trim();
- const msg=`Olá, suporte OE.
-
-Não localizei minha agenda reservada no sistema.
-
-Nome pesquisado: ${searched}
-
-Pode verificar pra mim?`;
- if(link){
-   link.href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(msg)}`;
- }
+ if(link) link.href=supportLinkForSearch(name);
  if(pop){
    pop.classList.add('open');
    pop.setAttribute('aria-hidden','false');
@@ -1858,7 +1870,7 @@ function renderVip(){
  document.body.classList.toggle('vipOpen', unlocked);
  grid.innerHTML = vipPoints.map((p,i)=>{
    if(unlocked){
-     return `<div class="box vipUnlocked" style="padding:14px"><strong>${esc(p.title)}<span class="pill">VIP</span></strong><p>${esc(p.zone)}</p><p>${esc(p.note)}</p><div class="actions"><a class="btn green" href="https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent('Olá, suporte OE. Tenho código VIP e quero verificar oportunidades reservadas. Código: ' + VIP_CODE)}" target="_blank">Falar com suporte</a></div></div>`;
+     return `<div class="box vipUnlocked" style="padding:14px"><strong>${esc(p.title)}<span class="pill">VIP</span></strong><p>${esc(p.zone)}</p><p>${esc(p.note)}</p><div class="actions"><a class="btn green" href="${makeWhatsappLink('Oi, suporte OE. Tenho código VIP e quero verificar oportunidades reservadas. Código: ' + VIP_CODE)}" target="_blank">Falar com suporte</a></div></div>`;
    }
    return `<div class="box vipLocked" style="padding:14px"><div class="vipLockIcon">🔒</div><strong>${esc(p.title)}<span class="pill">bloqueado</span></strong><p class="vipMuted">${esc(p.zone)}</p><p>Acesso liberado somente com código VIP.</p></div>`;
  }).join('');
@@ -1952,7 +1964,7 @@ document.getElementById('vipCode')?.addEventListener('keydown',e=>{if(e.key==='E
 document.getElementById('supportPopClose').onclick=closeSupportPop;
 document.getElementById('supportPop').addEventListener('click',e=>{if(e.target.id==='supportPop')closeSupportPop();});
 document.getElementById('driverSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderDriverSearch();}});
-document.getElementById('driverSearch').addEventListener('input',()=>{if(document.getElementById('driverSearch').value.trim().length>=2)renderDriverSearch();});
+document.getElementById('driverSearch').addEventListener('input',()=>{const input=document.getElementById('driverSearch');const box=document.getElementById('agendaResult');const pop=document.getElementById('supportPop');if(pop?.classList.contains('open')){pop.classList.remove('open');pop.setAttribute('aria-hidden','true');}if(!input.value.trim()){box.innerHTML=emptySearchCard();}});
 document.getElementById('applyFilters')?.addEventListener('click',applyFilters);
 ['fName','fClient','fDay','fStatus'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',applyFilters);});
 

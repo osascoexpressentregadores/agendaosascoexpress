@@ -1,28 +1,15 @@
-# CHECK — Confirmar direto no WhatsApp
+# CHECK — WhatsApp curto sem ruído
 
-## O que foi ajustado
-- Removido o resumo/preview da mensagem da tela.
-- Removida a textarea da confirmação.
-- Na tela fica apenas o botão:
-  - Confirmar minha agenda no WhatsApp
-- O botão direciona direto para o WhatsApp com a mensagem já formatada.
+Correção final aplicada na confirmação enviada ao suporte.
 
-## Organização da mensagem
-A mensagem continua resumida e agrupada por:
-- cliente/local
-- dias combinados
-- horário
+## Ajustes feitos
 
-Exemplo:
-📍 Pastel da Camila
-🗓️ Terça a domingo
-🕒 10h às 16h
-Turno da manhã
+- A mensagem deixou de repetir a escala.
+- A mensagem virou apenas confirmação de compromisso.
+- O texto vai em uma única linha para evitar ruído de formatação no WhatsApp.
+- O gerador remove `\n`, quebras reais e espaços duplicados antes de montar o link.
+- A confirmação final não leva cliente, dia, horário ou lista de agenda.
 
-Isso evita repetir um dia embaixo do outro quando é o mesmo local e horário.
+## Modelo final
 
-## Congelado
-- Agenda visual por dia.
-- Logos dos clientes.
-- Horários reais.
-- Busca, VIP, Admin, pop de suporte e export/import.
+Oi, suporte OE. Sou NOME. Confirmo minha agenda reservada. Pode contar comigo.
