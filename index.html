@@ -4,1295 +4,596 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
-<title>Escala Oficial OE</title>
+<title>Agenda Reservada OE</title>
 <style>
-:root {
-  --red:#e30613;
-  --redDark:#b90009;
-  --black:#08090c;
-  --ink:#111217;
-  --muted:#667085;
-  --line:#e6e8ee;
-  --soft:#f7f8fa;
-  --card:#ffffff;
-  --green:#12944a;
-  --yellow:#f5c518;
-  --shadow:0 18px 46px rgba(16,24,40,.09);
-  --shadow2:0 8px 20px rgba(16,24,40,.06);
-  --safeTop:env(safe-area-inset-top,0px);
-  --safeBottom:env(safe-area-inset-bottom,0px);
+:root{
+  --red:#e30613; --black:#08090c; --ink:#12141a; --muted:#667085; --line:#e6e9ef;
+  --soft:#f7f8fa; --green:#12944a; --danger:#b42318; --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px); --nav-h:86px; --shadow:0 12px 28px rgba(16,24,40,.07);
 }
-* { box-sizing:border-box; }
-html { min-height:100%; scroll-behavior:smooth; }
-body {
-  margin:0;
-  min-height:100%;
-  overflow-x:hidden;
-  overflow-y:auto;
-  background:
-    radial-gradient(circle at 0 0, rgba(227,6,19,.05), transparent 26%),
-    linear-gradient(180deg,#fff 0%,#f6f7fa 100%);
-  color:var(--ink);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  padding-bottom:98px;
-}
-body.modalOpen { overflow:hidden; }
-button,input,select,textarea,a { font:inherit; -webkit-tap-highlight-color:transparent; }
-button { border:0; cursor:pointer; }
-a { text-decoration:none; color:inherit; }
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible {
-  outline:3px solid rgba(227,6,19,.22);
-  outline-offset:2px;
-}
-.wrap { width:min(100% - 22px,1120px); margin:0 auto; }
-.top {
-  position:sticky;
-  top:0;
-  z-index:80;
-  padding:calc(8px + var(--safeTop)) 0 8px;
-  background:rgba(246,247,250,.92);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-.topBox {
-  min-height:64px;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:10px;
-  align-items:center;
-  background:#fff;
-  border:1px solid rgba(16,24,40,.06);
-  border-radius:24px;
-  padding:8px;
-  box-shadow:var(--shadow2);
-}
-.brand {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  min-width:0;
-}
-.logo {
-  width:48px;
-  height:48px;
-  border-radius:16px;
-  background:#050608;
-  flex:0 0 48px;
-  display:grid;
-  place-items:center;
-  padding:5px;
-}
-.logo img { width:100%; height:100%; object-fit:contain; display:block; }
-.brand strong {
-  display:block;
-  font-size:12px;
-  line-height:1.1;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  font-weight:1000;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.brand span {
-  display:block;
-  margin-top:3px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.2;
-  font-weight:850;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.topActions { display:flex; gap:7px; align-items:center; }
-.topBtn {
-  min-height:44px;
-  border-radius:16px;
-  padding:0 13px;
-  background:#f1f3f7;
-  color:var(--ink);
-  font-size:12px;
-  font-weight:1000;
-  white-space:nowrap;
-}
-.topBtn.primary {
-  background:var(--red);
-  color:#fff;
-  box-shadow:0 10px 22px rgba(227,6,19,.18);
-}
-.main { padding-top:12px; }
-.page { display:none; padding-bottom:20px; }
-.page.active { display:block; animation:fade .16s ease; }
-@keyframes fade { from { opacity:.78; transform:translateY(3px); } to { opacity:1; transform:none; } }
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;color:var(--ink);background:linear-gradient(180deg,#fff,#f6f7fa);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 28px)}
+button,input,select,textarea,a{font:inherit;-webkit-tap-highlight-color:transparent}
+button{border:0;cursor:pointer} a{text-decoration:none;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid rgba(227,6,19,.22);outline-offset:2px}
+.wrap{width:min(100% - 22px,1180px);margin:0 auto}
+.top{position:sticky;top:0;z-index:60;padding:calc(8px + var(--safe-top)) 0 8px;background:rgba(246,247,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.topBox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:#fff;border:1px solid rgba(16,24,40,.06);border-radius:22px;padding:10px;box-shadow:var(--shadow)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.mark{width:46px;height:46px;border-radius:15px;background:var(--black);color:#fff;display:grid;place-items:center;font-weight:1000;letter-spacing:-.08em;font-size:18px;flex:0 0 46px}
+.brand strong{display:block;font-size:12px;line-height:1.1;font-weight:1000;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topActions{display:flex;gap:7px;align-items:center}
+.btnTop{min-height:44px;border-radius:15px;padding:0 12px;background:#f1f3f7;color:var(--ink);font-size:12px;font-weight:1000;white-space:nowrap}
+.btnTop.red{background:var(--red);color:#fff}
+.main{padding:14px 0 0}
+.page{display:none}.page.active{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:var(--shadow);overflow:hidden}
+.kicker{display:inline-flex;align-items:center;gap:8px;min-height:30px;padding:0 11px;border-radius:999px;background:#fff1f2;color:var(--red);border:1px solid rgba(227,6,19,.15);font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.08em}
+.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red)}
+h1,h2{margin:0;line-height:.95;letter-spacing:-.055em;text-transform:uppercase}
+h1{margin-top:12px;font-size:clamp(34px,6vw,62px)}
+h1 span,h2 span{color:var(--red);display:block}
+h2{font-size:clamp(28px,4.5vw,46px)}
+.lead{margin:10px 0 0;color:#344054;font-size:14px;line-height:1.45;font-weight:760;max-width:760px}
+.hero{display:grid;grid-template-columns:1fr .72fr;gap:14px;align-items:stretch;margin-bottom:14px}
+.searchBox{margin-top:14px;display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:10px}
+.input,select,textarea{width:100%;min-width:0;border:1px solid #d8dee8;border-radius:16px;background:#f8fafc;color:var(--ink);font-weight:850;outline:none}
+.input,select{min-height:56px;padding:0 12px;font-size:16px} textarea{min-height:130px;padding:12px;resize:vertical;line-height:1.4}
+.input:focus,select:focus,textarea:focus{border-color:rgba(227,6,19,.38);box-shadow:0 0 0 4px rgba(227,6,19,.08)}
+.btn{min-height:52px;border-radius:16px;padding:0 14px;background:var(--black);color:#fff;font-size:13px;font-weight:1000;display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;white-space:nowrap}
+.btn.red{background:var(--red)}.btn.green{background:var(--green)}.btn.light{background:#f1f3f7;color:var(--ink)}.btn.danger{background:var(--danger);color:#fff}.btn.full{width:100%;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 8px 18px rgba(16,24,40,.05)}
+.stat strong{display:block;font-size:24px;letter-spacing:-.04em;color:var(--red)}
+.stat span{display:block;margin-top:4px;color:var(--muted);font-size:12px;font-weight:800}
+.grid{display:grid;gap:12px;margin-top:14px}.grid.cols{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.agendaHeader{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.agendaName{font-size:clamp(28px,5vw,46px);line-height:.95;letter-spacing:-.055em;text-transform:uppercase;font-weight:1000;margin:8px 0 0}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:18px;padding:12px;margin-top:12px;font-size:13px;line-height:1.4;font-weight:800}
+.agendaCard,.client,.day,.box{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 18px rgba(16,24,40,.05);overflow:hidden}
+.agendaCard{padding:14px;border-left:6px solid var(--red)}
+.agendaCard strong,.client strong,.box strong{display:flex;justify-content:space-between;gap:10px;font-size:17px;line-height:1.25}
+.agendaCard p,.client p,.box p{margin:7px 0 0;color:#344054;font-size:13px;line-height:1.4;font-weight:760}
+.metaLine{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.meta{background:#f8fafc;border:1px solid var(--line);border-radius:15px;padding:9px}
+.meta span{display:block;color:var(--muted);font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}
+.meta b{display:block;margin-top:3px;font-size:13px;line-height:1.25;overflow-wrap:anywhere}
+.pill{display:inline-flex;align-items:center;min-height:26px;border-radius:999px;padding:0 9px;background:#fff1f2;border:1px solid rgba(227,6,19,.15);color:var(--red);font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.actions .btn{flex:1 1 150px}
+.confirmPanel{background:#101217;color:#fff;border-radius:24px;padding:14px;margin-top:14px;box-shadow:0 18px 44px rgba(16,24,40,.18)}
+.confirmPanel p{margin:0 0 10px;color:#e5e7eb;font-size:13px;line-height:1.4;font-weight:760}
+.confirmPanel textarea{background:#fff;color:#111217}
+.filters{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr auto;gap:8px;margin-top:14px}
+.client{padding:14px;text-align:left}
+.dayHead{background:var(--black);color:#fff;padding:13px}.dayHead strong{display:block;font-size:15px}.dayHead span{display:block;margin-top:4px;color:#cbd5e1;font-size:12px;font-weight:850}
+.items{list-style:none;margin:0;padding:12px 13px 14px;display:grid;gap:9px}.items li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;font-size:14px;line-height:1.32;font-weight:850}.items li span:last-child{overflow-wrap:anywhere;min-width:0}
+.dot{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:1000}.ok .dot{background:#dcfce7;color:#126e3d}.open .dot{background:#fee2e2;color:#b42318}.empty .dot{background:#eef2f7;color:#667085}.open span:last-child{color:#b42318}.empty span:last-child{color:#667085}
+.daysGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+.sectionTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.adminBar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.formGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.adminItem{background:#f8fafc;border:1px solid var(--line);border-radius:20px;padding:12px;margin-top:10px}.adminItem h4{margin:0 0 8px;font-size:15px}
+.rowCard{display:grid;grid-template-columns:minmax(140px,1.2fr) minmax(105px,.8fr) minmax(105px,.8fr) minmax(120px,.8fr) auto auto;gap:7px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:8px;margin-top:8px}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;background:#111217;color:#fff;border-radius:999px;padding:11px 14px;font-size:13px;font-weight:900;box-shadow:var(--shadow);display:none;max-width:calc(100vw - 24px);text-align:center}.toast.show{display:block}
+.bottomNav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,1180px);z-index:70;padding:8px 11px calc(8px + var(--safe-bottom));background:rgba(246,247,250,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.bottomNavBox{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#fff;border:1px solid rgba(16,24,40,.06);border-radius:24px;padding:8px;box-shadow:var(--shadow)}
+.navBtn{min-height:52px;border-radius:17px;background:#f6f7fa;color:#344054;font-size:11px;font-weight:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.navBtn b{font-size:16px;line-height:1}.navBtn.active{background:var(--red);color:#fff}
+.pageEndSpacer{height:calc(var(--nav-h) + var(--safe-bottom) + 26px)}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .btn{grid-column:1/-1}.rowCard{grid-template-columns:1fr}.rowCard .btn{width:100%}}
+@media(max-width:560px){.wrap{width:min(100% - 16px,1180px)}.topBox{border-radius:20px}.brand strong{font-size:11px}.brand span{font-size:10px}.mark{width:44px;height:44px;flex-basis:44px}.searchBox{grid-template-columns:1fr}.card{padding:14px;border-radius:22px}h1{font-size:34px}h2{font-size:28px}.daysGrid{grid-template-columns:1fr}.metaLine{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.bottomNavBox{gap:6px;padding:7px}.navBtn{min-height:50px;font-size:10px;border-radius:16px}}
 
-.heroGrid {
+/* Dobra aprovada: mascote + agenda reservada */
+.approvedHero{
   display:grid;
-  grid-template-columns:1fr;
+  grid-template-columns:minmax(0,1fr) minmax(340px,.82fr);
   gap:14px;
+  align-items:stretch;
+  margin-bottom:14px;
 }
-.heroCard {
-  min-height:280px;
+.brandHero{
   position:relative;
-  overflow:hidden;
-  border-radius:32px;
+  min-height:330px;
+  border-radius:24px;
   background:#fff;
   border:1px solid var(--line);
   box-shadow:var(--shadow);
+  overflow:hidden;
 }
-.heroCard::before {
+.brandHero:before{
   content:"";
   position:absolute;
   inset:0;
   background:
-    linear-gradient(112deg, transparent 0 58%, rgba(227,6,19,.10) 58% 100%),
-    radial-gradient(circle at 92% 8%, rgba(227,6,19,.12), transparent 26%);
-  pointer-events:none;
+    linear-gradient(110deg, transparent 0 52%, rgba(227,6,19,.10) 52% 100%),
+    radial-gradient(circle at 88% 18%, rgba(227,6,19,.10), transparent 30%);
 }
-.heroBand {
-  height:8px;
-  width:100%;
-  background:linear-gradient(90deg,var(--red) 0 46%,var(--black) 46% 88%,var(--yellow) 88% 94%,var(--green) 94%);
+.brandHero:after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:6px;
+  background:linear-gradient(90deg,var(--red) 0 48%,var(--black) 48% 88%,#f5c518 88% 94%,#12944a 94%);
 }
-.heroContent {
+.brandHeroCopy{
   position:relative;
   z-index:2;
-  min-height:272px;
-  padding:24px 24px 20px;
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 230px;
-  gap:16px;
-  align-items:center;
+  width:58%;
+  padding:22px 18px 18px;
 }
-.heroCopy {
-  min-width:0;
-}
-.kicker {
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  min-height:32px;
-  border-radius:999px;
-  padding:0 12px;
-  background:#fff1f2;
-  border:1px solid rgba(227,6,19,.15);
-  color:var(--red);
-  font-size:11px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  font-weight:1000;
-}
-.kicker::before {
-  content:"";
-  width:8px;
-  height:8px;
-  background:var(--red);
-  border-radius:50%;
-}
-.heroTitle {
-  margin:14px 0 0;
-  max-width:620px;
-  font-size:clamp(36px,6.5vw,76px);
-  line-height:.88;
-  letter-spacing:-.075em;
-  text-transform:uppercase;
-  font-weight:1000;
-}
-.heroTitle span {
-  display:block;
-  color:var(--red);
-}
-.heroLead {
-  max-width:530px;
+.brandHeroTitle{
   margin:12px 0 0;
-  color:#344054;
-  font-size:15px;
-  line-height:1.42;
-  font-weight:780;
-}
-.heroTags {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:14px;
-}
-.tag {
-  min-height:31px;
-  display:inline-flex;
-  align-items:center;
-  border-radius:999px;
-  padding:0 10px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  font-weight:1000;
-  background:#f3f4f6;
-  color:#344054;
-}
-.tag.red { background:var(--red); color:#fff; }
-.tag.black { background:var(--black); color:#fff; }
-.kauanCard {
-  position:relative;
-  align-self:stretch;
-  min-height:224px;
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(227,6,19,.08), transparent 26%),
-    linear-gradient(180deg,#fff,#f4f5f7);
-  border:1px solid var(--line);
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
-.kauanCard img {
-  width:100%;
-  max-width:220px;
-  height:auto;
-  display:block;
-  object-fit:contain;
-  filter:drop-shadow(0 18px 28px rgba(16,24,40,.16));
-}
-.oeMark {
-  position:absolute;
-  top:14px;
-  right:14px;
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:#050608;
-  padding:5px;
-  box-shadow:0 10px 20px rgba(0,0,0,.16);
-}
-.oeMark img { width:100%; height:100%; object-fit:contain; display:block; }
-.searchPanel {
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:32px;
-  box-shadow:var(--shadow);
-  padding:18px;
-}
-.label {
-  display:block;
-  margin-bottom:8px;
-  color:var(--muted);
-  font-size:11px;
-  letter-spacing:.08em;
+  font-size:clamp(42px,7vw,74px);
+  line-height:.82;
+  letter-spacing:-.08em;
   text-transform:uppercase;
   font-weight:1000;
 }
-.searchRow {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 170px;
-  gap:10px;
+.brandHeroTitle span{
+  color:var(--red);
+  display:block;
 }
-.input,select,textarea {
-  width:100%;
-  min-width:0;
-  border:1px solid #d8dee8;
-  border-radius:18px;
-  background:#f8fafc;
-  color:var(--ink);
-  font-weight:850;
-  outline:none;
-}
-.input,select {
-  min-height:58px;
-  padding:0 14px;
-  font-size:16px;
-}
-textarea {
-  min-height:116px;
-  padding:13px;
-  resize:vertical;
-  line-height:1.4;
-}
-.input:focus,select:focus,textarea:focus {
-  border-color:rgba(227,6,19,.38);
-  box-shadow:0 0 0 4px rgba(227,6,19,.09);
-}
-.btn {
-  min-height:50px;
-  border-radius:18px;
-  padding:0 16px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  gap:8px;
-  background:var(--black);
-  color:#fff;
-  font-size:14px;
-  font-weight:1000;
-  white-space:nowrap;
-}
-.btn.red { background:var(--red); }
-.btn.green { background:var(--green); }
-.btn.light { background:#f1f3f7; color:var(--ink); }
-.btn.danger { background:#b42318; color:#fff; }
-.btn.full { width:100%; margin-top:10px; }
-.results {
-  display:grid;
-  gap:10px;
-  margin-top:12px;
-}
-.resultCard,.panelCard,.clientCard,.dayCard {
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:24px;
-  box-shadow:var(--shadow2);
-  overflow:hidden;
-}
-.resultCard {
-  padding:14px;
-  background:#f3fff7;
-  border-color:rgba(18,148,74,.18);
-}
-.resultCard strong,.panelCard strong,.clientCard strong {
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:flex-start;
-  font-size:17px;
-  line-height:1.25;
-}
-.resultCard p,.panelCard p,.clientCard p {
-  margin:7px 0 0;
+.brandHeroLead{
+  margin:12px 0 0;
+  max-width:330px;
   color:#344054;
   font-size:13px;
-  line-height:1.4;
-  font-weight:760;
+  line-height:1.34;
+  font-weight:780;
 }
-.pill {
-  min-height:26px;
-  display:inline-flex;
-  align-items:center;
-  border-radius:999px;
-  padding:0 9px;
-  background:#fff1f2;
-  border:1px solid rgba(227,6,19,.15);
-  color:var(--red);
-  font-size:11px;
-  font-weight:1000;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  white-space:nowrap;
-}
-.actionRow {
+.brandHeroTags{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:7px;
   margin-top:12px;
 }
-.actionRow .btn { flex:1 1 150px; }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:12px;
-  margin-top:14px;
-}
-.panelCard,.clientCard {
-  padding:14px;
-  text-align:left;
-}
-.pageTop {
-  margin:16px 0 12px;
-}
-.brandMini {
-  display:flex;
+.brandHeroTags span{
+  display:inline-flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:10px;
+  min-height:27px;
+  border-radius:999px;
+  padding:0 9px;
+  background:#f3f4f6;
+  color:#111217;
+  font-size:10px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.04em;
 }
-.brandMini img {
-  width:40px;
-  height:40px;
+.brandHeroTags span:first-child{
+  background:var(--red);
+  color:#fff;
+}
+.brandHeroTags span:nth-child(2){
+  background:var(--black);
+  color:#fff;
+}
+.kauanAgenda{
+  position:absolute;
+  z-index:3;
+  right:5%;
+  bottom:0;
+  width:min(40%,230px);
+  max-height:96%;
   object-fit:contain;
-  background:#050608;
-  border-radius:14px;
-  padding:4px;
+  object-position:bottom center;
+  filter:drop-shadow(0 18px 28px rgba(16,24,40,.16));
 }
-.brandMini span {
-  font-size:11px;
-  color:var(--muted);
-  font-weight:1000;
-  text-transform:uppercase;
-  letter-spacing:.08em;
+.searchAgendaCard{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
-.pageTitle {
-  margin:0;
-  font-size:clamp(30px,5vw,52px);
-  line-height:.94;
-  letter-spacing:-.065em;
-  text-transform:uppercase;
+.searchAgendaCard .searchBox{
+  grid-template-columns:minmax(0,1fr) 142px;
 }
-.pageLead {
-  margin:8px 0 0;
-  color:#344054;
-  max-width:760px;
-  font-size:14px;
-  line-height:1.45;
-  font-weight:760;
-}
-.daysGrid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:12px;
-  margin-top:14px;
-}
-.dayHead {
-  background:#101217;
-  color:#fff;
-  padding:13px;
-}
-.dayHead strong { display:block; font-size:15px; line-height:1.2; }
-.dayHead span { display:block; margin-top:4px; color:#cbd5e1; font-size:12px; font-weight:850; }
-.items {
-  list-style:none;
-  margin:0;
-  padding:12px 13px 14px;
-  display:grid;
-  gap:9px;
-}
-.items li {
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr);
-  gap:9px;
-  align-items:flex-start;
-  font-size:14px;
-  line-height:1.32;
-  font-weight:850;
-}
-.items li span:last-child {
-  min-width:0;
-  overflow-wrap:anywhere;
-}
-.dot {
-  width:22px;
-  height:22px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  font-size:12px;
-  font-weight:1000;
-}
-.ok .dot { background:#dcfce7; color:#126e3d; }
-.open .dot { background:#fee2e2; color:#b42318; }
-.empty .dot { background:#eef2f7; color:#667085; }
-.open span:last-child { color:#b42318; }
-.empty span:last-child { color:#667085; }
-.stickyConfirm {
-  position:sticky;
-  bottom:92px;
-  z-index:30;
-  margin-top:16px;
-  background:#101217;
-  border-radius:24px;
-  padding:10px;
-  box-shadow:0 18px 44px rgba(16,24,40,.24);
-}
-.stickyConfirm.hidden { display:none; }
-.stickyInner {
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:8px;
-}
-.stickyInner .btn { min-height:58px; }
-.stickyClose {
-  width:54px;
-  min-height:58px;
+.mobileRuleBox{
+  margin-top:12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
   border-radius:18px;
-  background:rgba(255,255,255,.12);
-  color:#fff;
-  font-size:24px;
-  font-weight:1000;
+  padding:12px;
+  font-size:13px;
+  line-height:1.38;
+  font-weight:820;
 }
-.modal {
+@media(max-width:850px){
+  .approvedHero{
+    grid-template-columns:1fr;
+  }
+  .brandHero{
+    min-height:270px;
+  }
+  .brandHeroTitle{
+    font-size:44px;
+  }
+  .kauanAgenda{
+    width:185px;
+    right:3%;
+  }
+  .brandHeroCopy{
+    width:62%;
+  }
+}
+@media(max-width:560px){
+  .approvedHero{
+    gap:12px;
+  }
+  .brandHero{
+    min-height:244px;
+    border-radius:22px;
+  }
+  .brandHeroCopy{
+    width:64%;
+    padding:18px 14px 14px;
+  }
+  .brandHeroTitle{
+    font-size:34px;
+    line-height:.86;
+  }
+  .brandHeroLead{
+    font-size:12px;
+    max-width:210px;
+  }
+  .kauanAgenda{
+    width:138px;
+    right:1%;
+  }
+  .brandHeroTags{
+    gap:5px;
+  }
+  .brandHeroTags span{
+    font-size:9px;
+    min-height:24px;
+    padding:0 7px;
+  }
+  .searchAgendaCard .searchBox{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:390px){
+  .brandHero{
+    min-height:226px;
+  }
+  .brandHeroTitle{
+    font-size:30px;
+  }
+  .brandHeroLead{
+    display:none;
+  }
+  .kauanAgenda{
+    width:128px;
+  }
+}
+
+
+/* Pop minimalista quando não localizar reserva */
+.supportPop{
   position:fixed;
   inset:0;
-  z-index:200;
+  z-index:220;
   display:none;
   align-items:flex-end;
   justify-content:center;
-  background:rgba(15,23,42,.38);
+  padding:16px 16px calc(16px + var(--safe-bottom));
+  background:rgba(15,23,42,.34);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
 }
-.modal.open { display:flex; }
-.modalCard {
-  width:min(100%,780px);
-  max-height:90dvh;
-  overflow:auto;
+.supportPop.open{display:flex}
+.supportPopCard{
+  width:min(100%,430px);
   background:#fff;
-  border-radius:28px 28px 0 0;
-  padding:16px 16px calc(18px + env(safe-area-inset-bottom));
-  box-shadow:0 -24px 64px rgba(16,24,40,.22);
-}
-.grab {
-  width:54px;
-  height:5px;
-  border-radius:999px;
-  background:#d8dee8;
-  margin:0 auto 12px;
-}
-.adminBar {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:12px;
-}
-.formGrid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:8px;
-}
-.adminItem {
   border:1px solid var(--line);
-  border-radius:20px;
-  background:#f8fafc;
-  padding:12px;
-  margin-top:10px;
+  border-radius:26px;
+  box-shadow:0 24px 70px rgba(16,24,40,.24);
+  padding:18px;
 }
-.adminItem h4 {
-  margin:0 0 8px;
-  font-size:15px;
-}
-.rowCard {
+.supportPopIcon{
+  width:44px;
+  height:44px;
+  border-radius:15px;
   display:grid;
-  grid-template-columns:minmax(140px,1.2fr) minmax(105px,.8fr) minmax(105px,.8fr) minmax(120px,.8fr) auto auto;
-  gap:7px;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#fff;
-  padding:8px;
-  margin-top:8px;
-}
-.toast {
-  position:fixed;
-  top:calc(12px + env(safe-area-inset-top));
-  left:50%;
-  transform:translateX(-50%);
-  z-index:300;
-  display:none;
-  max-width:calc(100vw - 24px);
-  background:#111217;
-  color:#fff;
-  border-radius:999px;
-  padding:11px 14px;
-  font-size:13px;
-  font-weight:900;
-  box-shadow:var(--shadow);
-  text-align:center;
-}
-.toast.show { display:block; }
-.bottomNav {
-  position:fixed;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%);
-  width:min(100%,1120px);
-  z-index:90;
-  padding:8px 12px calc(8px + env(safe-area-inset-bottom));
-  background:rgba(246,247,250,.92);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-.navBox {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  background:#fff;
-  border:1px solid rgba(16,24,40,.06);
-  border-radius:24px;
-  box-shadow:var(--shadow2);
-  padding:8px;
-}
-.navItem {
-  min-height:52px;
-  border-radius:17px;
-  background:#f6f7fa;
-  color:#344054;
-  font-size:11px;
+  place-items:center;
+  background:#fff1f2;
+  color:var(--red);
+  font-size:20px;
   font-weight:1000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
+  margin-bottom:10px;
 }
-.navItem b { font-size:16px; }
-.navItem.active {
-  background:var(--red);
-  color:#fff;
+.supportPopCard strong{
+  display:block;
+  font-size:22px;
+  line-height:1.05;
+  letter-spacing:-.04em;
 }
-@media (min-width:780px) {
-  .heroGrid { grid-template-columns:minmax(0,1.1fr) minmax(340px,.9fr); align-items:stretch; }
-  .searchPanel { display:flex; flex-direction:column; justify-content:center; }
-  .heroCard { min-height:370px; }
-  .heroContent { min-height:362px; }
-  .kauanCard { min-height:292px; }
-  .kauanCard img { max-width:260px; }
+.supportPopCard p{
+  margin:8px 0 0;
+  color:#344054;
+  font-size:14px;
+  line-height:1.42;
+  font-weight:760;
 }
-@media (max-width:700px) {
-  body { padding-bottom:92px; }
-  .wrap { width:min(100% - 18px,1120px); }
-  .heroContent {
-    min-height:252px;
-    grid-template-columns:minmax(0,1fr) 112px;
-    gap:10px;
-    padding:18px 14px 16px 18px;
-  }
-  .heroTitle { font-size:34px; }
-  .heroLead { font-size:13px; }
-  .kauanCard {
-    min-height:205px;
-    border-radius:24px;
-  }
-  .kauanCard img { max-width:170px; }
-  .oeMark {
-    width:44px;
-    height:44px;
-    border-radius:14px;
-    top:10px;
-    right:10px;
-  }
-  .searchRow { grid-template-columns:1fr; }
-  .searchRow .btn {
-    width:100%;
-    min-height:58px;
-  }
-  .grid,.daysGrid {
-    grid-template-columns:1fr;
-  }
-  .rowCard {
-    grid-template-columns:1fr;
-  }
-  .rowCard .btn {
-    width:100%;
+.supportPopActions{
+  display:grid;
+  gap:8px;
+  margin-top:14px;
+}
+.supportPopActions .btn{
+  width:100%;
+}
+@media(min-width:700px){
+  .supportPop{
+    align-items:center;
   }
 }
-@media (max-width:390px) {
-  .wrap { width:min(100% - 16px,1120px); }
-  .brand strong { font-size:11px; }
-  .brand span { font-size:10px; }
-  .logo { width:44px; height:44px; flex-basis:44px; }
-  .topBtn { padding:0 10px; }
-  .heroContent {
-    grid-template-columns:minmax(0,1fr) 94px;
-    min-height:226px;
-    padding:16px 12px 14px;
-  }
-  .kicker { min-height:28px; font-size:10px; padding:0 9px; }
-  .heroTitle { font-size:27px; }
-  .heroLead { display:none; }
-  .heroTags { gap:6px; }
-  .tag { min-height:27px; font-size:10px; padding:0 8px; }
-  .kauanCard { min-height:184px; }
-  .kauanCard img { max-width:150px; }
-  .pageTitle { font-size:30px; }
-  .navBox { gap:6px; padding:7px; }
-  .navItem { min-height:50px; font-size:10px; border-radius:16px; }
-}
+
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
-
 <header class="top">
   <div class="wrap">
     <div class="topBox">
-      <div class="brand">
-        <div class="logo"><img src="assets/img/logo-oe-oficial.png" alt="Osasco Express"></div>
-        <div>
-          <strong>Gibi da Escala</strong>
-          <span>Osasco Express · oficial</span>
-        </div>
-      </div>
-      <div class="topActions">
-        <button class="topBtn" id="openAdmin" type="button">Admin</button>
-        <button class="topBtn primary" type="button" data-page="home">Buscar</button>
-      </div>
+      <div class="brand"><div class="mark">OE</div><div><strong>Agenda Reservada</strong><span>Confirmação de compromisso</span></div></div>
+      <div class="topActions"><button class="btnTop" data-tab="admin">Admin</button><button class="btnTop red" data-tab="agenda">Buscar</button></div>
     </div>
   </div>
 </header>
 
 <main class="wrap main">
-  <section class="page active" id="page-home">
-    <div class="heroGrid">
-      <div class="heroCard">
-        <div class="heroBand"></div>
-        <div class="heroContent">
-          <div class="heroCopy">
-            <span class="kicker">Escala oficial</span>
-            <h1 class="heroTitle">Busque seu nome <span>confirme</span></h1>
-            <p class="heroLead">Visual oficial OE, sem bagunça. O motoca encontra seus horários e confirma em poucos toques.</p>
-            <div class="heroTags">
-              <span class="tag red">Busca rápida</span>
-              <span class="tag black">Time OE</span>
-              <span class="tag">WhatsApp</span>
-            </div>
-          </div>
-          <div class="kauanCard">
-            <div class="oeMark"><img src="assets/img/logo-oe-oficial.png" alt="OE"></div>
-            <img src="assets/img/kauan-oficial-recorte.png" alt="Kauan, mascote oficial da Osasco Express">
+  <section class="page active" id="page-agenda">
+    <div class="approvedHero">
+      <div class="brandHero">
+        <div class="brandHeroCopy">
+          <span class="kicker">Agenda reservada</span>
+          <div class="brandHeroTitle">Busque seu nome <span>confirme</span></div>
+          <p class="brandHeroLead">A Osasco Express já reservou esses horários com você. Confira seus pontos e confirme o compromisso com o time.</p>
+          <div class="brandHeroTags">
+            <span>Busca rápida</span>
+            <span>Time OE</span>
+            <span>Compromisso</span>
           </div>
         </div>
+        <img class="kauanAgenda" src="assets/img/kauan-agenda.png" alt="Kauan, mascote oficial da Osasco Express">
       </div>
 
-      <div class="searchPanel">
-        <label class="label" for="homeSearch">Buscar motoca na escala</label>
-        <div class="searchRow">
-          <input class="input" id="homeSearch" placeholder="Ex: Luiz Guilherme" autocomplete="off">
-          <button class="btn red" id="homeSearchBtn" type="button">Buscar escala</button>
+      <div class="card searchAgendaCard">
+        <span class="kicker">Confirmar agenda</span>
+        <p class="lead">Digite seu nome para ver os dias, horários e pontos reservados para você.</p>
+        <div class="searchBox">
+          <input class="input" id="driverSearch" placeholder="Ex: Luiz Guilherme">
+          <button class="btn red" id="searchBtn">Ver agenda</button>
         </div>
-        <div class="results" id="homeResults"></div>
-
-        <div class="grid">
-          <button class="panelCard" type="button" data-page="clients">
-            <strong>Ver pontos</strong>
-            <p>Abrir escala por cliente.</p>
-          </button>
-          <button class="panelCard" type="button" data-page="how">
-            <strong>Como funciona</strong>
-            <p>Buscar, conferir e confirmar.</p>
-          </button>
-        </div>
+        <div class="mobileRuleBox">Ao confirmar, a loja, o suporte e os parceiros contam com você. Se tiver problema, avise com antecedência.</div>
+        <div class="stats" id="stats"></div>
       </div>
     </div>
+    <div id="agendaResult"></div>
+    <div class="pageEndSpacer"></div>
   </section>
 
-  <section class="page" id="page-how">
-    <div class="pageTop">
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Fluxo oficial</span></div>
-      <h2 class="pageTitle">Buscar, conferir, confirmar</h2>
-      <p class="pageLead">Interface para usar parado, antes do turno, na loja ou encostado com segurança.</p>
-    </div>
-    <div class="grid">
-      <div class="panelCard"><strong>1. Buscar nome</strong><p>Mostra dias, pontos e horários daquele motoca.</p></div>
-      <div class="panelCard"><strong>2. Conferir parado</strong><p>Leia com segurança antes de sair para o turno.</p></div>
-      <div class="panelCard"><strong>3. Confirmar</strong><p>A mensagem sai pronta para o suporte.</p></div>
-    </div>
+  <section class="page" id="page-pontos">
+    <div class="sectionTop"><div><h2>Pontos</h2><p class="lead">Quadros por cliente para conferência da escala reservada.</p></div></div>
+    <div class="grid cols" id="clientsGrid"></div>
+    <div id="clientDetail"></div>
+    <div class="pageEndSpacer"></div>
   </section>
 
-  <section class="page" id="page-clients">
-    <div class="pageTop">
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Pontos da semana</span></div>
-      <h2 class="pageTitle">Pontos da semana</h2>
-      <p class="pageLead">Abra um ponto para conferir o time por dia.</p>
+  <section class="page" id="page-gestao">
+    <div class="sectionTop"><div><h2>Gestão</h2><p class="lead">Filtros internos para conferir agenda, ponto, dia e vagas abertas.</p></div></div>
+    <div class="card">
+      <span class="kicker">Filtros</span>
+      <div class="filters">
+        <input class="input" id="fName" placeholder="Motoca, ponto ou cliente">
+        <select id="fClient"></select>
+        <select id="fDay"></select>
+        <select id="fStatus"><option value="">Todos</option><option value="ok">Confirmados</option><option value="open">Vagas abertas</option></select>
+        <button class="btn red" id="applyFilters">Filtrar</button>
+      </div>
     </div>
-    <div class="grid" id="clientsGrid"></div>
+    <div id="managementResults" class="grid"></div>
+    <div class="pageEndSpacer"></div>
   </section>
 
-  <section class="page" id="page-client"></section>
-  <section class="page" id="page-summary"></section>
-  <section class="page" id="page-confirm"></section>
-
-  <div class="stickyConfirm hidden" id="stickyConfirm">
-    <div class="stickyInner">
-      <button class="btn green" id="stickyConfirmBtn" type="button">Confirmar horários no WhatsApp</button>
-      <button class="stickyClose" id="closeSticky" type="button" aria-label="Fechar">×</button>
-    </div>
-  </div>
+  <section class="page" id="page-admin">
+    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão mobile para atualizar agenda reservada. Login: admin · senha: 1212.</p></div></div>
+    <div id="adminRoot"></div>
+    <div class="pageEndSpacer"></div>
+  </section>
 </main>
 
-<nav class="bottomNav">
-  <div class="navBox">
-    <button class="navItem active" type="button" data-page="home"><b>🔎</b>Buscar</button>
-    <button class="navItem" type="button" data-page="clients"><b>🏪</b>Pontos</button>
-    <button class="navItem" type="button" data-page="how"><b>✓</b>Como</button>
-    <button class="navItem" type="button" id="adminNav"><b>⚙</b>Admin</button>
-  </div>
-</nav>
 
-<div class="modal" id="adminModal">
-  <div class="modalCard">
-    <div class="grab"></div>
-    <div id="adminRoot"></div>
+<div class="supportPop" id="supportPop" aria-hidden="true">
+  <div class="supportPopCard" role="dialog" aria-modal="true" aria-labelledby="supportPopTitle">
+    <div class="supportPopIcon">!</div>
+    <strong id="supportPopTitle">Parceiro, não localizei a sua reserva.</strong>
+    <p>Fale com o suporte e não perca mais nenhuma oportunidade.</p>
+    <div class="supportPopActions">
+      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Falar com o suporte</a>
+      <button class="btn light" type="button" id="supportPopClose">Buscar novamente</button>
+    </div>
   </div>
 </div>
 
+<nav class="bottomNav">
+  <div class="bottomNavBox">
+    <button class="navBtn active" data-tab="agenda"><b>✓</b>Agenda</button>
+    <button class="navBtn" data-tab="pontos"><b>🏪</b>Pontos</button>
+    <button class="navBtn" data-tab="gestao"><b>📋</b>Gestão</button>
+    <button class="navBtn" data-tab="admin"><b>⚙</b>Admin</button>
+  </div>
+</nav>
+
 <script>
-const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "brand": "Osasco Express", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas"}, {"name": "Lucas"}, {"name": "Alessandro"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Leticia"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Leticia"}, {"name": "Douglas"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Bruno S"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Leticia"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis"}, {"name": "Alexandre"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro"}, {"name": "Luiz Guilherme"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro"}, {"name": "Denis"}, {"name": "Gustavo"}, {"name": "Alexandre"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel"}, {"name": "Nicolas"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Lucas", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Lucas", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_schedule_premium_v1';
-const ADMIN_KEY = 'oe_admin_premium_v1';
+const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas"}, {"name": "Lucas"}, {"name": "Alessandro"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Leticia"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Leticia"}, {"name": "Douglas"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Bruno S"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger"}, {"name": "Lucas"}, {"name": "Alessandro"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Leticia"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger"}, {"name": "Douglas"}, {"name": "Nicolas"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis"}, {"name": "Alexandre"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro"}, {"name": "Alexandre"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro"}, {"name": "Luiz Guilherme"}, {"name": "Denis"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro"}, {"name": "Denis"}, {"name": "Gustavo"}, {"name": "Alexandre"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel"}, {"name": "Nicolas"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo"}, {"name": "Samuel"}, {"name": "Bruno"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe"}, {"name": "Guilherme Nunes"}, {"name": "José"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Lucas", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz", "time": "Manhã"}, {"name": "Lucas", "time": "Manhã"}, {"name": "Weslley", "time": "Tarde"}, {"name": "Denilson", "time": "Tarde"}]}]}]};
+const STORAGE_KEY = 'oe_agenda_reservada_compromisso_v1';
+const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
-let selectedAssignments = [];
-let currentPage = 'home';
 
-function clone(obj) { return JSON.parse(JSON.stringify(obj)); }
-function esc(value) {
-  return String(value ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();}
+function loadData(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r)}catch(e){}return clone(DEFAULT_DATA);}
+function saveData(show=true){data.meta.updatedAt=new Date().toISOString();localStorage.setItem(STORAGE_KEY,JSON.stringify(data));if(show)toast('Agenda atualizada');}
+function isAdmin(){return localStorage.getItem(ADMIN_KEY)==='1';}
+function itemStatus(it){return it.status==='open'||norm(it.name).includes('vaga aberta')?'open':'ok';}
+function itemLabel(it,c){let t=it.name||'';if(it.time)t+=' - '+it.time;if(it.point&&it.point!==c.point)t+=' · '+it.point;return t;}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),1500);}
+
+function allRows(){
+ const rows=[];
+ data.clients.forEach((c,ci)=>c.days.forEach((d,di)=>d.items.forEach((it,ii)=>rows.push({c,ci,d,di,it,ii,status:itemStatus(it)}))));
+ return rows;
 }
-function norm(value) {
-  return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+function driverMap(){
+ const map={};
+ allRows().filter(r=>r.status==='ok').forEach(r=>{const n=(r.it.name||'').trim();if(!n)return;(map[n] ||= []).push(r);});
+ return map;
 }
-function loadData() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch(e) {}
-  return clone(DEFAULT_DATA);
+function findDrivers(query){
+ const q=norm(query); if(!q)return [];
+ const map=driverMap();
+ return Object.keys(map).sort((a,b)=>a.localeCompare(b,'pt-BR')).filter(name=>{
+   const joined=name+' '+map[name].map(r=>`${r.c.name} ${r.c.point} ${r.d.day} ${r.d.date} ${r.it.time||''}`).join(' ');
+   return norm(joined).includes(q);
+ });
 }
-function saveData(show = true) {
-  data.meta.updatedAt = new Date().toISOString();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  if (show) toast('Alterações salvas');
+function setTab(tab){
+ document.querySelectorAll('.navBtn,[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('page-'+tab)?.classList.add('active');
+ if(tab==='pontos')renderClients();
+ if(tab==='gestao')renderManagement();
+ if(tab==='admin')renderAdmin();
+ window.scrollTo({top:0,behavior:'smooth'});
 }
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => t.classList.remove('show'), 1600);
+function renderStats(){
+ const rows=allRows(), ok=rows.filter(r=>r.status==='ok').length, open=rows.filter(r=>r.status==='open').length, drivers=Object.keys(driverMap()).length;
+ document.getElementById('stats').innerHTML=`<div class="stat"><strong>${data.clients.length}</strong><span>Pontos</span></div><div class="stat"><strong>${drivers}</strong><span>Motocas</span></div><div class="stat"><strong>${ok}</strong><span>Reservas</span></div><div class="stat"><strong>${open}</strong><span>Vagas</span></div>`;
 }
-function isAdmin() { return localStorage.getItem(ADMIN_KEY) === '1'; }
-function makeId(name) {
-  return norm(name).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'ponto-' + Date.now();
+function renderDriverSearch(){
+ const q=document.getElementById('driverSearch').value.trim();
+ const box=document.getElementById('agendaResult');
+ if(!q){box.innerHTML='<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>';return;}
+ const names=findDrivers(q);
+ if(!names.length){box.innerHTML='';openSupportPop(q);return;}
+ if(names.length===1){showDriverAgenda(names[0]);return;}
+ box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
 }
-function itemStatus(item) {
-  return item.status === 'open' || norm(item.name).includes('vaga aberta') ? 'open' : 'ok';
+function showDriverAgenda(name){
+ selectedDriver=name;
+ const rows=driverMap()[name]||[];
+ const list=rows.map(r=>`<div class="agendaCard"><strong>${esc(r.c.name)}<span class="pill">${esc(r.d.date)}</span></strong><p>${esc(r.d.day)} · agenda reservada</p><div class="metaLine"><div class="meta"><span>Horário</span><b>${esc(r.it.time||r.c.defaultTime)}</b></div><div class="meta"><span>Ponto</span><b>${esc(r.it.point||r.c.point)}</b></div></div></div>`).join('');
+ document.getElementById('agendaResult').innerHTML=`<div class="card"><div class="agendaHeader"><div><span class="kicker">Agenda reservada para</span><div class="agendaName">${esc(name)}</div></div><span class="pill">${rows.length} reserva(s)</span></div><p class="lead">Esses são os dias reservados para você. Confira e confirme o compromisso no WhatsApp.</p><div class="grid">${list}</div><div class="confirmPanel"><p><strong>Confirmação de compromisso:</strong> ao enviar, você registra que conferiu os dias, pontos e horários reservados para você.</p><textarea id="confirmMsg">${esc(confirmMessage(name))}</textarea><a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar agenda no WhatsApp</a></div><div class="actions"><button class="btn light" onclick="clearAgenda()">Buscar outro nome</button></div></div>`;
+ document.getElementById('confirmMsg').addEventListener('input',e=>{document.getElementById('confirmLink').href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(e.target.value)}`;});
 }
-function itemLabel(item, client) {
-  let text = item.name || '';
-  if (item.time) text += ' - ' + item.time;
-  if (item.point && item.point !== client.point) text += ' · ' + item.point;
-  return text;
+function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
+function confirmMessage(name){
+ const rows=driverMap()[name]||[];
+ const lines=rows.map(r=>`• ${r.c.name} — ${r.d.day} ${r.d.date} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
+ return `Olá, suporte OE.\\n\\nSou ${name} e conferi minha agenda reservada na Osasco Express.\\n\\nConfirmo presença nos dias e pontos abaixo:\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam com essa confirmação.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
 }
-function buildDriverMap() {
-  const map = {};
-  data.clients.forEach((client, clientIndex) => {
-    client.days.forEach((day, dayIndex) => {
-      day.items.forEach((item, itemIndex) => {
-        if (itemStatus(item) === 'open') return;
-        const name = (item.name || '').trim();
-        if (!name) return;
-        if (!map[name]) map[name] = [];
-        map[name].push({ client, clientIndex, day, dayIndex, item, itemIndex });
-      });
-    });
-  });
-  return map;
+function waLink(name){return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;}
+
+
+function openSupportPop(query){
+ const pop=document.getElementById('supportPop');
+ const link=document.getElementById('supportPopLink');
+ const msg=`Olá, suporte OE.\n\nNão localizei minha reserva na Agenda OE.\nNome pesquisado: ${query || 'não informado'}.\n\nPode verificar pra mim, por favor?`;
+ link.href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(msg)}`;
+ pop.classList.add('open');
+ pop.setAttribute('aria-hidden','false');
 }
-function findDrivers(query) {
-  const q = norm(query);
-  if (!q) return [];
-  const map = buildDriverMap();
-  return Object.keys(map).sort((a,b)=>a.localeCompare(b,'pt-BR')).filter(name => {
-    const hay = name + ' ' + map[name].map(a => `${a.client.name} ${a.client.point} ${a.day.day} ${a.day.date} ${a.item.time || ''}`).join(' ');
-    return norm(hay).includes(q);
-  });
+function closeSupportPop(){
+ const pop=document.getElementById('supportPop');
+ pop.classList.remove('open');
+ pop.setAttribute('aria-hidden','true');
+ const input=document.getElementById('driverSearch');
+ if(input) input.focus();
 }
-function showPage(page) {
-  currentPage = page;
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page)?.classList.add('active');
-  document.querySelectorAll('[data-page]').forEach(btn => btn.classList.toggle('active', btn.dataset.page === page));
-  if (page === 'clients') renderClients();
-  if (page === 'summary') renderSummary();
-  if (page === 'confirm') renderConfirm();
-  window.scrollTo({ top:0, behavior:'smooth' });
+
+function renderClients(){
+ const grid=document.getElementById('clientsGrid');
+ grid.innerHTML=data.clients.map((c,i)=>{const rows=allRows().filter(r=>r.ci===i), ok=rows.filter(r=>r.status==='ok').length, open=rows.filter(r=>r.status==='open').length;return `<button class="client" onclick="showClient(${i})"><strong>${esc(c.name)}<span class="pill">${ok} reserva(s)</span></strong><p>${esc(c.point)} · ${esc(c.defaultTime)}</p><p>${open?'<span class="pill">'+open+' vaga(s)</span>':'Sem vaga aberta informada'}</p></button>`;}).join('');
 }
-function renderSearch(targetId, query) {
-  const target = document.getElementById(targetId);
-  if (!target) return;
-  target.innerHTML = '';
-  if (!query.trim()) return;
-  const names = findDrivers(query);
-  const map = buildDriverMap();
-  if (!names.length) {
-    target.innerHTML = '<div class="resultCard"><strong>Nenhum resultado <span class="pill">revise</span></strong><p>Confira a grafia ou abra por ponto.</p></div>';
-    return;
-  }
-  names.slice(0,10).forEach(name => {
-    const assignments = map[name] || [];
-    const points = [...new Set(assignments.map(a => a.client.name))].join(' · ');
-    const card = document.createElement('div');
-    card.className = 'resultCard';
-    card.innerHTML = `<strong>${esc(name)}<span class="pill">${assignments.length} dia(s)</span></strong><p>${esc(points)}</p>`;
-    const actions = document.createElement('div');
-    actions.className = 'actionRow';
-    const summary = document.createElement('button');
-    summary.className = 'btn';
-    summary.type = 'button';
-    summary.textContent = 'Ver horários';
-    summary.onclick = () => selectDriver(name, true);
-    const confirm = document.createElement('button');
-    confirm.className = 'btn green';
-    confirm.type = 'button';
-    confirm.textContent = 'Confirmar';
-    confirm.onclick = () => selectDriver(name, false, true);
-    actions.append(summary, confirm);
-    card.appendChild(actions);
-    target.appendChild(card);
-  });
+function showClient(i){
+ const c=data.clients[i];
+ document.getElementById('clientDetail').innerHTML=`<div class="card" style="margin-top:14px"><span class="kicker">Escala do ponto</span><h2>${esc(c.name)}</h2><p class="lead"><strong>Ponto:</strong> ${esc(c.point)} · <strong>Horário:</strong> ${esc(c.defaultTime)}</p><div class="daysGrid">${c.days.map(d=>renderDay(c,d)).join('')}</div></div>`;
+ document.getElementById('clientDetail').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function selectDriver(name, showSummary = true, showConfirm = false) {
-  selectedDriver = name;
-  selectedAssignments = buildDriverMap()[name] || [];
-  updateSticky();
-  if (showConfirm) showPage('confirm');
-  else if (showSummary) showPage('summary');
+function renderDay(c,d){
+ const items=d.items.length?d.items:[{name:'Sem agendamento informado.',status:'empty'}];
+ return `<article class="day"><div class="dayHead"><strong>${esc(d.day)}</strong><span>${esc(d.date)}</span></div><ul class="items">${items.map(it=>{const st=it.status==='empty'?'empty':itemStatus(it), dot=st==='ok'?'✓':st==='open'?'!':'—', label=st==='empty'?'Sem agendamento informado.':itemLabel(it,c);return `<li class="${st}"><span class="dot">${dot}</span><span>${esc(label)}</span></li>`;}).join('')}</ul></article>`;
 }
-function updateSticky() {
-  document.getElementById('stickyConfirm').classList.toggle('hidden', !selectedDriver);
+
+function renderSelects(){
+ const fc=document.getElementById('fClient'), fd=document.getElementById('fDay');
+ if(!fc||!fd)return;
+ fc.innerHTML='<option value="">Todos os pontos</option>'+data.clients.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
+ const days=[...new Set(data.clients.flatMap(c=>c.days.map(d=>d.day+' '+d.date)))];
+ fd.innerHTML='<option value="">Todos os dias</option>'+days.map(d=>`<option value="${esc(d)}">${esc(d)}</option>`).join('');
 }
-function confirmText() {
-  const input = document.getElementById('confirmName');
-  const name = (input?.value || selectedDriver || '').trim();
-  const assignments = buildDriverMap()[name] || selectedAssignments || [];
-  const lines = assignments.map(a => `${a.day.day} ${a.day.date} - ${a.client.name} - ${a.item.point || a.client.point} - ${a.item.time || a.client.defaultTime}`);
-  return `Olá, suporte OE. Conferi minha escala ${data.meta.weekLabel} e confirmo meu compromisso com o time.${lines.length ? '\n\nMeus horários confirmados:\n' + lines.join('\n') : ''}\n\nSe acontecer qualquer problema, vou avisar com antecedência para não prejudicar a loja, o suporte e os parceiros. Meu nome é: ${name}`;
+function renderManagement(){renderSelects();applyFilters();}
+function applyFilters(){
+ const name=norm(document.getElementById('fName')?.value), client=document.getElementById('fClient')?.value, day=document.getElementById('fDay')?.value, status=document.getElementById('fStatus')?.value;
+ let rows=allRows();
+ if(name)rows=rows.filter(r=>norm(r.it.name).includes(name)||norm(r.c.name).includes(name)||norm(r.c.point).includes(name));
+ if(client)rows=rows.filter(r=>r.c.name===client);
+ if(day)rows=rows.filter(r=>(r.d.day+' '+r.d.date)===day);
+ if(status)rows=rows.filter(r=>r.status===status);
+ const box=document.getElementById('managementResults');
+ if(!box)return;
+ if(!rows.length){box.innerHTML='<div class="box" style="padding:14px"><strong>Nenhum resultado</strong><p>Ajuste os filtros.</p></div>';return;}
+ box.innerHTML=rows.map(r=>`<div class="box" style="padding:14px"><strong>${esc(itemLabel(r.it,r.c))}<span class="pill">${r.status==='open'?'vaga':'reserva'}</span></strong><p>${esc(r.c.name)} · ${esc(r.d.day)} ${esc(r.d.date)} · ${esc(r.it.time||r.c.defaultTime)} · ${esc(r.it.point||r.c.point)}</p></div>`).join('');
 }
-function updateConfirmLink() {
-  const msg = document.getElementById('confirmMsg');
-  const link = document.getElementById('confirmLink');
-  if (msg) msg.value = confirmText();
-  if (link) link.href = `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent((msg && msg.value) || confirmText())}`;
+
+function renderAdmin(){
+ const root=document.getElementById('adminRoot');
+ if(!isAdmin()){
+  root.innerHTML=`<div class="card"><span class="kicker">Login admin</span><h2>Entrar no admin</h2><p class="lead">Login: admin · senha: 1212</p><div class="grid"><input class="input" id="admUser" value="admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div></div>`;
+  document.getElementById('doLogin').onclick=()=>{if(document.getElementById('admUser').value==='admin'&&document.getElementById('admPass').value==='1212'){localStorage.setItem(ADMIN_KEY,'1');toast('Admin liberado');renderAdmin();}else toast('Login ou senha incorretos');};
+  return;
+ }
+ root.innerHTML=`<div class="card"><span class="kicker">Admin</span><h2>Editar agenda</h2><p class="lead">Atualize as reservas combinadas com os motocas. Salva neste navegador.</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
+ bindAdmin();
 }
-function renderClients() {
-  const grid = document.getElementById('clientsGrid');
-  grid.innerHTML = '';
-  data.clients.forEach((client, index) => {
-    const total = client.days.reduce((sum, day) => sum + day.items.filter(i => itemStatus(i) !== 'open').length, 0);
-    const open = client.days.reduce((sum, day) => sum + day.items.filter(i => itemStatus(i) === 'open').length, 0);
-    const card = document.createElement('button');
-    card.className = 'clientCard';
-    card.type = 'button';
-    card.innerHTML = `<strong>${esc(client.name)}</strong><p>${esc(client.point)} · ${esc(client.defaultTime)}</p><p><span class="pill">${total} confirmados</span> ${open ? '<span class="pill">' + open + ' vaga(s)</span>' : ''}</p>`;
-    card.onclick = () => renderClient(index);
-    grid.appendChild(card);
-  });
+function bindAdmin(){
+ document.getElementById('logout').onclick=()=>{localStorage.removeItem(ADMIN_KEY);renderAdmin();};
+ document.getElementById('saveMeta').onclick=()=>{data.meta.weekLabel=document.getElementById('week').value;data.meta.supportWhatsapp=document.getElementById('zap').value.replace(/\\D/g,'');saveData();renderAll();};
+ document.getElementById('resetData').onclick=()=>{if(confirm('Resetar agenda?')){data=clone(DEFAULT_DATA);saveData();renderAll();}};
+ document.getElementById('addClient').onclick=()=>{const n=prompt('Nome do novo ponto:');if(!n)return;const days=clone(DEFAULT_DATA.clients[0].days).map(d=>({day:d.day,date:d.date,items:[]}));data.clients.push({id:n.toLowerCase().replace(/\\W+/g,'-'),name:n,point:n,defaultTime:'Horário a definir',days});saveData();renderAll();setTab('admin');};
+ document.getElementById('exportJson').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='agenda-reservada-osasco-express.json';a.click();URL.revokeObjectURL(a.href);};
+ document.getElementById('importJson').onclick=()=>{const inp=document.createElement('input');inp.type='file';inp.accept='application/json';inp.onchange=()=>{const f=inp.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{data=JSON.parse(rd.result);saveData();renderAll();setTab('admin');}catch(e){alert('JSON inválido')}};rd.readAsText(f);};inp.click();};
+ document.getElementById('clientSel').onchange=e=>renderEditor(+e.target.value);
+ renderEditor(+document.getElementById('clientSel').value);
 }
-function renderClient(index) {
-  const client = data.clients[index];
-  const page = document.getElementById('page-client');
-  page.innerHTML = `
-    <div class="pageTop">
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Escala do ponto</span></div>
-      <h2 class="pageTitle">${esc(client.name)}</h2>
-      <p class="pageLead"><strong>Ponto:</strong> ${esc(client.point)} · <strong>Horário:</strong> ${esc(client.defaultTime)}</p>
-      <div class="actionRow"><button class="btn light" id="backToClients">Voltar aos pontos</button></div>
-    </div>
-    <div class="daysGrid">${client.days.map(day => renderDay(client, day)).join('')}</div>
-  `;
-  page.querySelector('#backToClients').onclick = () => showPage('clients');
-  showPage('client');
+function renderEditor(i){
+ const c=data.clients[i], host=document.getElementById('editor');
+ host.innerHTML=`<div class="adminItem"><h4>Dados do ponto</h4><div class="formGrid"><input class="input" id="cn" value="${esc(c.name)}"><input class="input" id="cp" value="${esc(c.point)}"><input class="input" id="ct" value="${esc(c.defaultTime)}"><button class="btn danger" id="delClient">Remover ponto</button></div><button class="btn green full" id="saveClient">Salvar ponto</button></div><div class="adminItem"><h4>Adicionar motoca ou vaga</h4><div class="formGrid"><select id="addDay">${c.days.map((d,di)=>`<option value="${di}">${d.day} · ${d.date}</option>`).join('')}</select><input class="input" id="addName" placeholder="Nome ou Vaga Aberta"><input class="input" id="addTime" placeholder="Horário"><input class="input" id="addPoint" placeholder="Ponto"><select id="addStatus"><option value="ok">Agenda reservada</option><option value="open">Vaga aberta</option></select><button class="btn red" id="addItem">Adicionar</button></div></div>${c.days.map((d,di)=>`<div class="adminItem"><h4>${d.day} · ${d.date}</h4>${d.items.length?d.items.map((it,ii)=>row(i,di,ii,it)).join(''):'<p class="lead">Sem agendamento informado.</p>'}</div>`).join('')}`;
+ document.getElementById('saveClient').onclick=()=>{c.name=document.getElementById('cn').value;c.point=document.getElementById('cp').value;c.defaultTime=document.getElementById('ct').value;saveData();renderAll();setTab('admin');};
+ document.getElementById('delClient').onclick=()=>{if(confirm('Remover ponto?')){data.clients.splice(i,1);saveData();renderAll();setTab('admin');}};
+ document.getElementById('addItem').onclick=()=>{const di=+document.getElementById('addDay').value; const it={name:document.getElementById('addName').value.trim()||'Vaga Aberta',time:document.getElementById('addTime').value.trim(),point:document.getElementById('addPoint').value.trim(),status:document.getElementById('addStatus').value}; if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;c.days[di].items.push(it);saveData();renderAll();setTab('admin');};
+ host.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.save.split('-').map(Number);const pre=b.dataset.save,it=data.clients[ci].days[di].items[ii];it.name=document.getElementById('n'+pre).value;it.time=document.getElementById('t'+pre).value;it.point=document.getElementById('p'+pre).value;it.status=document.getElementById('s'+pre).value;if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;saveData();renderAll();setTab('admin');});
+ host.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.rm.split('-').map(Number);data.clients[ci].days[di].items.splice(ii,1);saveData();renderAll();setTab('admin');});
 }
-function renderDay(client, day) {
-  const items = day.items.length ? day.items : [{ name:'Sem agendamento informado.', status:'empty' }];
-  return `<article class="dayCard">
-    <div class="dayHead"><strong>${esc(day.day)}</strong><span>${esc(day.date)}</span></div>
-    <ul class="items">
-      ${items.map(item => {
-        const status = item.status === 'empty' ? 'empty' : itemStatus(item);
-        const badge = status === 'ok' ? '✓' : status === 'open' ? '!' : '—';
-        const label = status === 'empty' ? 'Sem agendamento informado.' : itemLabel(item, client);
-        return `<li class="${status}"><span class="dot">${badge}</span><span>${esc(label)}</span></li>`;
-      }).join('')}
-    </ul>
-  </article>`;
+function row(ci,di,ii,it){
+ const id=`${ci}-${di}-${ii}`;
+ return `<div class="rowCard"><input class="input" id="n${id}" value="${esc(it.name||'')}"><input class="input" id="t${id}" value="${esc(it.time||'')}" placeholder="Horário"><input class="input" id="p${id}" value="${esc(it.point||'')}" placeholder="Ponto"><select id="s${id}"><option value="ok" ${itemStatus(it)==='ok'?'selected':''}>Agenda reservada</option><option value="open" ${itemStatus(it)==='open'?'selected':''}>Vaga aberta</option></select><button class="btn green" data-save="${id}">Salvar</button><button class="btn danger" data-rm="${id}">Remover</button></div>`;
 }
-function renderSummary() {
-  const page = document.getElementById('page-summary');
-  page.innerHTML = `
-    <div class="pageTop">
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Meus horários</span></div>
-      <h2 class="pageTitle">${selectedDriver ? esc(selectedDriver) : 'Nenhum nome'}</h2>
-      <p class="pageLead">Confira seus pontos e horários.</p>
-    </div>
-    <div class="grid">
-      ${selectedAssignments.length ? selectedAssignments.map(a => `
-        <div class="panelCard">
-          <strong>${esc(a.client.name)} <span class="pill">${esc(a.day.date)}</span></strong>
-          <p>${esc(a.day.day)} · Ponto: ${esc(a.item.point || a.client.point)} · Horário: ${esc(a.item.time || a.client.defaultTime)}</p>
-          <button class="btn light full" type="button" data-client="${a.clientIndex}">Abrir ponto</button>
-        </div>`).join('') : '<div class="panelCard"><strong>Nenhum resultado</strong><p>Volte para a busca.</p></div>'}
-    </div>
-    <div class="actionRow">
-      <button class="btn" data-page="home">Buscar outro nome</button>
-      <button class="btn green" data-page="confirm">Confirmar horários</button>
-    </div>
-  `;
-  page.querySelectorAll('[data-client]').forEach(btn => btn.onclick = () => renderClient(+btn.dataset.client));
-  page.querySelectorAll('[data-page]').forEach(btn => btn.onclick = () => showPage(btn.dataset.page));
-}
-function renderConfirm() {
-  const page = document.getElementById('page-confirm');
-  page.innerHTML = `
-    <div class="pageTop">
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Confirmação</span></div>
-      <h2 class="pageTitle">Confirmar horários</h2>
-      <p class="pageLead">Revise e envie para o suporte.</p>
-    </div>
-    <div class="searchPanel">
-      <label class="label" for="confirmName">Nome</label>
-      <input class="input" id="confirmName" value="${esc(selectedDriver)}">
-      <label class="label" for="confirmMsg" style="margin-top:12px">Mensagem pronta</label>
-      <textarea id="confirmMsg"></textarea>
-      <a class="btn green full" id="confirmLink" target="_blank" rel="noopener">Enviar confirmação no WhatsApp</a>
-    </div>
-  `;
-  document.getElementById('confirmName').oninput = updateConfirmLink;
-  document.getElementById('confirmMsg').oninput = () => {
-    document.getElementById('confirmLink').href = `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(document.getElementById('confirmMsg').value)}`;
-  };
-  updateConfirmLink();
-}
-function openAdmin() {
-  document.body.classList.add('modalOpen');
-  document.getElementById('adminModal').classList.add('open');
-  renderAdmin();
-}
-function closeAdmin() {
-  document.body.classList.remove('modalOpen');
-  document.getElementById('adminModal').classList.remove('open');
-}
-function renderAdmin() {
-  const root = document.getElementById('adminRoot');
-  if (!isAdmin()) {
-    root.innerHTML = `
-      <div class="grab"></div>
-      <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Área administrativa</span></div>
-      <h2 class="pageTitle">Admin</h2>
-      <p class="pageLead">Entre para editar escala, pontos, horários e time.</p>
-      <div class="searchPanel" style="margin-top:14px">
-        <label class="label">Login</label>
-        <input class="input" id="adminUser" value="admin">
-        <label class="label" style="margin-top:10px">Senha</label>
-        <input class="input" id="adminPass" type="password" placeholder="Senha">
-        <button class="btn red full" id="loginBtn">Entrar</button>
-        <button class="btn light full" id="closeAdminBtn">Fechar</button>
-      </div>
-    `;
-    document.getElementById('loginBtn').onclick = () => {
-      const user = document.getElementById('adminUser').value;
-      const pass = document.getElementById('adminPass').value;
-      if (user === 'admin' && pass === '1212') {
-        localStorage.setItem(ADMIN_KEY, '1');
-        toast('Admin liberado');
-        renderAdmin();
-      } else {
-        toast('Login ou senha incorretos');
-      }
-    };
-    document.getElementById('closeAdminBtn').onclick = closeAdmin;
-    return;
-  }
-  root.innerHTML = `
-    <div class="brandMini"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Admin Osasco Express</span></div>
-    <h2 class="pageTitle">Editar escala</h2>
-    <p class="pageLead">Salva neste navegador. Use exportar/importar para backup ou outro dispositivo.</p>
-    <div class="adminBar">
-      <button class="btn green" id="saveMeta">Salvar</button>
-      <button class="btn" id="addClient">Adicionar ponto</button>
-      <button class="btn light" id="exportJson">Exportar JSON</button>
-      <button class="btn light" id="importJson">Importar JSON</button>
-      <button class="btn danger" id="resetData">Resetar</button>
-      <button class="btn" id="logoutAdmin">Sair</button>
-      <button class="btn light" id="closePanel">Fechar</button>
-    </div>
-    <div class="searchPanel" style="margin-top:12px">
-      <label class="label">Semana</label>
-      <input class="input" id="weekLabel" value="${esc(data.meta.weekLabel)}">
-      <label class="label" style="margin-top:10px">WhatsApp suporte</label>
-      <input class="input" id="supportWhatsapp" value="${esc(data.meta.supportWhatsapp)}">
-    </div>
-    <div class="searchPanel" style="margin-top:12px">
-      <label class="label">Selecionar ponto</label>
-      <select id="clientSelect">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select>
-      <div id="editor"></div>
-    </div>
-  `;
-  bindAdmin();
-}
-function bindAdmin() {
-  document.getElementById('closePanel').onclick = closeAdmin;
-  document.getElementById('logoutAdmin').onclick = () => {
-    localStorage.removeItem(ADMIN_KEY);
-    toast('Saiu do admin');
-    renderAdmin();
-  };
-  document.getElementById('saveMeta').onclick = () => {
-    data.meta.weekLabel = document.getElementById('weekLabel').value;
-    data.meta.supportWhatsapp = document.getElementById('supportWhatsapp').value.replace(/\D/g,'');
-    saveData();
-    renderAll();
-    openAdmin();
-  };
-  document.getElementById('resetData').onclick = () => {
-    if (confirm('Resetar para a escala original?')) {
-      data = clone(DEFAULT_DATA);
-      saveData();
-      renderAll();
-      openAdmin();
-    }
-  };
-  document.getElementById('addClient').onclick = () => {
-    const name = prompt('Nome do novo ponto:');
-    if (!name) return;
-    const days = clone(DEFAULT_DATA.clients[0].days).map(d => ({ day:d.day, date:d.date, items:[] }));
-    data.clients.push({ id:makeId(name), name, point:name, defaultTime:'Horário a definir', days });
-    saveData();
-    renderAll();
-    openAdmin();
-  };
-  document.getElementById('exportJson').onclick = () => {
-    const blob = new Blob([JSON.stringify(data,null,2)], { type:'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'escala-osasco-express.json';
-    a.click();
-    URL.revokeObjectURL(a.href);
-  };
-  document.getElementById('importJson').onclick = () => {
-    const inp = document.createElement('input');
-    inp.type = 'file';
-    inp.accept = 'application/json';
-    inp.onchange = () => {
-      const file = inp.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        try {
-          data = JSON.parse(reader.result);
-          saveData();
-          renderAll();
-          openAdmin();
-        } catch(e) {
-          alert('JSON inválido.');
-        }
-      };
-      reader.readAsText(file);
-    };
-    inp.click();
-  };
-  const select = document.getElementById('clientSelect');
-  select.onchange = () => renderEditor(+select.value);
-  renderEditor(+select.value);
-}
-function renderEditor(index) {
-  const client = data.clients[index];
-  const host = document.getElementById('editor');
-  host.innerHTML = `
-    <div class="adminItem">
-      <h4>Dados do ponto</h4>
-      <div class="formGrid">
-        <input class="input" id="editName" value="${esc(client.name)}" placeholder="Nome">
-        <input class="input" id="editPoint" value="${esc(client.point)}" placeholder="Ponto">
-        <input class="input" id="editTime" value="${esc(client.defaultTime)}" placeholder="Horário">
-        <button class="btn danger" id="deleteClient">Remover ponto</button>
-      </div>
-      <button class="btn green full" id="saveClient">Salvar ponto</button>
-    </div>
-    <div class="adminItem">
-      <h4>Adicionar motoca ou vaga</h4>
-      <div class="formGrid">
-        <select id="addDay">${client.days.map((d,i)=>`<option value="${i}">${esc(d.day)} · ${esc(d.date)}</option>`).join('')}</select>
-        <input class="input" id="addName" placeholder="Nome ou Vaga Aberta">
-        <input class="input" id="addTime" placeholder="Horário específico">
-        <input class="input" id="addPoint" placeholder="Ponto específico">
-        <select id="addStatus"><option value="ok">Confirmado</option><option value="open">Vaga aberta</option></select>
-        <button class="btn red" id="addItem">Adicionar</button>
-      </div>
-    </div>
-    ${client.days.map((day, dayIndex) => `
-      <div class="adminItem">
-        <h4>${esc(day.day)} · ${esc(day.date)}</h4>
-        ${day.items.length ? day.items.map((item, itemIndex) => renderAdminRow(index, dayIndex, itemIndex, item)).join('') : '<p class="pageLead">Sem agendamento informado.</p>'}
-      </div>`).join('')}
-  `;
-  document.getElementById('saveClient').onclick = () => {
-    client.name = document.getElementById('editName').value;
-    client.point = document.getElementById('editPoint').value;
-    client.defaultTime = document.getElementById('editTime').value;
-    saveData();
-    renderAll();
-    openAdmin();
-  };
-  document.getElementById('deleteClient').onclick = () => {
-    if (confirm('Remover este ponto?')) {
-      data.clients.splice(index,1);
-      saveData();
-      renderAll();
-      openAdmin();
-    }
-  };
-  document.getElementById('addItem').onclick = () => {
-    const dayIndex = +document.getElementById('addDay').value;
-    const item = {
-      name: document.getElementById('addName').value.trim() || 'Vaga Aberta',
-      time: document.getElementById('addTime').value.trim(),
-      point: document.getElementById('addPoint').value.trim(),
-      status: document.getElementById('addStatus').value
-    };
-    if (item.status === 'ok') delete item.status;
-    if (!item.time) delete item.time;
-    if (!item.point) delete item.point;
-    client.days[dayIndex].items.push(item);
-    saveData();
-    renderAll();
-    openAdmin();
-  };
-  host.querySelectorAll('[data-save-row]').forEach(btn => btn.onclick = () => {
-    const [ci, di, ii] = btn.dataset.saveRow.split('-').map(Number);
-    const prefix = btn.dataset.saveRow;
-    const item = data.clients[ci].days[di].items[ii];
-    item.name = document.getElementById('n'+prefix).value;
-    item.time = document.getElementById('t'+prefix).value;
-    item.point = document.getElementById('p'+prefix).value;
-    item.status = document.getElementById('s'+prefix).value;
-    if (item.status === 'ok') delete item.status;
-    if (!item.time) delete item.time;
-    if (!item.point) delete item.point;
-    saveData();
-    renderAll();
-    openAdmin();
-  });
-  host.querySelectorAll('[data-remove-row]').forEach(btn => btn.onclick = () => {
-    const [ci, di, ii] = btn.dataset.removeRow.split('-').map(Number);
-    data.clients[ci].days[di].items.splice(ii,1);
-    saveData();
-    renderAll();
-    openAdmin();
-  });
-}
-function renderAdminRow(ci, di, ii, item) {
-  const id = `${ci}-${di}-${ii}`;
-  return `<div class="rowCard">
-    <input class="input" id="n${id}" value="${esc(item.name || '')}" placeholder="Nome">
-    <input class="input" id="t${id}" value="${esc(item.time || '')}" placeholder="Horário">
-    <input class="input" id="p${id}" value="${esc(item.point || '')}" placeholder="Ponto">
-    <select id="s${id}">
-      <option value="ok" ${itemStatus(item)==='ok'?'selected':''}>Confirmado</option>
-      <option value="open" ${itemStatus(item)==='open'?'selected':''}>Vaga aberta</option>
-    </select>
-    <button class="btn green" data-save-row="${id}" type="button">Salvar</button>
-    <button class="btn danger" data-remove-row="${id}" type="button">Remover</button>
-  </div>`;
-}
-function renderAll() {
-  renderClients();
-  if (currentPage === 'summary') renderSummary();
-  if (currentPage === 'confirm') renderConfirm();
-}
-document.getElementById('homeSearchBtn').onclick = () => renderSearch('homeResults', document.getElementById('homeSearch').value);
-document.getElementById('homeSearch').addEventListener('input', e => renderSearch('homeResults', e.target.value));
-document.getElementById('homeSearch').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    renderSearch('homeResults', e.target.value);
-  }
-});
-document.querySelectorAll('[data-page]').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.page)));
-document.getElementById('openAdmin').onclick = openAdmin;
-document.getElementById('adminNav').onclick = openAdmin;
-document.getElementById('adminModal').onclick = e => {
-  if (e.target.id === 'adminModal') closeAdmin();
-};
-document.getElementById('stickyConfirmBtn').onclick = () => showPage('confirm');
-document.getElementById('closeSticky').onclick = () => document.getElementById('stickyConfirm').classList.add('hidden');
+function renderAll(){renderStats();if(document.getElementById('page-pontos').classList.contains('active'))renderClients();if(document.getElementById('page-gestao').classList.contains('active'))renderManagement();if(document.getElementById('page-admin').classList.contains('active'))renderAdmin();}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+document.getElementById('searchBtn').onclick=renderDriverSearch;
+document.getElementById('supportPopClose').onclick=closeSupportPop;
+document.getElementById('supportPop').addEventListener('click',e=>{if(e.target.id==='supportPop')closeSupportPop();});
+document.getElementById('driverSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderDriverSearch();}});
+document.getElementById('driverSearch').addEventListener('input',()=>{if(document.getElementById('driverSearch').value.trim().length>=2)renderDriverSearch();});
+document.getElementById('applyFilters')?.addEventListener('click',applyFilters);
+['fName','fClient','fDay','fStatus'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',applyFilters);});
 renderAll();
 </script>
 </body>
