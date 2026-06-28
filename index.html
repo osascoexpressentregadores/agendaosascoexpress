@@ -490,6 +490,242 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
   .brandHeroTags span:nth-child(3){display:none}
 }
 
+
+/* Revisão final de português, hierarquia e quebras de linha */
+.brandHeroTitle{
+  max-width:320px;
+}
+.brandHeroTitle .line,
+.brandHeroTitle .redLine{
+  display:block;
+  white-space:nowrap;
+}
+.brandHeroTitle .redLine{color:var(--red);}
+h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
+  text-wrap:balance;
+}
+.lead,
+.brandHeroLead,
+.ruleBox,
+.agendaCard p,
+.box p,
+.client p,
+.supportPopCard p{
+  text-wrap:pretty;
+}
+.kicker{
+  white-space:nowrap;
+}
+.card,
+.box,
+.client,
+.agendaCard{
+  overflow-wrap:anywhere;
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:260px;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:210px;
+  }
+  .brandHeroTitle .line,
+  .brandHeroTitle .redLine{
+    white-space:normal;
+  }
+}
+@media(max-width:390px){
+  .brandHeroTitle{
+    max-width:175px;
+  }
+}
+
+
+/* Correção de direção visual do título: 2 linhas, preto + destaque vermelho */
+.brandHeroTitle{
+  max-width:360px!important;
+  color:var(--black)!important;
+  font-size:clamp(38px,5.8vw,64px)!important;
+  line-height:.86!important;
+  letter-spacing:-.075em!important;
+  text-transform:uppercase;
+  font-weight:1000;
+}
+.brandHeroTitle .titleBlack,
+.brandHeroTitle .titleRed{
+  display:block;
+  white-space:nowrap;
+}
+.brandHeroTitle .titleBlack{
+  color:var(--black)!important;
+}
+.brandHeroTitle .titleRed{
+  color:var(--red)!important;
+}
+.brandHeroLead{
+  max-width:340px;
+}
+@media(max-width:850px){
+  .brandHeroTitle{
+    max-width:300px!important;
+    font-size:42px!important;
+  }
+}
+@media(max-width:560px){
+  .brandHeroTitle{
+    max-width:230px!important;
+    font-size:32px!important;
+    line-height:.88!important;
+  }
+  .brandHeroTitle .titleBlack,
+  .brandHeroTitle .titleRed{
+    white-space:normal;
+  }
+}
+@media(max-width:390px){
+  .brandHeroTitle{
+    max-width:195px!important;
+    font-size:29px!important;
+  }
+}
+
+
+/* Bancada final: agenda agrupada por dia */
+.driverSummary{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.summaryBox{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:10px;
+}
+.summaryBox span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.summaryBox b{
+  display:block;
+  margin-top:3px;
+  font-size:16px;
+  line-height:1.2;
+}
+.uxAlert{
+  margin-top:12px;
+  border-radius:18px;
+  padding:12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#7c2d12;
+  font-size:13px;
+  line-height:1.4;
+  font-weight:820;
+}
+.dayGroup{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 8px 18px rgba(16,24,40,.05);
+  overflow:hidden;
+}
+.dayGroupHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px;
+  background:var(--black);
+  color:#fff;
+}
+.dayGroupHead strong{
+  display:block;
+  font-size:16px;
+  line-height:1.1;
+}
+.dayGroupHead span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  border-radius:999px;
+  padding:0 9px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font-size:11px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.commitmentList{
+  list-style:none;
+  margin:0;
+  padding:12px;
+  display:grid;
+  gap:10px;
+}
+.commitmentItem{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#f8fafc;
+  padding:11px;
+}
+.commitmentItem strong{
+  display:block;
+  font-size:16px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
+}
+.commitmentMeta{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:9px;
+}
+.commitmentMeta div{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:8px;
+}
+.commitmentMeta span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.commitmentMeta b{
+  display:block;
+  margin-top:3px;
+  font-size:13px;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.confirmPanel textarea{
+  font-size:14px;
+  min-height:170px;
+}
+@media(max-width:560px){
+  .driverSummary{
+    grid-template-columns:1fr 1fr;
+  }
+  .commitmentMeta{
+    grid-template-columns:1fr;
+  }
+  .dayGroupHead{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -513,7 +749,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
       <div class="brandHero">
         <div class="brandHeroCopy">
           <span class="kicker">Agenda reservada</span>
-          <div class="brandHeroTitle">Busque seu nome <span>confirme</span></div>
+          <div class="brandHeroTitle"><span class="titleBlack">Confira sua agenda</span><span class="titleRed">Confirme</span></div>
           <p class="brandHeroLead">A Osasco Express já reservou esses horários com você. Confira seus pontos e confirme o compromisso com o time.</p>
           <div class="brandHeroTags">
             <span>Busca rápida</span>
@@ -526,12 +762,12 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
 
       <div class="card searchAgendaCard">
         <span class="kicker">Confirmar agenda</span>
-        <p class="lead">Digite seu nome para ver os dias, horários e pontos reservados para você.</p>
+        <p class="lead">Digite seu nome para conferir sua agenda reservada.</p>
         <div class="searchBox">
           <input class="input" id="driverSearch" placeholder="Ex: Tyler Souza">
           <button class="btn red" id="searchBtn">Ver agenda</button>
         </div>
-        <div class="mobileRuleBox">Ao confirmar, a loja, o suporte e os parceiros contam com você. Se tiver problema, avise com antecedência.</div>
+        <div class="mobileRuleBox">Ao confirmar, a loja, o suporte e o time contam com você. Se tiver qualquer problema, avise com antecedência.</div>
       </div>
     </div>
     <div id="agendaResult"></div><div class="navTools"><button class="btn light" type="button" data-action="top">Voltar ao topo</button><button class="btn light" type="button" data-tab="vip">Ver área VIP</button></div>
@@ -543,7 +779,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
     <div class="sectionTop">
       <div>
         <h2>Pontos VIP</h2>
-        <p class="lead">Alguns pontos da Osasco Express são reservados por convite e precisam de código VIP.</p>
+        <p class="lead">Alguns pontos da Osasco Express são reservados por convite e exigem código VIP.</p>
       </div>
     </div>
 
@@ -561,7 +797,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
   </section>
 
   <section class="page" id="page-pontos">
-    <div class="sectionTop"><div><h2>Pontos</h2><p class="lead">Quadros por cliente para conferência da escala reservada.</p></div></div>
+    <div class="sectionTop"><div><h2>Pontos</h2><p class="lead">Quadros por cliente para conferência interna da agenda reservada.</p></div></div>
     <div class="grid cols" id="clientsGrid"></div>
     <div id="clientDetail"></div>
     <div class="navTools"><button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button><button class="btn light" type="button" data-action="top">Topo</button></div>
@@ -569,7 +805,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
   </section>
 
   <section class="page" id="page-gestao">
-    <div class="sectionTop"><div><h2>Gestão</h2><p class="lead">Filtros internos para conferir agenda, ponto, dia e vagas abertas.</p></div></div>
+    <div class="sectionTop"><div><h2>Gestão</h2><p class="lead">Filtros internos para conferir agenda, pontos, dias e vagas abertas.</p></div></div>
     <div class="card">
       <span class="kicker">Filtros</span>
       <div class="filters">
@@ -586,7 +822,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
   </section>
 
   <section class="page" id="page-admin">
-    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão mobile para atualizar agenda reservada. Login: admin · senha: 1212.</p></div></div>
+    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão pelo celular para atualizar a agenda reservada. Login: admin · senha: 1212.</p></div></div>
     <div class="adminExitBar">
       <button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button>
       <button class="btn light" type="button" data-action="top">Topo</button>
@@ -624,7 +860,7 @@ body.adminUnlocked .secretAdminLinks.hiddenInternal{
 
 <script>
 const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Souza"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "Horário da escala", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_nomes_curto_v1';
+const STORAGE_KEY = 'oe_agenda_bancada_final_v1';
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
 let data = loadData();
 let selectedDriver = '';
@@ -698,18 +934,96 @@ function renderDriverSearch(){
  if(names.length===1){showDriverAgenda(names[0]);return;}
  box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
 }
+function groupRowsByDay(rows){
+ const groups=[];
+ rows.forEach(r=>{
+   const key=`${r.d.day} ${r.d.date}`;
+   let group=groups.find(g=>g.key===key);
+   if(!group){
+     group={key, day:r.d.day, date:r.d.date, rows:[]};
+     groups.push(group);
+   }
+   group.rows.push(r);
+ });
+ return groups;
+}
 function showDriverAgenda(name){
  selectedDriver=name;
  const rows=driverMap()[name]||[];
- const list=rows.map(r=>`<div class="agendaCard"><strong>${esc(r.c.name)}<span class="pill">${esc(r.d.date)}</span></strong><p>${esc(r.d.day)} · agenda reservada</p><div class="metaLine"><div class="meta"><span>Horário</span><b>${esc(r.it.time||r.c.defaultTime)}</b></div><div class="meta"><span>Ponto</span><b>${esc(r.it.point||r.c.point)}</b></div></div></div>`).join('');
- document.getElementById('agendaResult').innerHTML=`<div class="card"><div class="agendaHeader"><div><span class="kicker">Agenda reservada para</span><div class="agendaName">${esc(name)}</div></div><span class="pill">${rows.length} reserva(s)</span></div><p class="lead">Esses são os dias reservados para você. Confira e confirme o compromisso no WhatsApp.</p><div class="grid">${list}</div><div class="confirmPanel"><p><strong>Confirmação de compromisso:</strong> ao enviar, você registra que conferiu os dias, pontos e horários reservados para você.</p><textarea id="confirmMsg">${esc(confirmMessage(name))}</textarea><a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar agenda no WhatsApp</a></div><div class="actions"><button class="btn light" onclick="clearAgenda()">Buscar outro nome</button></div></div>`;
- document.getElementById('confirmMsg').addEventListener('input',e=>{document.getElementById('confirmLink').href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(e.target.value)}`;});
+ const groups=groupRowsByDay(rows);
+ const clients=[...new Set(rows.map(r=>r.c.name))];
+ const totalCommitments=rows.length;
+ const multiClient=clients.length>1;
+ const sameDayMultiple=groups.some(g=>g.rows.length>1);
+
+ const alerts=[];
+ if(multiClient){
+   alerts.push(`Você tem agenda reservada em ${clients.length} pontos nesta semana. Confira os dias e horários antes de confirmar.`);
+ }
+ if(sameDayMultiple){
+   alerts.push('Atenção: existe dia com mais de um compromisso reservado.');
+ }
+
+ const summary=`<div class="driverSummary">
+   <div class="summaryBox"><span>Dias reservados</span><b>${groups.length}</b></div>
+   <div class="summaryBox"><span>Compromissos</span><b>${totalCommitments}</b></div>
+   <div class="summaryBox"><span>Pontos</span><b>${clients.length}</b></div>
+ </div>`;
+
+ const alertHtml=alerts.length?`<div class="uxAlert">${alerts.map(a=>`<div>${esc(a)}</div>`).join('')}</div>`:'';
+
+ const list=groups.map(g=>`<article class="dayGroup">
+   <div class="dayGroupHead">
+     <strong>${esc(g.day)} ${esc(g.date)}</strong>
+     <span>${g.rows.length} compromisso(s)</span>
+   </div>
+   <ul class="commitmentList">
+     ${g.rows.map(r=>`<li class="commitmentItem">
+       <strong>${esc(r.c.name)}</strong>
+       <div class="commitmentMeta">
+         <div><span>Horário</span><b>${esc(r.it.time||r.c.defaultTime)}</b></div>
+         <div><span>Ponto</span><b>${esc(r.it.point||r.c.point)}</b></div>
+       </div>
+     </li>`).join('')}
+   </ul>
+ </article>`).join('');
+
+ document.getElementById('agendaResult').innerHTML=`<div class="card">
+   <div class="agendaHeader">
+     <div>
+       <span class="kicker">Agenda reservada para</span>
+       <div class="agendaName">${esc(name)}</div>
+     </div>
+     <span class="pill">${totalCommitments} reserva(s)</span>
+   </div>
+   <p class="lead">Organizei sua agenda por dia para você conferir rápido onde vai, quando vai e em qual horário.</p>
+   ${summary}
+   ${alertHtml}
+   <div class="grid">${list}</div>
+   <div class="confirmPanel">
+     <p><strong>Confirmação de compromisso:</strong> ao enviar, você confirma a agenda completa abaixo.</p>
+     <textarea id="confirmMsg">${esc(confirmMessage(name))}</textarea>
+     <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar agenda completa no WhatsApp</a>
+   </div>
+   <div class="actions">
+     <button class="btn light" onclick="clearAgenda()">Buscar outro nome</button>
+     <button class="btn light" data-action="top">Topo</button>
+   </div>
+ </div>`;
+ document.getElementById('confirmMsg').addEventListener('input',e=>{
+   document.getElementById('confirmLink').href=`https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(e.target.value)}`;
+ });
+ document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
 function confirmMessage(name){
  const rows=driverMap()[name]||[];
- const lines=rows.map(r=>`• ${r.c.name} — ${r.d.day} ${r.d.date} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
- return `Olá, suporte OE.\\n\\nSou ${name} e conferi minha agenda reservada na Osasco Express.\\n\\nConfirmo presença nos dias e pontos abaixo:\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam com essa confirmação.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
+ const groups=groupRowsByDay(rows);
+ const lines=groups.map(g=>{
+   const commitments=g.rows.map(r=>`• ${r.c.name} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
+   return `${g.day} ${g.date}\\n${commitments}`;
+ }).join('\\n\\n');
+ return `Olá, suporte OE.\\n\\nSou ${name}.\\nConferi minha agenda reservada e confirmo presença nos dias abaixo:\\n\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam comigo.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
 }
 function waLink(name){return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;}
 
