@@ -429,6 +429,67 @@ body.on-agenda #backBtn{
   }
 }
 
+
+/* Acabamento técnico de produto */
+body{
+  padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 18px);
+}
+.vipNav{
+  grid-template-columns:repeat(3,1fr);
+}
+.brandHero{
+  min-height:310px;
+}
+.kauanAgenda{
+  width:min(40%,220px);
+  max-height:96%;
+  object-fit:contain;
+  object-position:bottom center;
+  bottom:0;
+}
+.searchAgendaCard{
+  justify-content:center;
+}
+.searchAgendaCard .stats{
+  display:none!important;
+}
+.pageEndSpacer{
+  height:calc(var(--nav-h) + var(--safe-bottom) + 18px);
+}
+.secretAdminLinks.hiddenInternal,
+.hiddenInternal{
+  display:none;
+}
+body.adminUnlocked .hiddenInternal{
+  display:flex;
+}
+body.adminUnlocked .secretAdminLinks.hiddenInternal{
+  display:flex;
+}
+@media(max-width:850px){
+  .approvedHero{grid-template-columns:1fr}
+  .brandHero{min-height:260px}
+  .brandHeroTitle{font-size:42px}
+  .kauanAgenda{width:178px;right:3%}
+  .brandHeroCopy{width:62%}
+}
+@media(max-width:560px){
+  .brandHero{min-height:224px;border-radius:22px}
+  .brandHeroCopy{width:64%;padding:18px 14px 14px}
+  .brandHeroTitle{font-size:31px;line-height:.86}
+  .brandHeroLead{font-size:12px;max-width:210px}
+  .kauanAgenda{width:130px;right:1%}
+  .brandHeroTags span{font-size:9px;min-height:24px;padding:0 7px}
+  .searchAgendaCard .searchBox{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  .brandHero{min-height:210px}
+  .brandHeroTitle{font-size:28px}
+  .brandHeroLead{display:none}
+  .kauanAgenda{width:122px}
+  .brandHeroTags span:nth-child(3){display:none}
+}
+
 </style>
 </head>
 <body>
@@ -460,7 +521,7 @@ body.on-agenda #backBtn{
             <span>Compromisso</span>
           </div>
         </div>
-        <img class="kauanAgenda" src="assets/img/kauan-agenda.png" alt="Kauan, mascote oficial da Osasco Express">
+        <img class="kauanAgenda" src="assets/img/kauan-produto.png" alt="Kauan, mascote oficial da Osasco Express">
       </div>
 
       <div class="card searchAgendaCard">
@@ -627,10 +688,7 @@ function goTop(){
  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function renderStats(){
- const rows=allRows(), ok=rows.filter(r=>r.status==='ok').length, open=rows.filter(r=>r.status==='open').length, drivers=Object.keys(driverMap()).length;
- document.getElementById('stats').innerHTML=`<div class="stat"><strong>${data.clients.length}</strong><span>Pontos</span></div><div class="stat"><strong>${drivers}</strong><span>Motocas</span></div><div class="stat"><strong>${ok}</strong><span>Reservas</span></div><div class="stat"><strong>${open}</strong><span>Vagas</span></div>`;
-}
+function renderStats(){}
 function renderDriverSearch(){
  const q=document.getElementById('driverSearch').value.trim();
  const box=document.getElementById('agendaResult');
@@ -744,6 +802,7 @@ function applyFilters(){
 
 function renderAdmin(){
  const root=document.getElementById('adminRoot');
+ document.body.classList.toggle('adminUnlocked', isAdmin());
  document.body.classList.toggle('adminUnlocked', isAdmin());
  if(!isAdmin()){
   root.innerHTML=`<div class="card"><span class="kicker">Login admin</span><h2>Entrar no admin</h2><p class="lead">Login: admin · senha: 1212</p><div class="grid"><input class="input" id="admUser" value="admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div></div>`;
