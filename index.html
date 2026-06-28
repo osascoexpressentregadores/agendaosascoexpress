@@ -570,6 +570,149 @@ textarea{min-height:96px;padding:12px;resize:vertical;line-height:1.35}
   .thumbConfirm{bottom:calc(78px + var(--safe-bottom))}
 }
 
+
+/* Marca oficial com mascote e logo enviados pelo usuário */
+.brandHeroOfficial{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.brandHeroCard{
+  position:relative;
+  overflow:hidden;
+  min-height:200px;
+  border-radius:28px;
+  background:
+    radial-gradient(circle at 14% 16%, rgba(227,6,19,.14), transparent 24%),
+    radial-gradient(circle at 90% 10%, rgba(18,148,74,.08), transparent 20%),
+    linear-gradient(135deg,#0d0f14,#1b1f28 58%,#090b0f 100%);
+  box-shadow:0 18px 42px rgba(16,24,40,.16);
+  border:1px solid rgba(255,255,255,.08);
+}
+.brandHeroCard:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(112deg, transparent 0 54%, rgba(227,6,19,.95) 54% 62%, transparent 62%),
+    linear-gradient(120deg, transparent 0 68%, rgba(245,197,24,.85) 68% 71%, transparent 71%);
+  opacity:.8;
+}
+.heroMascote{
+  position:absolute;
+  left:8px;
+  bottom:0;
+  width:min(42vw,210px);
+  z-index:2;
+  filter:drop-shadow(0 18px 36px rgba(0,0,0,.28));
+}
+.heroLogoBadge{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:78px;
+  height:78px;
+  border-radius:22px;
+  padding:8px;
+  background:#050608;
+  box-shadow:0 14px 30px rgba(0,0,0,.24);
+  z-index:3;
+}
+.heroLogoBadge img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+.heroCopy{
+  position:relative;
+  z-index:2;
+  margin-left:clamp(112px,34vw,280px);
+  padding:22px 110px 20px 12px;
+  color:#fff;
+}
+.heroCopy strong{
+  display:block;
+  font-size:clamp(26px,5vw,40px);
+  line-height:.94;
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+}
+.heroCopy p{
+  margin:10px 0 0;
+  font-size:13px;
+  line-height:1.35;
+  color:#e5e7eb;
+  font-weight:800;
+  max-width:360px;
+}
+.heroTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.heroTags span{
+  min-height:30px;
+  padding:0 10px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  font-size:11px;
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.heroTags .dark{background:#0d0f14;color:#fff}
+.heroTags .red{background:var(--red);color:#fff}
+.heroTags .light{background:#ffffff14;color:#fff;border:1px solid rgba(255,255,255,.14)}
+.screenBrandOfficial{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+.screenBrandOfficial img{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+  border-radius:12px;
+  background:#050608;
+  padding:4px;
+}
+.screenBrandOfficial span{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+@media(min-width:760px){
+  .brandHeroCard{min-height:228px}
+  .heroMascote{width:220px;left:14px}
+  .heroCopy{margin-left:250px;padding-right:124px;padding-top:26px}
+  .heroLogoBadge{width:88px;height:88px}
+}
+@media(max-width:560px){
+  .brandHeroCard{min-height:210px}
+  .heroMascote{width:160px;left:2px}
+  .heroCopy{margin-left:118px;padding:18px 90px 16px 10px}
+  .heroCopy strong{font-size:24px}
+  .heroCopy p{font-size:12px}
+  .heroLogoBadge{width:68px;height:68px;top:12px;right:12px;border-radius:18px}
+}
+@media(max-width:390px){
+  .brandHeroCard{min-height:194px;border-radius:24px}
+  .heroMascote{width:138px}
+  .heroCopy{margin-left:94px;padding:18px 82px 12px 8px}
+  .heroCopy strong{font-size:21px}
+  .heroCopy p{display:none}
+  .heroTags{margin-top:10px;gap:6px}
+  .heroTags span{font-size:10px;padding:0 8px}
+}
+
 </style>
 </head>
 <body>
@@ -578,7 +721,7 @@ textarea{min-height:96px;padding:12px;resize:vertical;line-height:1.35}
 <header class="top">
   <div class="topbar">
     <div class="brand">
-      <div class="logo"><img src="assets/img/logo-oe.svg" alt="Osasco Express"></div>
+      <div class="logo"><img src="assets/img/logo-oe-oficial.png" alt="Osasco Express"></div>
       <div><strong>Gibi da Escala</strong><span id="topSub">Admin · busca · confirmação</span></div>
     </div>
     <div class="actions">
@@ -756,6 +899,22 @@ function renderHome(){
           <div class="results" id="homeResults"></div>
         </div>
 
+        <div class="brandHeroOfficial" aria-label="Marca Osasco Express">
+          <div class="brandHeroCard">
+            <img class="heroMascote" src="assets/img/kauan-oficial.png" alt="Mascote oficial Kauan da Osasco Express">
+            <div class="heroLogoBadge"><img src="assets/img/logo-oe-oficial.png" alt="Logo oficial OE"></div>
+            <div class="heroCopy">
+              <strong>Escala oficial<br>Osasco Express</strong>
+              <p>Mesma pegada da marca: visual forte, leitura rápida e confirmação objetiva para o time.</p>
+              <div class="heroTags">
+                <span class="red">Busque seu nome</span>
+                <span class="dark">Confirme</span>
+                <span class="light">Time confirmado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="driverQuickPanel" id="driverQuickPanel">
           <strong id="quickDriverName">Nome selecionado</strong>
           <span id="quickDriverText">Confira seus horários ou confirme no WhatsApp.</span>
@@ -785,7 +944,7 @@ function renderHome(){
 function renderHow(){
   return `<section class="slide" data-title="Como funciona" data-sub="Fluxo do motoca">
     <div class="card"><div class="scroll">
-      <span class="kicker">Fluxo oficial</span>
+      <div class="screenBrandOfficial"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Osasco Express · fluxo oficial</span></div><span class="kicker">Fluxo oficial</span>
       <h2 class="h2">Buscar, conferir, confirmar</h2>
       <p class="lead">O motoca precisa fazer pouca coisa: buscar o nome, conferir os horários e confirmar no WhatsApp. Admin fica separado no menu.</p>
       <div class="list">
@@ -799,7 +958,7 @@ function renderHow(){
 function renderClients(){
   return `<section class="slide" data-title="Pontos" data-sub="Abrir por cliente">
     <div class="card"><div class="scroll">
-      <span class="kicker">Pontos da semana</span>
+      <div class="screenBrandOfficial"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Osasco Express · pontos da semana</span></div><span class="kicker">Pontos da semana</span>
       <h2 class="h2">Abrir por cliente</h2>
       <p class="lead">Toque em um ponto para ver os dias e o time confirmado.</p>
       <div class="clientGrid">${data.clients.map((c,i)=>`<button class="clientBtn" onclick="go(${3+i})"><strong>${esc(c.name)}</strong><span>${esc(c.point)} · ${esc(c.defaultTime)}</span></button>`).join('')}</div>
@@ -808,7 +967,7 @@ function renderClients(){
 function renderClient(client, idx){
   return `<section class="slide" data-title="${esc(client.name)}" data-sub="${esc(client.point)} · ${esc(client.defaultTime)}">
     <div class="card"><div class="scroll">
-      <span class="kicker">Escala do ponto</span>
+      <div class="screenBrandOfficial"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Osasco Express · escala do ponto</span></div><span class="kicker">Escala do ponto</span>
       <h2 class="h2">${esc(client.name)}</h2>
       <p class="lead"><strong>Ponto:</strong> ${esc(client.point)} · <strong>Horário padrão:</strong> ${esc(client.defaultTime)}</p>
       <div class="dayGrid">${client.days.map(day=>renderDay(client, day)).join('')}</div>
@@ -827,7 +986,7 @@ function renderDay(client, day){
 function renderSummary(){
   return `<section class="slide" data-title="Meu resumo" data-sub="Resultado da busca">
     <div class="card"><div class="scroll">
-      <span class="kicker">Meu resumo</span>
+      <div class="screenBrandOfficial"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Osasco Express · meu resumo</span></div><span class="kicker">Meu resumo</span>
       <h2 class="h2" id="summaryTitle">Nenhum nome selecionado</h2>
       <p class="lead" id="summaryLead">Busque um nome para carregar pontos, dias e horários.</p>
       <div class="list" id="summaryList"></div>
@@ -840,7 +999,7 @@ function renderSummary(){
 function renderConfirm(){
   return `<section class="slide" data-title="Confirmar" data-sub="WhatsApp oficial">
     <div class="card"><div class="scroll">
-      <span class="kicker">Confirmar horário</span>
+      <div class="screenBrandOfficial"><img src="assets/img/logo-oe-oficial.png" alt="OE"><span>Osasco Express · confirmação</span></div><span class="kicker">Confirmar horário</span>
       <h2 class="h2">Confirmar no WhatsApp</h2>
       <p class="lead">Revise o nome e envie a mensagem pronta para o suporte.</p>
       <div class="box">
