@@ -2051,6 +2051,20 @@ function applyFilters(){
  box.innerHTML=rows.map(r=>`<div class="box" style="padding:14px"><strong>${esc(itemLabel(r.it,r.c))}<span class="pill">${r.status==='open'?'vaga':'reserva'}</span></strong><p>${esc(r.c.name)} · ${esc(r.d.day)} ${esc(r.d.date)} · ${esc(displayTime(r))} · ${esc(r.it.point||r.c.point)}</p></div>`).join('');
 }
 
+
+function showFirebaseLoginError(err){
+ console.error('ERRO LOGIN FIREBASE:', err);
+ const code = err && err.code ? err.code : 'erro-desconhecido';
+ const msg = err && err.message ? err.message : '';
+ toast('Erro login: ' + code);
+ const root=document.getElementById('adminRoot');
+ const box=document.createElement('div');
+ box.className='notice';
+ box.style.marginTop='10px';
+ box.innerHTML='<strong>Erro Firebase:</strong> '+esc(code)+'<br>'+esc(msg)+'<br><br><strong>Se aparecer auth/unauthorized-domain:</strong> adicione o domínio do GitHub Pages em Authentication > Configurações > Domínios autorizados.<br><strong>Se aparecer permission-denied ao salvar:</strong> coloque este e-mail nas regras do Firestore.';
+ root.querySelector('.card')?.appendChild(box);
+}
+
 function renderAdmin(){
  const root=document.getElementById('adminRoot');
  const firebaseMode = isFirebaseConfigured();
@@ -2062,13 +2076,24 @@ function renderAdmin(){
  }
 
  if(!isAdmin()){
-  root.innerHTML=`<div class="card"><span class="kicker">Login admin Firebase</span><h2>Entrar no admin</h2><p class="lead">Use o e-mail e a senha criados no Firebase Authentication. Sem esse login, ninguém edita a escala.</p><div class="grid"><input class="input" id="admUser" placeholder="E-mail admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div><div class="notice"><strong>Firebase ativo:</strong> a escala será lida e salva no banco online.</div></div>`;
+  root.innerHTML=`<div class="card"><span class="kicker">Login admin Firebase</span><h2>Entrar no admin</h2><p class="lead">Entre com o Google ou com e-mail e senha criados no Firebase Authentication. Sem login, ninguém edita a escala.</p><div class="grid"><button class="btn red full" id="googleLogin">Entrar com Google</button></div><div class="notice"><strong>Ou entre com e-mail e senha:</strong></div><div class="grid"><input class="input" id="admUser" placeholder="E-mail admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn" id="doLogin">Entrar com e-mail</button></div><div class="notice"><strong>Firebase ativo:</strong> projeto conectado: <strong>${esc(FIREBASE_CONFIG.projectId)}</strong>. Se o login falhar, esta versão mostra o código exato do erro.</div></div>`;
   document.getElementById('doLogin').onclick=()=>{
     if(!firebaseAuth){toast('Firebase ainda conectando');return;}
     const email=document.getElementById('admUser').value.trim();
     const pass=document.getElementById('admPass').value;
     if(!email || !pass){toast('Digite e-mail e senha');return;}
-    firebaseAuth.signInWithEmailAndPassword(email,pass).then(()=>{toast('Admin Firebase liberado');renderAdmin();}).catch(err=>{console.error(err);toast('E-mail ou senha incorretos');});
+    firebaseAuth.signInWithEmailAndPassword(email,pass).then(()=>{toast('Admin Firebase liberado');renderAdmin();}).catch(showFirebaseLoginError);
+  };
+  document.getElementById('googleLogin').onclick=()=>{
+    if(!firebaseAuth){toast('Firebase ainda conectando');return;}
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebaseAuth.signInWithPopup(provider).then(()=>{toast('Admin Google liberado');renderAdmin();}).catch(err=>{
+      if(err && (err.code==='auth/popup-blocked' || err.code==='auth/cancelled-popup-request')){
+        firebaseAuth.signInWithRedirect(provider);
+      }else{
+        showFirebaseLoginError(err);
+      }
+    });
   };
   return;
  }
