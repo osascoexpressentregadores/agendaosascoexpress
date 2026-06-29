@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#ffffff">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Agenda Reservada OE</title>
 <style>
 :root{
@@ -1503,11 +1506,11 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 <div class="supportPop" id="supportPop" aria-hidden="true">
   <div class="supportPopCard" role="dialog" aria-modal="true" aria-labelledby="supportPopTitle">
     <div class="supportPopIcon">!</div>
-    <strong id="supportPopTitle">Parceiro, não localizei a sua reserva.</strong>
-    <p>Fale com o suporte para não perder nenhuma oportunidade.</p>
+    <strong id="supportPopTitle">Não encontrei esse nome na agenda.</strong>
+    <p>Confira se digitou igual combinou com o suporte ou chama a equipe para conferir rapidinho.</p>
     <div class="supportPopActions">
-      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Falar com o suporte</a>
-      <button class="btn light" type="button" id="supportPopClose">Buscar novamente</button>
+      <a class="btn green" id="supportPopLink" target="_blank" rel="noopener">Chamar suporte</a>
+      <button class="btn light" type="button" id="supportPopClose">Corrigir nome</button>
     </div>
   </div>
 </div>
@@ -1520,21 +1523,124 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
   </div>
 </nav>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script>
-const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07", "supportWhatsapp": "5511924782555", "updatedAt": ""}, "clients": [{"id": "bevenutti", "name": "Bevenutti", "point": "Pizzaria Bevenutti", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Douglas Nunes"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Letícia Santana"}, {"name": "Douglas Nunes"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Bruno Getaruch"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}, {"name": "Vaga Aberta", "status": "open"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Roger Martineli"}, {"name": "Lucas Lima"}, {"name": "Alessandro Ignácio"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}, {"name": "Letícia Santana"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Roger Martineli"}, {"name": "Douglas Nunes"}, {"name": "Nicolas Abreu"}, {"name": "Danilo Leite"}, {"name": "Luiz Guilherme"}]}]}, {"id": "fratelli", "name": "Fratelli", "point": "Fratelli", "defaultTime": "17h às 23h / 18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Denis Ambrósio"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Gustavo"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Pedro Henrique"}, {"name": "Alexandre Pinheiro"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Pedro Henrique"}, {"name": "Luiz Guilherme"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Pedro Henrique"}, {"name": "Denis Ambrósio"}, {"name": "Gustavo"}, {"name": "Alexandre Pinheiro"}]}]}, {"id": "pastel-da-drica", "name": "Pastel da Drica", "point": "Pastel da Drica", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Luiz Guilherme"}, {"name": "Samuel Bauman"}, {"name": "Nicolas Abreu"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Reinaldo Alves"}, {"name": "Samuel Bauman"}, {"name": "Bruno Souza", "time": "18h às 00h"}]}]}, {"id": "meridio-pizza", "name": "Meridio Pizza", "point": "Meridio Pizza", "defaultTime": "18h às 00h", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Felipe Sousa"}, {"name": "Guilherme Nunes"}, {"name": "José Henrique"}, {"name": "Flávio"}, {"name": "Elton"}]}]}, {"id": "barto-restaurante", "name": "Barto Restaurante", "point": "Barto Restaurante", "defaultTime": "10h45 às 16h45", "days": [{"day": "Segunda-feira", "date": "29/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Kaue Alcantara"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Denilson Silveiro"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Denilson Silveiro"}]}]}, {"id": "pastel-da-camila", "name": "Pastel da Camila", "point": "Pastel da Camila", "defaultTime": "Manhã / Tarde", "days": [{"day": "Segunda-feira", "date": "29/06", "items": []}, {"day": "Terça-feira", "date": "30/06", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Quarta-feira", "date": "01/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Quinta-feira", "date": "02/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}]}, {"day": "Sexta-feira", "date": "03/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Sábado", "date": "04/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}, {"day": "Domingo", "date": "05/07", "items": [{"name": "Luiz Guilherme", "time": "Manhã"}, {"name": "Lucas Lima", "time": "Manhã"}, {"name": "Weslley Santos", "time": "Tarde"}, {"name": "Denilson Silveiro", "time": "Tarde"}]}]}]};
-const STORAGE_KEY = 'oe_agenda_brunos_final_v1';
+const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07","supportWhatsapp": "5511924782555","updatedAt": ""},"clients": [{"id": "bevenutti","name": "Bevenutti","point": "Pizzaria Bevenutti","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"},{"name": "Douglas Nunes"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Bruno Getaruch","time": "18h às 00h"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Letícia Santana"},{"name": "Everton Renato"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Roger Martineli"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"}]}]},{"id": "fratelli","name": "Fratelli","point": "Fratelli","defaultTime": "17h às 23h / 18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Denis Ambrósio"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Pedro Henrique"},{"name": "Luiz Guilherme","time": "18h às 00h"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Pedro Henrique"},{"name": "Denis Ambrósio"},{"name": "Gustavo"},{"name": "Alexandre Pinheiro"}]}]},{"id": "pastel-da-drica","name": "Pastel da Drica","point": "Pastel da Drica","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Luiz Guilherme"},{"name": "Samuel Bauman"},{"name": "Nicolas Abreu"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]}]},{"id": "meridio-pizza","name": "Meridio Pizza","point": "Meridio Pizza","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]}]},{"id": "barto-restaurante","name": "Barto Restaurante","point": "Barto Restaurante","defaultTime": "10h45 às 16h45","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Denilson Silveiro"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Denilson Silveiro"}]}]},{"id": "pastel-da-camila","name": "Pastel da Camila","point": "Pastel da Camila","defaultTime": "Manhã / Tarde","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]}]}]};
+const APP_BUILD = '20260629_admin_salvar_publicar_v1';
+const STORAGE_KEY = 'oe_agenda_reservada_' + APP_BUILD;
 const ADMIN_KEY = 'oe_agenda_reservada_admin_v1';
+const VERSION_KEY = 'oe_agenda_reservada_build_atual';
 let data = loadData();
 let selectedDriver = '';
 
 function clone(o){return JSON.parse(JSON.stringify(o));}
 function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();}
-function loadData(){try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r)}catch(e){}return clone(DEFAULT_DATA);}
-function saveData(show=true){data.meta.updatedAt=new Date().toISOString();localStorage.setItem(STORAGE_KEY,JSON.stringify(data));if(show)toast('Agenda atualizada');}
-function isAdmin(){return localStorage.getItem(ADMIN_KEY)==='1';}
+function isFirebaseConfigured(){
+ try{
+   return !!(FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey && !String(FIREBASE_CONFIG.apiKey).includes('COLE_AQUI') && FIREBASE_CONFIG.projectId && !String(FIREBASE_CONFIG.projectId).includes('COLE_AQUI'));
+ }catch(e){return false;}
+}
+function clearOldAgendaCache(){
+ try{
+   Object.keys(localStorage).forEach(k=>{
+     if(k.startsWith('oe_agenda_reservada_') && k!==STORAGE_KEY && k!==ADMIN_KEY){localStorage.removeItem(k);}
+   });
+ }catch(e){}
+}
+function loadData(){
+ clearOldAgendaCache();
+ if(isFirebaseConfigured()){
+   return clone(DEFAULT_DATA);
+ }
+ try{const r=localStorage.getItem(STORAGE_KEY);if(r)return JSON.parse(r)}catch(e){}
+ return clone(DEFAULT_DATA);
+}
+function saveData(show=true){
+ data.meta.updatedAt=new Date().toISOString();
+ data.meta.version=Date.now();
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}
+ if(isFirebaseConfigured()){
+   saveRemoteAgenda(show);
+ }else if(show){
+   toast('Agenda salva neste aparelho');
+ }
+}
+function isAdmin(){
+ if(isFirebaseConfigured()){
+   return !!(firebaseAuth && firebaseAuth.currentUser);
+ }
+ return localStorage.getItem(ADMIN_KEY)==='1';
+}
+function saveRemoteAgenda(show=true){
+ if(!isFirebaseConfigured()){
+   if(show)toast('Firebase não configurado');
+   return;
+ }
+ if(!firebaseDb){
+   if(show)toast('Firebase ainda conectando');
+   return;
+ }
+ if(!firebaseAuth || !firebaseAuth.currentUser){
+   if(show)toast('Faça login admin para salvar para todos');
+   return;
+ }
+ firebaseLastSaveAt = Date.now();
+ firebaseDb.collection(FIREBASE_COLLECTION).doc(FIREBASE_DOC_ID).set({
+   agenda: data,
+   updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+   updatedBy: firebaseAuth.currentUser.email || 'admin'
+ }, {merge:true}).then(()=>{
+   if(show)toast('Agenda salva para todos');
+ }).catch(err=>{
+   console.error('Erro ao salvar no Firebase', err);
+   if(show)toast('Erro ao salvar no Firebase');
+ });
+}
+function initFirebaseRemote(){
+ if(!isFirebaseConfigured())return;
+ if(firebaseListening)return;
+ try{
+   firebaseApp = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(FIREBASE_CONFIG);
+   firebaseDb = firebase.firestore();
+   firebaseAuth = firebase.auth();
+   firebaseListening = true;
+   firebaseAuth.onAuthStateChanged(()=>{
+     renderAdmin();
+   });
+   firebaseDb.collection(FIREBASE_COLLECTION).doc(FIREBASE_DOC_ID).onSnapshot(snap=>{
+     if(!snap.exists){
+       renderAll();
+       return;
+     }
+     const remote = snap.data() && snap.data().agenda;
+     if(!remote || !remote.clients)return;
+     if(Date.now() - firebaseLastSaveAt < 1200)return;
+     data = remote;
+     try{localStorage.setItem(STORAGE_KEY, JSON.stringify(data));}catch(e){}
+     renderAll();
+   }, err=>{
+     console.error('Erro ao carregar agenda online', err);
+     toast('Erro ao carregar agenda online');
+   });
+ }catch(err){
+   console.error('Falha ao iniciar Firebase', err);
+   toast('Firebase não configurado corretamente');
+ }
+}
 function itemStatus(it){return it.status==='open'||norm(it.name).includes('vaga aberta')?'open':'ok';}
-function itemLabel(it,c){let t=it.name||'';if(it.time)t+=' - '+it.time;if(it.point&&it.point!==c.point)t+=' · '+it.point;return t;}
+function itemLabel(it,c){
+ let t=it.name||'';
+ const fakeRow={it:it,c:c};
+ const tm=displayTime(fakeRow);
+ const sh=displayShift(fakeRow);
+ if(tm)t+=' - '+tm;
+ if(sh)t+=' · '+sh;
+ if(it.point&&it.point!==c.point)t+=' · '+it.point;
+ return t;
+}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),1500);}
 
 function allRows(){
@@ -1550,9 +1656,10 @@ function driverMap(){
 function findDrivers(query){
  const q=norm(query); if(!q)return [];
  const map=driverMap();
+ const terms=q.split(/\s+/).filter(Boolean);
  return Object.keys(map).sort((a,b)=>a.localeCompare(b,'pt-BR')).filter(name=>{
-   const joined=name+' '+map[name].map(r=>`${r.c.name} ${r.c.point} ${r.d.day} ${r.d.date} ${r.it.time||''}`).join(' ');
-   return norm(joined).includes(q);
+   const driverName=norm(name);
+   return terms.every(term=>driverName.includes(term));
  });
 }
 let navHistory = ['agenda'];
@@ -1587,14 +1694,30 @@ function goTop(){
 }
 
 function renderStats(){}
+function driverOptionSummary(name){
+ const rows=sortedDriverRows(driverMap()[name]||[]);
+ const clients=[...new Set(rows.map(r=>displayClientName(r.c.name)))].slice(0,3).join(', ');
+ const days=formatDayList(rows.map(r=>r.d.day));
+ const total=rows.length===1?'1 reserva':`${rows.length} reservas`;
+ return [clients, days, total].filter(Boolean).join(' · ');
+}
+function jsArg(value){
+ return JSON.stringify(String(value||'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function emptySearchCard(){
+ return `<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>`;
+}
+function notFoundCard(q){
+ return `<div class="card"><span class="kicker">Nome não encontrado</span><h2>Não achei reserva para esse nome.</h2><p class="lead">Confira se digitou igual combinou com o suporte. Se ainda não aparecer, chama a equipe que a gente confere rápido.</p><div class="actions"><a class="btn green" href="${supportLinkForSearch(q)}" target="_blank" rel="noopener">Chamar suporte</a><button class="btn light" type="button" onclick="clearAgenda()">Corrigir nome</button></div></div>`;
+}
 function renderDriverSearch(){
  const q=document.getElementById('driverSearch').value.trim();
  const box=document.getElementById('agendaResult');
- if(!q){box.innerHTML='<div class="card"><span class="kicker">Digite seu nome</span><p class="lead">Use o nome combinado com o suporte para localizar sua agenda reservada.</p></div>';return;}
+ if(!q){box.innerHTML=emptySearchCard();return;}
  const names=findDrivers(q);
- if(!names.length){box.innerHTML='';openSupportPop(q);return;}
+ if(!names.length){box.innerHTML=notFoundCard(q);openSupportPop(q);return;}
  if(names.length===1){showDriverAgenda(names[0]);return;}
- box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos opções</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda('${esc(n)}')"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>Toque para conferir a agenda reservada.</p></button>`).join('')}</div></div>`;
+ box.innerHTML=`<div class="card"><span class="kicker">Escolha seu nome</span><h2>Encontramos mais de uma opção</h2><div class="grid cols">${names.map(n=>`<button class="box" style="padding:14px;text-align:left" onclick="showDriverAgenda(${jsArg(n)})"><strong>${esc(n)}<span class="pill">${(driverMap()[n]||[]).length} dia(s)</span></strong><p>${esc(driverOptionSummary(n))}</p></button>`).join('')}</div></div>`;
 }
 function parseDateOrder(date){
  const parts=String(date||'').split('/');
@@ -1655,7 +1778,7 @@ function displayTime(row){
    if(low.includes('tarde')) return '16h às 22h';
  }
  if(client.includes('bevenutti')){
-   return '18h às 00h30';
+   return '18h às 00h';
  }
  return raw;
 }
@@ -1668,28 +1791,31 @@ function displayShift(row){
  }
  return '';
 }
+function dayInfo(day){
+ const raw=String(day||'').trim();
+ const n=norm(raw).replace(/\s+/g,' ');
+ if(n.includes('segunda')) return {idx:1, short:'segunda', full:'segunda-feira'};
+ if(n.includes('terca')) return {idx:2, short:'terça', full:'terça-feira'};
+ if(n.includes('quarta')) return {idx:3, short:'quarta', full:'quarta-feira'};
+ if(n.includes('quinta')) return {idx:4, short:'quinta', full:'quinta-feira'};
+ if(n.includes('sexta')) return {idx:5, short:'sexta', full:'sexta-feira'};
+ if(n.includes('sabado')) return {idx:6, short:'sábado', full:'sábado'};
+ if(n.includes('domingo')) return {idx:7, short:'domingo', full:'domingo'};
+ return {idx:99, short:raw.toLowerCase(), full:raw.toLowerCase()};
+}
 function formatDayList(dayNames){
- const cleaned=[...new Set(dayNames.map(d=>String(d||'').trim()).filter(Boolean))];
- const orderMap={'domingo':0,'segunda':1,'terça':2,'terca':2,'quarta':3,'quinta':4,'sexta':5,'sábado':6,'sabado':6};
- cleaned.sort((a,b)=>(orderMap[a.toLowerCase()]??99)-(orderMap[b.toLowerCase()]??99));
- const normalized=cleaned.map(d=>{
-   const low=d.toLowerCase();
-   if(low==='terca') return 'terça';
-   if(low==='sabado') return 'sábado';
-   return low;
+ const unique=new Map();
+ dayNames.forEach(day=>{
+   const info=dayInfo(day);
+   if(info.short) unique.set(info.idx+'_'+info.short,info);
  });
- const labels=normalized.map(d=>d.charAt(0).toUpperCase()+d.slice(1));
- if(labels.length===0) return '';
- if(labels.length===1) return labels[0];
- if(labels.length===2) return labels.join(' e ');
- const isConsecutive=normalized.every((d,i,arr)=>{
-   if(i===0) return true;
-   return (orderMap[d]??99)===(orderMap[arr[i-1]]??99)+1;
- });
- if(isConsecutive && labels.length>=3){
-   return `${labels[0]} a ${labels[labels.length-1]}`;
- }
- return `${labels.slice(0,-1).join(', ')} e ${labels[labels.length-1]}`;
+ const list=[...unique.values()].sort((a,b)=>a.idx-b.idx);
+ if(!list.length) return '';
+ if(list.length===1) return list[0].full;
+ if(list.length===2) return `${list[0].short} e ${list[1].short}`;
+ const consecutive=list.every((item,i,arr)=>i===0 || item.idx===arr[i-1].idx+1);
+ if(consecutive) return `${list[0].short} a ${list[list.length-1].short}`;
+ return `${list.slice(0,-1).map(i=>i.short).join(', ')} e ${list[list.length-1].short}`;
 }
 function weekRange(groups){
  if(!groups.length) return '';
@@ -1780,7 +1906,7 @@ function showDriverAgenda(name){
    ${alertHtml}
    <div class="weekAgenda">${agenda}</div>
    <div class="confirmPanel">
-     <a class="btn green full" id="confirmLink" href="${waLink(name)}" target="_blank">Confirmar minha agenda no WhatsApp</a>
+     <a class="btn green full" id="confirmLink" data-driver="${esc(name)}" href="${waLink(name)}" target="_blank">Confirmar minha agenda no WhatsApp</a>
    </div>
    <div class="actions">
      <button class="btn light" onclick="clearAgenda()">Buscar outro nome</button>
@@ -1790,63 +1916,56 @@ function showDriverAgenda(name){
  
  document.getElementById('agendaResult').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function confirmMessage(name){
- const rows=sortedDriverRows(driverMap()[name]||[]);
- const groups=groupRowsByDay(rows);
- const map=new Map();
-
- rows.forEach(r=>{
-   const local=displayClientName(r.c.name);
-   const time=displayTime(r);
-   const shift=displayShift(r);
-   const key=`${local}__${time}__${shift}`;
-   if(!map.has(key)){
-     map.set(key,{local,time,shift,days:[]});
-   }
-   map.get(key).days.push(r.d.day);
- });
-
- const blocks=[...map.values()].map(item=>{
-   const shiftLine=item.shift?`\n${item.shift}`:'';
-   return `📍 ${item.local}\n🗓️ ${formatDayList(item.days)}\n🕒 ${item.time}${shiftLine}`;
- }).join('\n\n');
-
- const dayText=groups.length===1?'1 dia reservado':`${groups.length} dias reservados`;
- const localCount=[...new Set(rows.map(r=>displayClientName(r.c.name)))].length;
- const localText=localCount===1?'1 local':`${localCount} locais`;
- const range=weekRange(groups);
-
- return `🏍️ Confirmação de agenda OE
-
-👤 Motoca: ${name}
-📅 Semana: ${range}
-📌 ${dayText} · ${localText}
-
-${blocks}
-
-✅ Confirmo minha presença na agenda acima.
-
-Se acontecer qualquer problema, aviso o suporte com antecedência.`;
+function plainWhatsappText(text){
+ return String(text||'')
+   .replace(/<br\s*\/?>(?=.)/gi,' ')
+   .replace(/<br\s*\/?>/gi,' ')
+   .replace(/<\/?[^>]+>/g,' ')
+   .replace(/\\r|\\n|\\t|\\b|\\f|\\v/g,' ')
+   .replace(/%0D|%0A|%5Cr|%5Cn|%5Ct/gi,' ')
+   .replace(/&nbsp;/gi,' ')
+   .replace(/[\r\n\t]+/g,' ')
+   .replace(/[{}<>`]/g,' ')
+   .replace(/\s+/g,' ')
+   .trim();
 }
-function clearAgenda(){document.getElementById('driverSearch').value='';document.getElementById('agendaResult').innerHTML='';document.getElementById('driverSearch').focus();}
+function makeWhatsappLink(text){
+ const phone=String(data.meta.supportWhatsapp||'').replace(/\D/g,'');
+ const msg=plainWhatsappText(text);
+ return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+}
+function cleanPersonName(name){
+ return plainWhatsappText(name).replace(/^sou\s+/i,'').trim() || 'Parceiro OE';
+}
 function confirmMessage(name){
- const rows=sortedDriverRows(driverMap()[name]||[]);
- const groups=groupRowsByDay(rows);
- const lines=groups.map(g=>{
-   const commitments=g.rows.map((r,i)=>`${g.rows.length>1?`${i+1}. `:'• '}${r.c.name} — ${r.it.time||r.c.defaultTime} — ${r.it.point||r.c.point}`).join('\\n');
-   return `${g.day} ${g.date}\\n${commitments}`;
- }).join('\\n\\n');
- return `Olá, suporte OE.\\n\\nSou ${name}.\\nConferi minha agenda reservada e confirmo presença nos dias abaixo:\\n\\n${lines}\\n\\nEstou ciente que a loja, o suporte e o time contam comigo.\\nSe acontecer qualquer problema, vou avisar com antecedência.`;
+ return 'Confirmo meus agendamentos.';
 }
 function waLink(name){
- return `https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent(confirmMessage(name))}`;
+ return makeWhatsappLink(confirmMessage(name));
+}
+function supportMessageForSearch(name){
+ const searched=plainWhatsappText(name) || 'nome não informado';
+ return ['Oi, suporte OE.', `Pesquisei por: ${searched}.`, 'Minha reserva não apareceu.', 'Pode conferir?'].join(' ');
+}
+function supportLinkForSearch(name){
+ return makeWhatsappLink(supportMessageForSearch(name));
 }
 function closeSupportPop(){
  const pop=document.getElementById('supportPop');
+ if(!pop)return;
  pop.classList.remove('open');
  pop.setAttribute('aria-hidden','true');
  const input=document.getElementById('driverSearch');
  if(input) input.focus();
+}
+function openSupportPop(name){
+ const pop=document.getElementById('supportPop');
+ const link=document.getElementById('supportPopLink');
+ if(link) link.href=supportLinkForSearch(name);
+ if(pop){
+   pop.classList.add('open');
+   pop.setAttribute('aria-hidden','false');
+ }
 }
 
 
@@ -1867,7 +1986,7 @@ function renderVip(){
  document.body.classList.toggle('vipOpen', unlocked);
  grid.innerHTML = vipPoints.map((p,i)=>{
    if(unlocked){
-     return `<div class="box vipUnlocked" style="padding:14px"><strong>${esc(p.title)}<span class="pill">VIP</span></strong><p>${esc(p.zone)}</p><p>${esc(p.note)}</p><div class="actions"><a class="btn green" href="https://wa.me/${data.meta.supportWhatsapp}?text=${encodeURIComponent('Olá, suporte OE. Tenho código VIP e quero verificar oportunidades reservadas. Código: ' + VIP_CODE)}" target="_blank">Falar com suporte</a></div></div>`;
+     return `<div class="box vipUnlocked" style="padding:14px"><strong>${esc(p.title)}<span class="pill">VIP</span></strong><p>${esc(p.zone)}</p><p>${esc(p.note)}</p><div class="actions"><a class="btn green" href="${makeWhatsappLink('Oi, suporte OE. Tenho código VIP e quero verificar oportunidades reservadas. Código: ' + VIP_CODE)}" target="_blank">Falar com suporte</a></div></div>`;
    }
    return `<div class="box vipLocked" style="padding:14px"><div class="vipLockIcon">🔒</div><strong>${esc(p.title)}<span class="pill">bloqueado</span></strong><p class="vipMuted">${esc(p.zone)}</p><p>Acesso liberado somente com código VIP.</p></div>`;
  }).join('');
@@ -1922,17 +2041,50 @@ function applyFilters(){
 function renderAdmin(){
  const root=document.getElementById('adminRoot');
  document.body.classList.toggle('adminUnlocked', isAdmin());
- document.body.classList.toggle('adminUnlocked', isAdmin());
  if(!isAdmin()){
-  root.innerHTML=`<div class="card"><span class="kicker">Login admin</span><h2>Entrar no admin</h2><p class="lead">Login: admin · senha: 1212</p><div class="grid"><input class="input" id="admUser" value="admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div></div>`;
-  document.getElementById('doLogin').onclick=()=>{if(document.getElementById('admUser').value==='admin'&&document.getElementById('admPass').value==='1212'){localStorage.setItem(ADMIN_KEY,'1');document.body.classList.add('adminUnlocked');toast('Admin liberado');renderAdmin();}else toast('Login ou senha incorretos');};
+  const firebaseMode = isFirebaseConfigured();
+  root.innerHTML = firebaseMode
+    ? `<div class="card"><span class="kicker">Login admin Firebase</span><h2>Entrar no admin</h2><p class="lead">Use o e-mail e senha criados no Firebase Authentication. Assim o salvamento vale para todo mundo.</p><div class="grid"><input class="input" id="admUser" placeholder="E-mail admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div><div class="notice"><strong>Firebase ativo:</strong> a escala será lida e salva no banco online.</div></div>`
+    : `<div class="card"><span class="kicker">Login admin local</span><h2>Entrar no admin</h2><p class="lead">Firebase ainda não configurado. Login local: admin · senha: 1212</p><div class="grid"><input class="input" id="admUser" value="admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn red" id="doLogin">Entrar</button></div><div class="notice"><strong>Atenção:</strong> sem Firebase configurado, salvar continua valendo só neste aparelho.</div></div>`;
+  document.getElementById('doLogin').onclick=()=>{
+    if(firebaseMode){
+      if(!firebaseAuth){toast('Firebase ainda conectando');return;}
+      const email=document.getElementById('admUser').value.trim();
+      const pass=document.getElementById('admPass').value;
+      firebaseAuth.signInWithEmailAndPassword(email,pass).then(()=>{toast('Admin Firebase liberado');renderAdmin();}).catch(err=>{console.error(err);toast('E-mail ou senha incorretos');});
+    }else{
+      if(document.getElementById('admUser').value==='admin'&&document.getElementById('admPass').value==='1212'){localStorage.setItem(ADMIN_KEY,'1');document.body.classList.add('adminUnlocked');toast('Admin liberado');renderAdmin();}else toast('Login ou senha incorretos');
+    }
+  };
   return;
  }
- root.innerHTML=`<div class="card"><span class="kicker">Admin</span><h2>Editar agenda</h2><p class="lead">Atualize as reservas combinadas com os motocas. Salva neste navegador.</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
+ const saveHint = isFirebaseConfigured()
+   ? 'As alterações são salvas no Firebase e aparecem para todos que abrirem o link.'
+   : 'Firebase ainda não configurado. As alterações ficam salvas apenas neste aparelho.';
+ const notice = isFirebaseConfigured()
+   ? '<strong>Firebase ativo:</strong> clique em salvar e a escala é publicada para todos automaticamente.'
+   : '<strong>Importante:</strong> sem Firebase configurado, salvar no admin grava só no navegador atual.';
+ root.innerHTML=`<div class="card"><span class="kicker">Admin</span><h2>Editar agenda</h2><p class="lead">${saveHint}</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="notice">${notice}</div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
  bindAdmin();
 }
+
+function downloadPublishedHtml(){
+ data.meta.updatedAt = new Date().toISOString();
+ const build = 'agenda_' + new Date().toISOString().replace(/\D/g,'').slice(0,14);
+ let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+ html = html.replace(/const DEFAULT_DATA = .*?;\nconst APP_BUILD/s, 'const DEFAULT_DATA = ' + JSON.stringify(data) + ';\nconst APP_BUILD');
+ html = html.replace(/const APP_BUILD = '[^']*';/, "const APP_BUILD = '" + build + "';");
+ const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+ const a = document.createElement('a');
+ a.href = URL.createObjectURL(blob);
+ a.download = 'index.html';
+ a.click();
+ URL.revokeObjectURL(a.href);
+ toast('HTML atualizado baixado');
+}
+
 function bindAdmin(){
- document.getElementById('logout').onclick=()=>{localStorage.removeItem(ADMIN_KEY);document.body.classList.remove('adminUnlocked');toast('Saiu do admin');renderAdmin();};
+ document.getElementById('logout').onclick=()=>{if(isFirebaseConfigured()&&firebaseAuth){firebaseAuth.signOut().then(()=>{toast('Saiu do admin Firebase');renderAdmin();});}else{localStorage.removeItem(ADMIN_KEY);document.body.classList.remove('adminUnlocked');toast('Saiu do admin');renderAdmin();}};
  document.getElementById('saveMeta').onclick=()=>{data.meta.weekLabel=document.getElementById('week').value;data.meta.supportWhatsapp=document.getElementById('zap').value.replace(/\\D/g,'');saveData();renderAll();};
  document.getElementById('resetData').onclick=()=>{if(confirm('Resetar agenda?')){data=clone(DEFAULT_DATA);saveData();renderAll();}};
  document.getElementById('addClient').onclick=()=>{const n=prompt('Nome do novo ponto:');if(!n)return;const days=clone(DEFAULT_DATA.clients[0].days).map(d=>({day:d.day,date:d.date,items:[]}));data.clients.push({id:n.toLowerCase().replace(/\\W+/g,'-'),name:n,point:n,defaultTime:'Horário a definir',days});saveData();renderAll();setTab('admin');};
@@ -1941,18 +2093,92 @@ function bindAdmin(){
  document.getElementById('clientSel').onchange=e=>renderEditor(+e.target.value);
  renderEditor(+document.getElementById('clientSel').value);
 }
+function uniqueDrivers(){
+ const names=[];
+ const seen={};
+ allRows().forEach(r=>{
+   const name=plainWhatsappText(r.it?.name||'');
+   if(!name || itemStatus(r.it)==='open' || norm(name).includes('vaga aberta')) return;
+   const key=norm(name);
+   if(!seen[key]){seen[key]=1;names.push(name);}
+ });
+ return names.sort((a,b)=>a.localeCompare(b,'pt-BR'));
+}
+function driverOptionList(selected='', filter=''){
+ const selectedName=plainWhatsappText(selected);
+ const q=norm(filter||'');
+ let names=uniqueDrivers();
+ if(q) names=names.filter(n=>norm(n).includes(q));
+ if(selectedName && selectedName!=='Vaga Aberta' && !names.some(n=>norm(n)===norm(selectedName))){
+   names.unshift(selectedName);
+ }
+ const opts=['<option value="">Selecione entregador existente</option>'];
+ names.forEach(n=>opts.push(`<option value="${esc(n)}" ${norm(n)===norm(selectedName)?'selected':''}>${esc(n)}</option>`));
+ opts.push(`<option value="__new__">+ Criar novo entregador</option>`);
+ opts.push(`<option value="Vaga Aberta" ${selectedName==='Vaga Aberta'?'selected':''}>Vaga Aberta</option>`);
+ return opts.join('');
+}
+function resolveAdminDriver(){
+ const filter=plainWhatsappText(document.getElementById('driverFilter')?.value||'');
+ const selected=document.getElementById('addDriver')?.value||'';
+ const newName=plainWhatsappText(document.getElementById('addNewName')?.value||'');
+ if(selected==='__new__'){
+   if(!newName){toast('Digite o nome do novo entregador');return '';}
+   return newName;
+ }
+ if(selected) return selected;
+ if(filter){
+   const names=uniqueDrivers();
+   const exact=names.find(n=>norm(n)===norm(filter));
+   if(exact) return exact;
+   const matches=names.filter(n=>norm(n).includes(norm(filter)));
+   if(matches.length===1) return matches[0];
+   if(matches.length>1){toast('Escolha o entregador na lista filtrada');return '';}
+   toast('Para nome novo, selecione + Criar novo entregador');return '';
+ }
+ toast('Selecione um entregador ou crie um novo');
+ return '';
+}
+function syncAddDriverControls(){
+ const filter=document.getElementById('driverFilter');
+ const select=document.getElementById('addDriver');
+ const newName=document.getElementById('addNewName');
+ if(!select || !newName) return;
+ const q=filter?.value||'';
+ const current=select.value;
+ select.innerHTML=driverOptionList('', q);
+ if(current && [...select.options].some(o=>o.value===current)) select.value=current;
+ const matches=q?uniqueDrivers().filter(n=>norm(n).includes(norm(q))):[];
+ if(!current && matches.length===1) select.value=matches[0];
+ newName.style.display = select.value==='__new__' ? '' : 'none';
+}
 function renderEditor(i){
  const c=data.clients[i], host=document.getElementById('editor');
- host.innerHTML=`<div class="adminItem"><h4>Dados do ponto</h4><div class="formGrid"><input class="input" id="cn" value="${esc(c.name)}"><input class="input" id="cp" value="${esc(c.point)}"><input class="input" id="ct" value="${esc(c.defaultTime)}"><button class="btn danger" id="delClient">Remover ponto</button></div><button class="btn green full" id="saveClient">Salvar ponto</button></div><div class="adminItem"><h4>Adicionar motoca ou vaga</h4><div class="formGrid"><select id="addDay">${c.days.map((d,di)=>`<option value="${di}">${d.day} · ${d.date}</option>`).join('')}</select><input class="input" id="addName" placeholder="Nome ou Vaga Aberta"><input class="input" id="addTime" placeholder="Horário"><input class="input" id="addPoint" placeholder="Ponto"><select id="addStatus"><option value="ok">Agenda reservada</option><option value="open">Vaga aberta</option></select><button class="btn red" id="addItem">Adicionar</button></div></div>${c.days.map((d,di)=>`<div class="adminItem"><h4>${d.day} · ${d.date}</h4>${d.items.length?d.items.map((it,ii)=>row(i,di,ii,it)).join(''):'<p class="lead">Sem agendamento informado.</p>'}</div>`).join('')}`;
- document.getElementById('saveClient').onclick=()=>{c.name=document.getElementById('cn').value;c.point=document.getElementById('cp').value;c.defaultTime=document.getElementById('ct').value;saveData();renderAll();setTab('admin');};
+ host.innerHTML=`<div class="adminItem"><h4>Dados do ponto</h4><div class="formGrid"><input class="input" id="cn" value="${esc(c.name)}"><input class="input" id="cp" value="${esc(c.point)}"><input class="input" id="ct" value="${esc(c.defaultTime)}"><button class="btn danger" id="delClient">Remover ponto</button></div><button class="btn green full" id="saveClient">Salvar ponto</button></div><div class="adminItem"><h4>Adicionar escala</h4><p class="lead">Use o filtro para escolher um entregador já cadastrado. Se for alguém novo, selecione “Criar novo entregador”.</p><div class="formGrid"><select id="addDay">${c.days.map((d,di)=>`<option value="${di}">${d.day} · ${d.date}</option>`).join('')}</select><input class="input" id="driverFilter" placeholder="Filtrar entregador, ex: Douglas"><select id="addDriver">${driverOptionList()}</select><input class="input" id="addNewName" placeholder="Nome do novo entregador" style="display:none"><input class="input" id="addTime" placeholder="Horário, se diferente do ponto"><input class="input" id="addPoint" placeholder="Ponto, se diferente"><select id="addStatus"><option value="ok">Agenda reservada</option><option value="open">Vaga aberta</option></select><button class="btn red" id="addItem">Adicionar</button></div></div>${c.days.map((d,di)=>`<div class="adminItem"><h4>${d.day} · ${d.date}</h4>${d.items.length?d.items.map((it,ii)=>row(i,di,ii,it)).join(''):'<p class="lead">Sem agendamento informado.</p>'}</div>`).join('')}`;
+ document.getElementById('saveClient').onclick=()=>{c.name=document.getElementById('cn').value;c.point=document.getElementById('cp').value;c.defaultTime=document.getElementById('ct').value;saveData();renderEditor(i);renderStats();toast('Ponto salvo');};
  document.getElementById('delClient').onclick=()=>{if(confirm('Remover ponto?')){data.clients.splice(i,1);saveData();renderAll();setTab('admin');}};
- document.getElementById('addItem').onclick=()=>{const di=+document.getElementById('addDay').value; const it={name:document.getElementById('addName').value.trim()||'Vaga Aberta',time:document.getElementById('addTime').value.trim(),point:document.getElementById('addPoint').value.trim(),status:document.getElementById('addStatus').value}; if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;c.days[di].items.push(it);saveData();renderAll();setTab('admin');};
- host.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.save.split('-').map(Number);const pre=b.dataset.save,it=data.clients[ci].days[di].items[ii];it.name=document.getElementById('n'+pre).value;it.time=document.getElementById('t'+pre).value;it.point=document.getElementById('p'+pre).value;it.status=document.getElementById('s'+pre).value;if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;saveData();renderAll();setTab('admin');});
- host.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.rm.split('-').map(Number);data.clients[ci].days[di].items.splice(ii,1);saveData();renderAll();setTab('admin');});
+ document.getElementById('driverFilter').oninput=()=>syncAddDriverControls();
+ document.getElementById('addDriver').onchange=()=>syncAddDriverControls();
+ document.getElementById('addStatus').onchange=()=>{const s=document.getElementById('addStatus');const d=document.getElementById('addDriver');if(s.value==='open')d.value='Vaga Aberta';syncAddDriverControls();};
+ syncAddDriverControls();
+ document.getElementById('addItem').onclick=()=>{
+   const di=+document.getElementById('addDay').value;
+   const name=resolveAdminDriver();
+   if(!name)return;
+   const it={name,time:document.getElementById('addTime').value.trim(),point:document.getElementById('addPoint').value.trim(),status:document.getElementById('addStatus').value};
+   if(name==='Vaga Aberta')it.status='open';
+   if(it.status==='ok')delete it.status;
+   if(!it.time)delete it.time;
+   if(!it.point)delete it.point;
+   c.days[di].items.push(it);
+   saveData();renderEditor(i);renderStats();toast(`${name} adicionado`);
+ };
+ host.querySelectorAll('[data-save]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.save.split('-').map(Number);const pre=b.dataset.save,it=data.clients[ci].days[di].items[ii];it.name=document.getElementById('n'+pre).value;it.time=document.getElementById('t'+pre).value;it.point=document.getElementById('p'+pre).value;it.status=document.getElementById('s'+pre).value;if(it.status==='ok')delete it.status;if(!it.time)delete it.time;if(!it.point)delete it.point;saveData();renderEditor(i);renderStats();toast('Escala salva');});
+ host.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const [ci,di,ii]=b.dataset.rm.split('-').map(Number);const it=data.clients[ci].days[di].items[ii];if(confirm(`Remover ${it.name||'este item'} desta escala?`)){data.clients[ci].days[di].items.splice(ii,1);saveData();renderEditor(i);renderStats();toast('Escala removida');}});
 }
 function row(ci,di,ii,it){
  const id=`${ci}-${di}-${ii}`;
- return `<div class="rowCard"><input class="input" id="n${id}" value="${esc(it.name||'')}"><input class="input" id="t${id}" value="${esc(it.time||'')}" placeholder="Horário"><input class="input" id="p${id}" value="${esc(it.point||'')}" placeholder="Ponto"><select id="s${id}"><option value="ok" ${itemStatus(it)==='ok'?'selected':''}>Agenda reservada</option><option value="open" ${itemStatus(it)==='open'?'selected':''}>Vaga aberta</option></select><button class="btn green" data-save="${id}">Salvar</button><button class="btn danger" data-rm="${id}">Remover</button></div>`;
+ return `<div class="rowCard"><input class="input" id="n${id}" value="${esc(it.name||'')}" placeholder="Entregador"><input class="input" id="t${id}" value="${esc(it.time||'')}" placeholder="Horário"><input class="input" id="p${id}" value="${esc(it.point||'')}" placeholder="Ponto"><select id="s${id}"><option value="ok" ${itemStatus(it)==='ok'?'selected':''}>Agenda reservada</option><option value="open" ${itemStatus(it)==='open'?'selected':''}>Vaga aberta</option></select><button class="btn green" data-save="${id}">Salvar</button><button class="btn danger" data-rm="${id}">Remover escala</button></div>`;
 }
 function renderAll(){renderStats();if(document.getElementById('page-pontos').classList.contains('active'))renderClients();if(document.getElementById('page-gestao').classList.contains('active'))renderManagement();if(document.getElementById('page-admin').classList.contains('active'))renderAdmin();}
 document.getElementById('searchBtn').onclick=renderDriverSearch;
@@ -1961,10 +2187,21 @@ document.getElementById('vipCode')?.addEventListener('keydown',e=>{if(e.key==='E
 document.getElementById('supportPopClose').onclick=closeSupportPop;
 document.getElementById('supportPop').addEventListener('click',e=>{if(e.target.id==='supportPop')closeSupportPop();});
 document.getElementById('driverSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();renderDriverSearch();}});
-document.getElementById('driverSearch').addEventListener('input',()=>{if(document.getElementById('driverSearch').value.trim().length>=2)renderDriverSearch();});
+document.getElementById('driverSearch').addEventListener('input',()=>{const input=document.getElementById('driverSearch');const box=document.getElementById('agendaResult');const pop=document.getElementById('supportPop');if(pop?.classList.contains('open')){pop.classList.remove('open');pop.setAttribute('aria-hidden','true');}if(!input.value.trim()){box.innerHTML=emptySearchCard();}});
 document.getElementById('applyFilters')?.addEventListener('click',applyFilters);
 ['fName','fClient','fDay','fStatus'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('input',applyFilters);});
 
+document.addEventListener('click',e=>{
+ const confirm=e.target.closest('#confirmLink');
+ if(confirm){
+   e.preventDefault();
+   const driver=confirm.dataset.driver||document.querySelector('.agendaName')?.textContent||'';
+   const url=waLink(driver);
+   window.open(url,'_blank','noopener');
+   confirm.setAttribute('href',url);
+   return;
+ }
+});
 document.addEventListener('click',e=>{
  const action = e.target.closest('[data-action]');
  if(action){
@@ -1988,14 +2225,13 @@ document.addEventListener('keydown',e=>{
 });
 document.addEventListener('click',e=>{
  if(e.target && e.target.id === 'quickLogout'){
-   localStorage.removeItem(ADMIN_KEY);
-   document.body.classList.remove('adminUnlocked');
-   toast('Saiu do admin');
-   renderAdmin();
+   if(isFirebaseConfigured()&&firebaseAuth){firebaseAuth.signOut().then(()=>{toast('Saiu do admin Firebase');renderAdmin();});}
+   else{localStorage.removeItem(ADMIN_KEY);document.body.classList.remove('adminUnlocked');toast('Saiu do admin');renderAdmin();}
  }
 });
 
 renderAll();
+initFirebaseRemote();
 </script>
 </body>
 </html>

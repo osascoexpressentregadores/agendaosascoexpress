@@ -1,0 +1,15 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /agendas/agenda_reservada_oe {
+      allow read: if true;
+
+      // Troque pelo e-mail admin criado no Firebase Authentication.
+      allow write: if request.auth != null
+        && request.auth.token.email in [
+          "COLOQUE_SEU_EMAIL_ADMIN_AQUI"
+        ];
+    }
+  }
+}
