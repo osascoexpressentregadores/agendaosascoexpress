@@ -1499,7 +1499,7 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
   </section>
 
   <section class="page" id="page-admin">
-    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão pelo celular para atualizar a agenda reservada. Login: admin · senha: 1212.</p></div></div>
+    <div class="sectionTop"><div><h2>Área admin</h2><p class="lead">Gestão pelo celular para atualizar a agenda reservada. A edição é liberada somente com Google autorizado.</p></div></div>
     <div class="adminExitBar">
       <button class="btn light" type="button" data-tab="agenda">Voltar para a agenda</button>
       <button class="btn light" type="button" data-action="top">Topo</button>
@@ -1539,10 +1539,27 @@ h1,h2,.heroTitle,.brandHeroTitle,.agendaName{
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script>
-const DEFAULT_DATA = {"meta": {"weekLabel": "Semana de 29/06 a 05/07","supportWhatsapp": "5511924782555","updatedAt": ""},"clients": [{"id": "bevenutti","name": "Bevenutti","point": "Pizzaria Bevenutti","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Douglas Nunes"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Letícia Santana"},{"name": "Douglas Nunes"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Bruno Getaruch","time": "18h às 00h"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"},{"name": "Vaga Aberta","status": "open"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Roger Martineli"},{"name": "Lucas Lima"},{"name": "Alessandro Ignácio"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Letícia Santana"},{"name": "Everton Renato"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Roger Martineli"},{"name": "Douglas Nunes"},{"name": "Nicolas Abreu"},{"name": "Danilo Leite"},{"name": "Luiz Guilherme"},{"name": "Everton Renato"}]}]},{"id": "fratelli","name": "Fratelli","point": "Fratelli","defaultTime": "17h às 23h / 18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Denis Ambrósio"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Gustavo"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Pedro Henrique"},{"name": "Alexandre Pinheiro"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Pedro Henrique"},{"name": "Luiz Guilherme","time": "18h às 00h"},{"name": "Denis Ambrósio"},{"name": "Gustavo"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Pedro Henrique"},{"name": "Denis Ambrósio"},{"name": "Gustavo"},{"name": "Alexandre Pinheiro"}]}]},{"id": "pastel-da-drica","name": "Pastel da Drica","point": "Pastel da Drica","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Luiz Guilherme"},{"name": "Samuel Bauman"},{"name": "Nicolas Abreu"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Reinaldo Alves"},{"name": "Samuel Bauman"},{"name": "Bruno Souza","time": "18h às 00h"}]}]},{"id": "meridio-pizza","name": "Meridio Pizza","point": "Meridio Pizza","defaultTime": "18h às 00h","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Felipe Sousa"},{"name": "Guilherme Nunes"},{"name": "José Henrique"},{"name": "Flávio"},{"name": "Elton"}]}]},{"id": "barto-restaurante","name": "Barto Restaurante","point": "Barto Restaurante","defaultTime": "10h45 às 16h45","days": [{"day": "Segunda-feira","date": "29/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Terça-feira","date": "30/06","items": [{"name": "Kaue Alcantara"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Kaue Alcantara"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Denilson Silveiro"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Denilson Silveiro"}]}]},{"id": "pastel-da-camila","name": "Pastel da Camila","point": "Pastel da Camila","defaultTime": "Manhã / Tarde","days": [{"day": "Segunda-feira","date": "29/06","items": []},{"day": "Terça-feira","date": "30/06","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Quarta-feira","date": "01/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Quinta-feira","date": "02/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Sexta-feira","date": "03/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"},{"name": "Denilson Silveiro","time": "Tarde"}]},{"day": "Sábado","date": "04/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]},{"day": "Domingo","date": "05/07","items": [{"name": "Luiz Guilherme","time": "Manhã"},{"name": "Lucas Lima","time": "Manhã"},{"name": "Weslley Santos","time": "Tarde"}]}]}]};
-const APP_BUILD = '20260629_admin_salvar_publicar_v1';
+const DEFAULT_DATA = {"meta":{"weekLabel":"Semana de 29/06 a 05/07","supportWhatsapp":"5511924782555","updatedAt":"","source":"ESCALA COMPLETA OE(4).xlsx / GERAL - SEMANA","sourceVersion":"escala_oficial_geral_semana_denilson_silveiro_v3"},"clients":[{"id":"bevenutti","name":"Bevenutti","point":"Pizzaria Bevenutti","defaultTime":"18h às 00h","days":[{"day":"Segunda-feira","date":"29/06","items":[{"name":"Thiago Henrique"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Denilson Silveiro"}]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Douglas Nunes"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Letícia Santana"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Roger Martineli"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Letícia Santana"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Roger Martineli"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Douglas Nunes"},{"name":"Thiago Henrique"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Roger Martineli"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Douglas Nunes"},{"name":"Nicolas Abreu"},{"name":"Bruno Getaruch"},{"name":"Danilo Leite"},{"name":"Igor Santos"},{"name":"Everton Renato"},{"name":"Thiago Henrique"},{"name":"Kaue Alcantara"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Roger Martineli"},{"name":"Lucas Lima"},{"name":"Alessandro Ignácio"},{"name":"Douglas Nunes"},{"name":"Danilo Leite"},{"name":"Letícia Santana"},{"name":"Everton Renato"},{"name":"Kaue Alcantara"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Roger Martineli"},{"name":"Douglas Nunes"},{"name":"Danilo Leite"},{"name":"Everton Renato"},{"name":"Kaue Alcantara"}]}]},{"id":"fratelli","name":"Fratelli","point":"Fratelli","defaultTime":"17h às 23h / 18h às 00h","days":[{"day":"Segunda-feira","date":"29/06","items":[{"name":"Denis Ambrósio"},{"name":"Francisco Alexandre"},{"name":"Gustavo"}]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Pedro Henrique"},{"name":"Francisco Alexandre"},{"name":"Gustavo"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Pedro Henrique"},{"name":"Francisco Alexandre"},{"name":"Denis Ambrósio"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Pedro Henrique"},{"name":"Francisco Alexandre"},{"name":"Denis Ambrósio"},{"name":"Gustavo"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Pedro Henrique"},{"name":"Francisco Alexandre"},{"name":"Denis Ambrósio"},{"name":"Gustavo"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Pedro Henrique"},{"name":"Denis Ambrósio"},{"name":"Gustavo"},{"name":"Igor Santos","time":"19h às 00h"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Pedro Henrique"},{"name":"Denis Ambrósio"},{"name":"Gustavo"},{"name":"Francisco Alexandre"}]}]},{"id":"pastel-da-drica","name":"Pastel da Drica","point":"Pastel da Drica","defaultTime":"18h às 00h","days":[{"day":"Segunda-feira","date":"29/06","items":[{"name":"Leonardo José"},{"name":"Samuel Bauman"},{"name":"Nicolas Abreu"},{"name":"Everton Renato"}]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Reinaldo Alves"},{"name":"Samuel Bauman"},{"name":"Bruno Souza"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Reinaldo Alves"},{"name":"Leonardo José"},{"name":"Bruno Souza"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Reinaldo Alves"},{"name":"Samuel Bauman"},{"name":"Bruno Souza"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Reinaldo Alves"},{"name":"Samuel Bauman"},{"name":"Bruno Souza"},{"name":"Adriano Oliveira","time":"20h às 00h"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Reinaldo Alves"},{"name":"Samuel Bauman"},{"name":"Bruno Souza"},{"name":"Adriano Oliveira","time":"20h às 00h"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Reinaldo Alves"},{"name":"Samuel Bauman"},{"name":"Bruno Souza"},{"name":"Adriano Oliveira","time":"20h às 1h"}]}]},{"id":"meridio-pizza","name":"Meridio Pizza","point":"Meridio Pizza","defaultTime":"18h às 00h","days":[{"day":"Segunda-feira","date":"29/06","items":[]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"},{"name":"Jonatas"},{"name":"Wander"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"},{"name":"Wander"},{"name":"Thiago Henrique"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Felipe Sousa"},{"name":"Guilherme Nunes"},{"name":"José Henrique"},{"name":"Nicolas Abreu"},{"name":"Thiago Henrique"}]}]},{"id":"barto-restaurante","name":"Barto Restaurante","point":"Barto Restaurante","defaultTime":"10h45 às 16h45","days":[{"day":"Segunda-feira","date":"29/06","items":[{"name":"Kaue Alcantara"}]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Kaue Alcantara"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Kaue Alcantara"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Kaue Alcantara"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Kaue Alcantara"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Denilson Silveiro"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Denilson Silveiro"}]}]},{"id":"pastel-da-camila","name":"Pastel da Camila","point":"Pastel da Camila","defaultTime":"Manhã / Tarde","days":[{"day":"Segunda-feira","date":"29/06","items":[]},{"day":"Terça-feira","date":"30/06","items":[{"name":"Guilherme Nunes","time":"10h às 16h · Manhã"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"}]},{"day":"Quarta-feira","date":"01/07","items":[{"name":"Guilherme Nunes","time":"10h às 16h · Manhã"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"}]},{"day":"Quinta-feira","date":"02/07","items":[{"name":"Guilherme Nunes","time":"10h às 16h · Manhã"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"}]},{"day":"Sexta-feira","date":"03/07","items":[{"name":"Guilherme Nunes","time":"10h às 16h · Manhã"},{"name":"Luiz Guilherme","time":"10h às 16h · Manhã"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"},{"name":"Lucas Luan","time":"16h às 22h · Tarde"}]},{"day":"Sábado","date":"04/07","items":[{"name":"Guilherme Nunes","time":"10h às 16h · Manhã"},{"name":"Luiz Guilherme","time":"10h às 16h · Manhã"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"},{"name":"Bruno Getaruch","time":"16h às 22h · Tarde"}]},{"day":"Domingo","date":"05/07","items":[{"name":"Guilherme Nunes","time":"10h45 às 16h45"},{"name":"Luiz Guilherme","time":"10h45 às 16h45"},{"name":"Denilson Silveiro","time":"16h às 22h · Tarde"},{"name":"Lucas Luan","time":"16h às 22h · Tarde"}]}]}]};
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyD2fwx8SMJ8dfqSGFCD5VHrT5YjuLoSD9o",
+  authDomain: "agendaosascoexpress.firebaseapp.com",
+  projectId: "agendaosascoexpress",
+  storageBucket: "agendaosascoexpress.firebasestorage.app",
+  messagingSenderId: "1015315726916",
+  appId: "1:1015315726916:web:13b9448b2226ff2ff37211",
+  measurementId: "G-8CBT79FQEP"
+};
+const FIREBASE_COLLECTION = 'agendas';
+const FIREBASE_DOC_ID = 'agenda_reservada_oe';
+const ADMIN_EMAILS = [
+  'osascoexpress61@gmail.com',
+  'osascoexpressoficial@gmail.com',
+  'operacaoosascoexpress@gmail.com',
+  'bruna.caroline.funari@gmail.com'
+];
+const APP_BUILD = '20260630_planilha_oficial_google_admin_v3_denilson_silveiro';
 const STORAGE_KEY = 'oe_agenda_reservada_' + APP_BUILD;
-const ADMIN_KEY = 'oe_agenda_reservada_admin_firebase_only_v1';
+const ADMIN_KEY = 'oe_agenda_reservada_admin_google_emails_v2';
 const VERSION_KEY = 'oe_agenda_reservada_build_atual';
 let data = loadData();
 let selectedDriver = '';
@@ -1581,9 +1598,17 @@ function saveData(show=true){
    toast('Agenda salva neste aparelho');
  }
 }
+function currentAdminEmail(){
+ return firebaseAuth && firebaseAuth.currentUser && firebaseAuth.currentUser.email ? String(firebaseAuth.currentUser.email).toLowerCase() : '';
+}
+function isAllowedAdminEmail(email){
+ const e=String(email||'').toLowerCase().trim();
+ return ADMIN_EMAILS.map(x=>String(x).toLowerCase()).includes(e);
+}
 function isAdmin(){
  if(isFirebaseConfigured()){
-   return !!(firebaseAuth && firebaseAuth.currentUser);
+   const email=currentAdminEmail();
+   return !!(firebaseAuth && firebaseAuth.currentUser && isAllowedAdminEmail(email));
  }
  return false;
 }
@@ -1598,6 +1623,10 @@ function saveRemoteAgenda(show=true){
  }
  if(!firebaseAuth || !firebaseAuth.currentUser){
    if(show)toast('Faça login admin para salvar para todos');
+   return;
+ }
+ if(!isAllowedAdminEmail(firebaseAuth.currentUser.email)){
+   if(show)toast('E-mail sem permissão para salvar');
    return;
  }
  firebaseLastSaveAt = Date.now();
@@ -1620,6 +1649,7 @@ function initFirebaseRemote(){
    firebaseDb = firebase.firestore();
    firebaseAuth = firebase.auth();
    firebaseListening = true;
+   firebaseAuth.getRedirectResult().catch(showFirebaseLoginError);
    firebaseAuth.onAuthStateChanged(()=>{
      renderAdmin();
    });
@@ -1630,6 +1660,11 @@ function initFirebaseRemote(){
      }
      const remote = snap.data() && snap.data().agenda;
      if(!remote || !remote.clients)return;
+     if(remote.meta && DEFAULT_DATA.meta && remote.meta.sourceVersion !== DEFAULT_DATA.meta.sourceVersion){
+       console.warn('Agenda online de versão anterior ignorada. Usando planilha oficial atual do HTML até novo salvamento admin.');
+       renderAll();
+       return;
+     }
      if(Date.now() - firebaseLastSaveAt < 1200)return;
      data = remote;
      try{localStorage.setItem(STORAGE_KEY, JSON.stringify(data));}catch(e){}
@@ -2076,7 +2111,11 @@ function renderAdmin(){
  }
 
  if(!isAdmin()){
-  root.innerHTML=`<div class="card"><span class="kicker">Login admin Firebase</span><h2>Entrar no admin</h2><p class="lead">Entre com o Google ou com e-mail e senha criados no Firebase Authentication. Sem login, ninguém edita a escala.</p><div class="grid"><button class="btn red full" id="googleLogin">Entrar com Google</button></div><div class="notice"><strong>Ou entre com e-mail e senha:</strong></div><div class="grid"><input class="input" id="admUser" placeholder="E-mail admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn" id="doLogin">Entrar com e-mail</button></div><div class="notice"><strong>Firebase ativo:</strong> projeto conectado: <strong>${esc(FIREBASE_CONFIG.projectId)}</strong>. Se o login falhar, esta versão mostra o código exato do erro.</div></div>`;
+  const emailAtual = currentAdminEmail();
+  const avisoConta = emailAtual ? `<div class="notice"><strong>Conta conectada sem permissão:</strong> ${esc(emailAtual)}<br>Entre com um dos e-mails autorizados para editar a escala.<br><br><button class="btn light" id="trocarContaGoogle">Trocar conta Google</button></div>` : '';
+  root.innerHTML=`<div class="card"><span class="kicker">Login admin Google</span><h2>Entrar no admin</h2><p class="lead">Entre com um Google autorizado. Sem esse login, ninguém edita a escala.</p>${avisoConta}<div class="grid"><button class="btn red full" id="googleLogin">Entrar com Google</button></div><div class="notice"><strong>E-mails liberados:</strong><br>${ADMIN_EMAILS.map(esc).join('<br>')}</div><div class="notice"><strong>Ou entre com e-mail e senha do Firebase:</strong></div><div class="grid"><input class="input" id="admUser" placeholder="E-mail admin"><input class="input" id="admPass" type="password" placeholder="Senha"><button class="btn" id="doLogin">Entrar com e-mail</button></div><div class="notice"><strong>Firebase ativo:</strong> projeto conectado: <strong>${esc(FIREBASE_CONFIG.projectId)}</strong>. Se o login falhar, esta versão mostra o código exato do erro.</div></div>`;
+  const trocar=document.getElementById('trocarContaGoogle');
+  if(trocar)trocar.onclick=()=>firebaseAuth.signOut().then(()=>{toast('Conta removida');renderAdmin();});
   document.getElementById('doLogin').onclick=()=>{
     if(!firebaseAuth){toast('Firebase ainda conectando');return;}
     const email=document.getElementById('admUser').value.trim();
@@ -2098,7 +2137,7 @@ function renderAdmin(){
   return;
  }
 
- root.innerHTML=`<div class="card"><span class="kicker">Admin Firebase</span><h2>Editar agenda</h2><p class="lead">As alterações são salvas no Firebase e aparecem para todos que abrirem o link.</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="notice"><strong>Firebase ativo:</strong> clique em salvar e a escala é publicada para todos automaticamente.</div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
+ root.innerHTML=`<div class="card"><span class="kicker">Admin Google + Firebase</span><h2>Editar agenda</h2><p class="lead">Escala carregada da planilha oficial. As alterações são salvas no Firebase e aparecem para todos que abrirem o link.</p><div class="adminBar"><button class="btn green" id="saveMeta">Salvar meta</button><button class="btn" id="addClient">Adicionar ponto</button><button class="btn light" id="exportJson">Exportar JSON</button><button class="btn light" id="importJson">Importar JSON</button><button class="btn danger" id="resetData">Resetar</button><button class="btn" id="logout">Sair</button></div><div class="notice"><strong>Firebase ativo:</strong> clique em salvar e a escala oficial é publicada para todos automaticamente.<br><strong>Fonte:</strong> ${esc(data.meta.source||'Planilha oficial')}</div><div class="adminItem"><div class="formGrid"><input class="input" id="week" value="${esc(data.meta.weekLabel)}"><input class="input" id="zap" value="${esc(data.meta.supportWhatsapp)}"></div></div><div class="adminItem"><label class="label">Selecionar ponto</label><select id="clientSel">${data.clients.map((c,i)=>`<option value="${i}">${esc(c.name)}</option>`).join('')}</select><div id="editor"></div></div></div>`;
  bindAdmin();
 }
 
@@ -2107,7 +2146,7 @@ function downloadPublishedHtml(){
  const build = 'agenda_' + new Date().toISOString().replace(/\D/g,'').slice(0,14);
  let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
  html = html.replace(/const DEFAULT_DATA = .*?;\nconst APP_BUILD/s, 'const DEFAULT_DATA = ' + JSON.stringify(data) + ';\nconst APP_BUILD');
- html = html.replace(/const APP_BUILD = '[^']*';/, "const APP_BUILD = '" + build + "';");
+ html = html.replace(/const APP_BUILD = '[^']*';/, "const APP_BUILD = '20260630_planilha_oficial_google_admin_v3_denilson_silveiro';");
  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
  const a = document.createElement('a');
  a.href = URL.createObjectURL(blob);

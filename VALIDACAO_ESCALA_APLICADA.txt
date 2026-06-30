@@ -1,0 +1,199 @@
+VALIDAÇÃO DA ESCALA APLICADA NO SITE
+Fonte: ESCALA COMPLETA OE(4).xlsx / GERAL - SEMANA
+Versão: escala_oficial_geral_semana_fc56d4d6ef9a
+
+## Bevenutti
+Segunda-feira 29/06
+  - 18h às 00h | Thiago Henrique
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Denilson Silveiro
+Terça-feira 30/06
+  - 18h às 00h | Douglas Nunes
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Letícia Santana
+Quarta-feira 01/07
+  - 18h às 00h | Roger Martineli
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Letícia Santana
+Quinta-feira 02/07
+  - 18h às 00h | Roger Martineli
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Douglas Nunes
+  - 18h às 00h | Thiago Henrique
+Sexta-feira 03/07
+  - 18h às 00h | Roger Martineli
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Douglas Nunes
+  - 18h às 00h | Nicolas Abreu
+  - 18h às 00h | Bruno Getaruch
+  - 18h às 00h | Danilo Leite
+  - 18h às 00h | Igor Santos
+  - 18h às 00h | Everton Renato
+  - 18h às 00h | Thiago Henrique
+  - 18h às 00h | Kaue Alcantara
+Sábado 04/07
+  - 18h às 00h | Roger Martineli
+  - 18h às 00h | Lucas Lima
+  - 18h às 00h | Alessandro Ignácio
+  - 18h às 00h | Douglas Nunes
+  - 18h às 00h | Danilo Leite
+  - 18h às 00h | Letícia Santana
+  - 18h às 00h | Everton Renato
+  - 18h às 00h | Kaue Alcantara
+Domingo 05/07
+  - 18h às 00h | Roger Martineli
+  - 18h às 00h | Douglas Nunes
+  - 18h às 00h | Danilo Leite
+  - 18h às 00h | Everton Renato
+  - 18h às 00h | Kaue Alcantara
+
+## Fratelli
+Segunda-feira 29/06
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+  - 17h às 23h / 18h às 00h | Gustavo
+Terça-feira 30/06
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+  - 17h às 23h / 18h às 00h | Gustavo
+Quarta-feira 01/07
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+Quinta-feira 02/07
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+  - 17h às 23h / 18h às 00h | Gustavo
+Sexta-feira 03/07
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+  - 17h às 23h / 18h às 00h | Gustavo
+Sábado 04/07
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+  - 17h às 23h / 18h às 00h | Gustavo
+  - 19h às 00h | Igor Santos
+Domingo 05/07
+  - 17h às 23h / 18h às 00h | Pedro Henrique
+  - 17h às 23h / 18h às 00h | Denis Ambrósio
+  - 17h às 23h / 18h às 00h | Gustavo
+  - 17h às 23h / 18h às 00h | Francisco Alexandre
+
+## Pastel da Drica
+Segunda-feira 29/06
+  - 18h às 00h | Leonardo José
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Nicolas Abreu
+  - 18h às 00h | Everton Renato
+Terça-feira 30/06
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Bruno Souza
+Quarta-feira 01/07
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Leonardo José
+  - 18h às 00h | Bruno Souza
+Quinta-feira 02/07
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Bruno Souza
+Sexta-feira 03/07
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Bruno Souza
+  - 20h às 00h | Adriano Oliveira
+Sábado 04/07
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Bruno Souza
+  - 20h às 00h | Adriano Oliveira
+Domingo 05/07
+  - 18h às 00h | Reinaldo Alves
+  - 18h às 00h | Samuel Bauman
+  - 18h às 00h | Bruno Souza
+  - 20h às 1h | Adriano Oliveira
+
+## Meridio Pizza
+Segunda-feira 29/06
+  Sem escala
+Terça-feira 30/06
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+Quarta-feira 01/07
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+Quinta-feira 02/07
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+Sexta-feira 03/07
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+  - 18h às 00h | Jonatas
+  - 18h às 00h | Wander
+Sábado 04/07
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+  - 18h às 00h | Wander
+  - 18h às 00h | Thiago Henrique
+Domingo 05/07
+  - 18h às 00h | Felipe Sousa
+  - 18h às 00h | Guilherme Nunes
+  - 18h às 00h | José Henrique
+  - 18h às 00h | Nicolas Abreu
+  - 18h às 00h | Thiago Henrique
+
+## Barto Restaurante
+Segunda-feira 29/06
+  - 10h45 às 16h45 | Kaue Alcantara
+Terça-feira 30/06
+  - 10h45 às 16h45 | Kaue Alcantara
+Quarta-feira 01/07
+  - 10h45 às 16h45 | Kaue Alcantara
+Quinta-feira 02/07
+  - 10h45 às 16h45 | Kaue Alcantara
+Sexta-feira 03/07
+  - 10h45 às 16h45 | Kaue Alcantara
+Sábado 04/07
+  - 10h45 às 16h45 | Denilson Silveiro
+Domingo 05/07
+  - 10h45 às 16h45 | Denilson Silveiro
+
+## Pastel da Camila
+Segunda-feira 29/06
+  Sem escala
+Terça-feira 30/06
+  - 10h às 16h · Manhã | Guilherme Nunes
+  - 16h às 22h · Tarde | Denilson Silveiro
+Quarta-feira 01/07
+  - 10h às 16h · Manhã | Guilherme Nunes
+  - 16h às 22h · Tarde | Denilson Silveiro
+Quinta-feira 02/07
+  - 10h às 16h · Manhã | Guilherme Nunes
+  - 16h às 22h · Tarde | Denilson Silveiro
+Sexta-feira 03/07
+  - 10h às 16h · Manhã | Guilherme Nunes
+  - 10h às 16h · Manhã | Luiz Guilherme
+  - 16h às 22h · Tarde | Denilson Silveiro
+  - 16h às 22h · Tarde | Lucas Luan
+Sábado 04/07
+  - 10h às 16h · Manhã | Guilherme Nunes
+  - 10h às 16h · Manhã | Luiz Guilherme
+  - 16h às 22h · Tarde | Denilson Silveiro
+  - 16h às 22h · Tarde | Bruno Getaruch
+Domingo 05/07
+  - 10h45 às 16h45 | Guilherme Nunes
+  - 10h45 às 16h45 | Luiz Guilherme
+  - 16h às 22h · Tarde | Denilson Silveiro
+  - 16h às 22h · Tarde | Lucas Luan
